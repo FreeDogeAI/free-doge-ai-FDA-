@@ -4,24 +4,38 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Free Doge AI (FDAI) Presale</title>
-  <link href="styles.css" rel="stylesheet" />
+  <!-- CSS first -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet" />
 
-  <!-- Babel (JSX desteklemek için şart) -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-  <!-- React -->
-  <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.development.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.development.js"></script>
-
+  <!-- React before Babel -->
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  
+  <!-- Babel for JSX -->
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.21.4/babel.min.js"></script>
+  
   <!-- Web3 -->
   <script src="https://cdn.jsdelivr.net/npm/web3@1.8.0/dist/web3.min.js"></script>
 </head>
 <body>
   <div id="root"></div>
 
-  <!-- JSX destekli app.js -->
+  <!-- JSX script -->
   <script type="text/babel" src="app.js"></script>
+  
+  <!-- Fallback in case app.js fails -->
+  <script type="text/babel">
+    if (!document.getElementById('root').hasChildNodes()) {
+      ReactDOM.render(
+        <div className="container text-center mt-5">
+          <h1>Free Doge AI Presale</h1>
+          <p>Loading application...</p>
+        </div>,
+        document.getElementById('root')
+      );
+    }
+  </script>
 </body>
 </html>
