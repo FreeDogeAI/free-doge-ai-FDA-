@@ -1,104 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FDAI Presale - Pakistan Style</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f0f0f0;
-      text-align: center;
-      padding: 20px;
-      color: #333;
-    }
-    .container {
-      max-width: 500px;
-      margin: 0 auto;
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    button {
-      background: #f6851b;
-      color: white;
-      border: none;
-      padding: 15px 30px;
-      font-size: 18px;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 20px;
-      width: 100%;
-    }
-    .wallet-info {
-      margin-top: 20px;
-      padding: 15px;
-      background: #f9f9f9;
-      border-radius: 5px;
-      display: none;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FreeDogeAI Ön Satış</title>
 </head>
-<body>
-  <div class="container">
-    <h1>🚀 FDAI Token Presale</h1>
-    <p>En iyi fırsatı kaçırma!</p>
-    
-    <button id="connectBtn">META MASK ILE BAGLAN</button>
-    
-    <div id="walletInfo" class="wallet-info">
-      <h3>✔️ BASARIYLA BAGLANDI!</h3>
-      <p>Cüzdan: <strong id="walletAddress"></strong></p>
-    </div>
-  </div>
+<body style="text-align: center; font-family: Arial; padding: 50px; background: #000; color: gold;">
+
+  <h1>FreeDogeAI Token Ön Satışı</h1>
+  <p>Cüzdanınızı bağlayarak ön satışa katılın</p>
+
+  <button id="connectButton" style="padding: 12px 20px; font-size: 16px; cursor: pointer;">Cüzdanı Bağla</button>
+  <div id="status" style="margin-top: 20px;"></div>
 
   <script>
-    const connectBtn = document.getElementById('connectBtn');
-    const walletInfo = document.getElementById('walletInfo');
-    const walletAddress = document.getElementById('walletAddress');
+    const connectButton = document.getElementById('connectButton');
+    const statusDiv = document.getElementById('status');
 
-    connectBtn.addEventListener('click', async () => {
-      try {
-        // 1. MetaMask kontrolü
-        if(!window.ethereum || !window.ethereum.isMetaMask) {
-          alert('SADECE META MASK MOBIL UYGULAMASINDA CALISIR!');
-          return;
-        }
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-        // 2. Hesapları iste (MetaMask'te popup açar)
-        const accounts = await window.ethereum.request({ 
-          method: 'eth_requestAccounts' 
-        });
-
-        // 3. İmza iste (Direkt Account 1 ekranında çıkar)
-        await window.ethereum.request({
-          method: 'personal_sign',
-          params: [
-            `FDAI GIRIS ONAYI: ${new Date().toLocaleString()}`,
-            accounts[0]
-          ],
-        });
-
-        // 4. Bağlantıyı göster
-        walletAddress.textContent = `${accounts[0].slice(0,6)}...${accounts[0].slice(-4)}`;
-        walletInfo.style.display = 'block';
-        connectBtn.style.display = 'none';
-
-      } catch (error) {
-        console.error("HATA:", error);
-        alert("IMZA REDDEDILDI! " + error.message);
+    connectButton.onclick = async () => {
+      if (isMobile) {
+        // Mobil cihazlarda MetaMask uygulamasını aç
+        window.location.href = "https://metamask.app.link/dapp/freedogeai.github.io/free-doge-ai-FDA-/";
+        return;
       }
-    });
 
-    // Sayfa yüklendiğinde otomatik bağlanmayı dene
-    window.addEventListener('load', async () => {
-      if(window.ethereum?.selectedAddress) {
-        walletAddress.textContent = `${window.ethereum.selectedAddress.slice(0,6)}...${window.ethereum.selectedAddress.slice(-4)}`;
-        walletInfo.style.display = 'block';
-        connectBtn.style.display = 'none';
+      if (window.ethereum) {
+        try {
+          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+          statusDiv.innerText = 'Bağlandı: ' + accounts[0];
+        } catch (err) {
+          statusDiv.innerText = 'Bağlantı reddedildi.';
+        }
+      } else {
+        // MetaMask yüklü değilse uyarı verme
+        statusDiv.innerText = '';
+      }
+    };
+
+    window.addEventListener('load', () => {
+      if (window.ethereum && window.ethereum.selectedAddress) {
+        statusDiv.innerText = 'Bağlandı: ' + window.ethereum.selectedAddress;
       }
     });
   </script>
+
 </body>
 </html>
