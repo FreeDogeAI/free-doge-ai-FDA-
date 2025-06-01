@@ -1,66 +1,102 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FDAI Presale</title>
+  <title>FDAI Presale - Pakistan Style</title>
   <style>
-    body { 
+    body {
       font-family: Arial, sans-serif;
+      background: #f0f0f0;
       text-align: center;
       padding: 20px;
-      background: #f5f5f5;
+      color: #333;
+    }
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     button {
       background: #f6851b;
       color: white;
       border: none;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-size: 16px;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 5px;
       cursor: pointer;
       margin-top: 20px;
+      width: 100%;
+    }
+    .wallet-info {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f9f9f9;
+      border-radius: 5px;
+      display: none;
     }
   </style>
 </head>
 <body>
-  <h1>FDAI Token Presale</h1>
-  <button id="connectButton">MetaMask ile Bağlan</button>
-  <div id="walletInfo" style="margin-top: 20px; display: none;">
-    <p>Bağlı Cüzdan: <span id="walletAddress"></span></p>
+  <div class="container">
+    <h1>🚀 FDAI Token Presale</h1>
+    <p>En iyi fırsatı kaçırma!</p>
+    
+    <button id="connectBtn">META MASK ILE BAGLAN</button>
+    
+    <div id="walletInfo" class="wallet-info">
+      <h3>✔️ BASARIYLA BAGLANDI!</h3>
+      <p>Cüzdan: <strong id="walletAddress"></strong></p>
+    </div>
   </div>
 
   <script>
-    document.getElementById('connectButton').addEventListener('click', async () => {
-      // 1. MetaMask kontrolü
-      if (!window.ethereum?.isMetaMask) {
-        alert('Lütfen MetaMask mobil uygulamasını kullanın!');
-        return;
-      }
+    const connectBtn = document.getElementById('connectBtn');
+    const walletInfo = document.getElementById('walletInfo');
+    const walletAddress = document.getElementById('walletAddress');
 
+    connectBtn.addEventListener('click', async () => {
       try {
+        // 1. MetaMask kontrolü
+        if(!window.ethereum || !window.ethereum.isMetaMask) {
+          alert('SADECE META MASK MOBIL UYGULAMASINDA CALISIR!');
+          return;
+        }
+
         // 2. Hesapları iste (MetaMask'te popup açar)
         const accounts = await window.ethereum.request({ 
           method: 'eth_requestAccounts' 
         });
 
-        // 3. İmza iste (Account 1 ekranında gözükür)
+        // 3. İmza iste (Direkt Account 1 ekranında çıkar)
         await window.ethereum.request({
           method: 'personal_sign',
           params: [
-            `FDAI Giriş Onayı: ${new Date().toLocaleString()}`,
+            `FDAI GIRIS ONAYI: ${new Date().toLocaleString()}`,
             accounts[0]
           ],
         });
 
         // 4. Bağlantıyı göster
-        document.getElementById('walletAddress').textContent = 
-          `${accounts[0].slice(0, 6)}...${accounts[0].slice(-4)}`;
-        document.getElementById('walletInfo').style.display = 'block';
-        
+        walletAddress.textContent = `${accounts[0].slice(0,6)}...${accounts[0].slice(-4)}`;
+        walletInfo.style.display = 'block';
+        connectBtn.style.display = 'none';
+
       } catch (error) {
-        console.error("Hata:", error);
-        alert("İmza reddedildi!");
+        console.error("HATA:", error);
+        alert("IMZA REDDEDILDI! " + error.message);
+      }
+    });
+
+    // Sayfa yüklendiğinde otomatik bağlanmayı dene
+    window.addEventListener('load', async () => {
+      if(window.ethereum?.selectedAddress) {
+        walletAddress.textContent = `${window.ethereum.selectedAddress.slice(0,6)}...${window.ethereum.selectedAddress.slice(-4)}`;
+        walletInfo.style.display = 'block';
+        connectBtn.style.display = 'none';
       }
     });
   </script>
