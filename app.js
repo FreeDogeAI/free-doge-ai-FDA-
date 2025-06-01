@@ -172,8 +172,8 @@ function App() {
 
   // Calculate token amount based on payment method
   const calculateTokenAmount = () => {
-    if (!buyAmount || isNaN(buyAmount) return 0;
     
+    if (!buyAmount || isNaN(buyAmount)) return 0;
     const amount = parseFloat(buyAmount);
     if (amount <= 0) return 0;
     
