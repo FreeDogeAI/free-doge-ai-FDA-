@@ -6,16 +6,16 @@ function App() {
   const [buyAmount, setBuyAmount] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('bnb');
   const [isMobile, setIsMobile] = useState(false);
-  const [showWalletSelector, setShowWalletSelector] = useState(false);
-  const [walletType, setWalletType] = useState('');
+  const [isMetaMaskBrowser, setIsMetaMaskBrowser] = useState(false);
 
-  // Mobil kontrolü
+  // Cihaz ve tarayıcı kontrolü
   useEffect(() => {
     const mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     setIsMobile(mobile);
     
-    // Eğer MetaMask/Trust Wallet tarayıcısından geliyorsa
-    if (mobile && window.ethereum) {
+    // MetaMask tarayıcısında mı kontrolü
+    if (mobile && window.ethereum && window.ethereum.isMetaMask) {
+      setIsMetaMaskBrowser(true);
       checkConnection();
     }
   }, []);
@@ -23,78 +23,74 @@ function App() {
   // Bağlantı kontrolü
   const checkConnection = async () => {
     if (window.ethereum && window.ethereum.selectedAddress) {
-      setAccount(window.ethereum.selectedAddress);
-      setIsConnected(true);
+      const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+      if (accounts.length > 0) {
+        setAccount(accounts[0]);
+        setIsConnected(true);
+      }
     }
   };
 
-  // Cüzdan seçiciyi aç
-  const openWalletSelector = () => {
-    setShowWalletSelector(true);
-  };
-
-  // Cüzdan bağlama
-  const connectWallet = async (wallet) => {
+  // MetaMask bağlantısı (Mobil özel)
+  const connectMetaMaskMobile = async () => {
     try {
-      setWalletType(wallet);
-      
-      if (wallet === 'metamask') {
-        // MetaMask bağlantısı
-        if (window.ethereum) {
-          const accounts = await window.ethereum.request({ 
-            method: 'eth_requestAccounts' 
-          });
-          handleConnectionSuccess(accounts[0]);
-        } else if (isMobile) {
-          // Mobilde MetaMask linki
-          window.location.href = `https://metamask.app.link/dapp/${window.location.hostname}`;
+      if (!window.ethereum) {
+        // MetaMask uygulamasına deep link
+        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+          window.location.href = 'metamask://dapp/' + encodeURIComponent(window.location.href);
         } else {
-          alert('Lütfen MetaMask eklentisini yükleyin!');
+          window.location.href = 'https://metamask.app.link/dapp/' + window.location.href;
         }
-      } 
-      else if (wallet === 'trustwallet') {
-        // Trust Wallet bağlantısı
-        if (window.ethereum && window.ethereum.isTrust) {
-          const accounts = await window.ethereum.request({ 
-            method: 'eth_requestAccounts' 
-          });
-          handleConnectionSuccess(accounts[0]);
-        } else if (isMobile) {
-          // Mobilde Trust Wallet linki
-          window.location.href = `https://link.trustwallet.com/open_url?url=${encodeURIComponent(window.location.href)}`;
-        } else {
-          alert('Lütfen Trust Wallet eklentisini yükleyin!');
-        }
+        return;
       }
+      
+      // Doğrudan bağlantı isteği
+      const accounts = await window.ethereum.request({ 
+        method: 'eth_requestAccounts' 
+      });
+      
+      // Mobil imza isteği
+      await signMessage(accounts[0]);
+      
+      handleConnectionSuccess(accounts[0]);
     } catch (error) {
       console.error('Bağlantı hatası:', error);
       alert(`Bağlantı hatası: ${error.message}`);
     }
   };
 
-  const handleConnectionSuccess = (account) => {
-    setAccount(account);
-    setIsConnected(true);
-    setShowWalletSelector(false);
-    
-    // Mobil imza isteği
-    if (isMobile) {
-      signMessage(account);
-    }
-  };
-
-  // Mobil imza işlemi
+  // Mobil imza işlemi (Chrome'ye dönüş için kritik)
   const signMessage = async (account) => {
     try {
-      const message = "FDAI Presale giriş onayı";
-      const signature = await window.ethereum.request({
+      const message = "FDAI Presale giriş onayı - " + Date.now();
+      await window.ethereum.request({
         method: 'personal_sign',
         params: [message, account],
       });
-      console.log('İmza başarılı:', signature);
+      
+      // İmza sonrası Chrome'ye dönüş
+      if (!isMetaMaskBrowser && document.referrer.includes('chrome')) {
+        window.location.href = 'googlechrome://' + window.location.href.replace(/^https?:\/\//, '');
+      }
     } catch (error) {
       console.error('İmza hatası:', error);
+      throw error;
     }
+  };
+
+  const handleConnectionSuccess = (account) => {
+    setAccount(account);
+    setIsConnected(true);
+    
+    // Etkinlik dinleyicileri
+    window.ethereum.on('accountsChanged', (newAccounts) => {
+      if (newAccounts.length > 0) {
+        setAccount(newAccounts[0]);
+      } else {
+        setIsConnected(false);
+        setAccount('');
+      }
+    });
   };
 
   // Token satın alma
@@ -138,43 +134,35 @@ function App() {
             <div className="text-center">
               <h4>Cüzdanı Bağla</h4>
               
-              {showWalletSelector ? (
-                <div className="wallet-selector mt-3">
+              {isMobile ? (
+                <>
+                  <p className="text-muted mb-3">
+                    {isMetaMaskBrowser 
+                      ? "MetaMask tarayıcısı ile bağlanıyorsunuz"
+                      : "MetaMask uygulaması ile bağlanın"}
+                  </p>
+                  
                   <button 
-                    className="btn btn-outline-primary w-100 mb-2"
-                    onClick={() => connectWallet('metamask')}
+                    className="btn btn-primary btn-lg"
+                    onClick={connectMetaMaskMobile}
                   >
-                    <img src="https://metamask.io/images/favicon-128.png" width="24" className="me-2" />
                     MetaMask ile Bağlan
                   </button>
                   
-                  <button 
-                    className="btn btn-outline-dark w-100"
-                    onClick={() => connectWallet('trustwallet')}
-                  >
-                    <img src="https://trustwallet.com/assets/images/favicon.png" width="24" className="me-2" />
-                    Trust Wallet ile Bağlan
-                  </button>
-                  
-                  <button 
-                    className="btn btn-link mt-3"
-                    onClick={() => setShowWalletSelector(false)}
-                  >
-                    Geri Dön
-                  </button>
-                </div>
+                  {!isMetaMaskBrowser && (
+                    <p className="mt-3 small">
+                      MetaMask yüklü değilse <a href="#" onClick={connectMetaMaskMobile}>buraya tıklayın</a>
+                    </p>
+                  )}
+                </>
               ) : (
                 <>
-                  <p className="text-muted mb-3">
-                    {isMobile 
-                      ? "Lütfen cüzdan tarayıcınızı kullanın" 
-                      : "Lütfen bir cüzdan seçin"}
-                  </p>
+                  <p className="text-muted mb-3">Lütfen MetaMask eklentisini kullanın</p>
                   <button 
                     className="btn btn-primary btn-lg"
-                    onClick={openWalletSelector}
+                    onClick={connectMetaMaskMobile}
                   >
-                    Cüzdan Seç
+                    MetaMask ile Bağlan
                   </button>
                 </>
               )}
@@ -182,12 +170,14 @@ function App() {
           ) : (
             <div className="connected-wallet">
               <div className="alert alert-success">
-                <strong>Bağlı Cüzdan:</strong> 
-                <div className="wallet-address">
-                  {`${account.substring(0, 6)}...${account.substring(account.length - 4)}`}
-                </div>
-                <div className="wallet-type mt-1">
-                  {walletType === 'metamask' ? 'MetaMask' : 'Trust Wallet'}
+                <div className="d-flex justify-content-between align-items-center">
+                  <div>
+                    <strong>Bağlı Cüzdan:</strong>
+                    <div className="wallet-address">
+                      {`${account.substring(0, 6)}...${account.substring(account.length - 4)}`}
+                    </div>
+                  </div>
+                  <span className="badge bg-primary">MetaMask</span>
                 </div>
               </div>
               
@@ -258,11 +248,6 @@ function App() {
             <h4>Kontrat Adresi</h4>
             <div className="p-2 bg-light rounded mb-3">
               <code>0x8161698A74F2ea0035B9912ED60140893Ac0f39C</code>
-            </div>
-            
-            <h4>Alıcı Adresi</h4>
-            <div className="p-2 bg-light rounded">
-              <code>0xd924e01c7d319c5b23708cd622bd1143cd4fb360</code>
             </div>
           </div>
         </div>
