@@ -1,50 +1,160 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FreeDogeAI Ön Satış</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUBG Türkiye - UC Satın Al | Resmi Distribütör</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body style="text-align: center; font-family: Arial; padding: 50px; background: #000; color: gold;">
+<body>
+    <!-- Üst Menü -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="logo.png" alt="PUBG Türkiye">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Ana Sayfa</a></li>
+                    <li><a href="#">UC Paketleri</a></li>
+                    <li><a href="#">Nasıl Çalışır?</a></li>
+                    <li><a href="#">SSS</a></li>
+                    <li><a href="#">İletişim</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn-login">Giriş Yap</a>
+                <a href="#" class="btn-register">Kayıt Ol</a>
+            </div>
+        </div>
+    </header>
 
-  <h1>FreeDogeAI Token Ön Satışı</h1>
-  <p>Cüzdanınızı bağlayarak ön satışa katılın</p>
+    <!-- Hero Banner -->
+    <section class="hero">
+        <div class="container">
+            <h1>PUBG Mobile UC Satın Al</h1>
+            <p>Anında teslimat ile en uygun fiyatlar!</p>
+            <a href="#" class="btn-primary">Hemen Al</a>
+        </div>
+    </section>
 
-  <button id="connectButton" style="padding: 12px 20px; font-size: 16px; cursor: pointer;">Cüzdanı Bağla</button>
-  <div id="status" style="margin-top: 20px;"></div>
+    <!-- UC Paketleri -->
+    <section class="packages">
+        <div class="container">
+            <h2>POPÜLER UC PAKETLERİ</h2>
+            <div class="package-grid">
+                <!-- Paket 1 -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>600 UC</h3>
+                    </div>
+                    <div class="package-price">
+                        <span class="old-price">120 TL</span>
+                        <span class="new-price">99 TL</span>
+                    </div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-bolt"></i> 5 Dakikada Teslimat</li>
+                        <li><i class="fas fa-shield-alt"></i> Güvenli Ödeme</li>
+                    </ul>
+                    <a href="#" class="btn-buy">Satın Al</a>
+                </div>
 
-  <script>
-    const connectButton = document.getElementById('connectButton');
-    const statusDiv = document.getElementById('status');
+                <!-- Paket 2 (Öne Çıkan) -->
+                <div class="package-card featured">
+                    <div class="package-badge">EN ÇOK SATAN</div>
+                    <div class="package-header">
+                        <h3>3,000 UC</h3>
+                    </div>
+                    <div class="package-price">
+                        <span class="old-price">450 TL</span>
+                        <span class="new-price">399 TL</span>
+                    </div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-bolt"></i> 5 Dakikada Teslimat</li>
+                        <li><i class="fas fa-gift"></i> +100 UC Hediye</li>
+                    </ul>
+                    <a href="#" class="btn-buy">Satın Al</a>
+                </div>
 
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+                <!-- Paket 3 -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>6,000 UC</h3>
+                    </div>
+                    <div class="package-price">
+                        <span class="old-price">900 TL</span>
+                        <span class="new-price">799 TL</span>
+                    </div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-bolt"></i> 5 Dakikada Teslimat</li>
+                        <li><i class="fas fa-crown"></i> VIP Destek</li>
+                    </ul>
+                    <a href="#" class="btn-buy">Satın Al</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    connectButton.onclick = async () => {
-      if (isMobile) {
-        // Mobil cihazlarda MetaMask uygulamasını aç
-        window.location.href = "https://metamask.app.link/dapp/freedogeai.github.io/free-doge-ai-FDA-/";
-        return;
-      }
+    <!-- Özellikler -->
+    <section class="features">
+        <div class="container">
+            <h2>NEDEN BİZİ SEÇMELİSİNİZ?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Anında Teslimat</h3>
+                    <p>Siparişiniz 5 dakika içinde hesabınıza yüklenir.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-lock"></i>
+                    <h3>Güvenli Ödeme</h3>
+                    <p>256-bit SSL ile korunan ödeme sistemleri.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>7/24 Destek</h3>
+                    <p>WhatsApp ve canlı destek ile yanınızdayız.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      if (window.ethereum) {
-        try {
-          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-          statusDiv.innerText = 'Bağlandı: ' + accounts[0];
-        } catch (err) {
-          statusDiv.innerText = 'Bağlantı reddedildi.';
-        }
-      } else {
-        // MetaMask yüklü değilse uyarı verme
-        statusDiv.innerText = '';
-      }
-    };
-
-    window.addEventListener('load', () => {
-      if (window.ethereum && window.ethereum.selectedAddress) {
-        statusDiv.innerText = 'Bağlandı: ' + window.ethereum.selectedAddress;
-      }
-    });
-  </script>
-
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Hızlı Linkler</h4>
+                    <ul>
+                        <li><a href="#">Ana Sayfa</a></li>
+                        <li><a href="#">UC Paketleri</a></li>
+                        <li><a href="#">Hesap Yükleme</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Yardım</h4>
+                    <ul>
+                        <li><a href="#">SSS</a></li>
+                        <li><a href="#">İade Politikası</a></li>
+                        <li><a href="#">Kullanım Koşulları</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>İletişim</h4>
+                    <ul>
+                        <li><i class="fab fa-whatsapp"></i> WhatsApp: +90 555 123 4567</li>
+                        <li><i class="fas fa-envelope"></i> Email: destek@pubgturkiye.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="payment-methods">
+                <img src="payment-methods.png" alt="Ödeme Yöntemleri">
+            </div>
+            <div class="copyright">
+                <p>© 2023 PUBG Türkiye. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
