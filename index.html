@@ -4,15 +4,439 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PUBG Türkiye - UC Satın Al | Resmi Distribütör</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* === TEMEL RENKLER === */
+        :root {
+            --pubg-dark: #1a1a1a;          /* Ana arkaplan */
+            --pubg-red: #e74c3c;           /* Vurgu/buton */
+            --pubg-gold: #f8d347;          /* Altın sarısı */
+            --pubg-blue: #3498db;          /* Bilgi/öne çıkan */
+            --pubg-light: #f5f5f5;         /* Açık arkaplan */
+        }
+
+        /* === GENEL STİL === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--pubg-light);
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* === HEADER (KARANLIK TEMA) === */
+        header {
+            background-color: var(--pubg-dark);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid var(--pubg-red);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--pubg-gold);
+        }
+
+        .auth-buttons .btn-login {
+            color: #fff;
+            margin-right: 10px;
+            text-decoration: none;
+        }
+
+        .auth-buttons .btn-register {
+            background-color: var(--pubg-red);
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .auth-buttons .btn-register:hover {
+            background-color: #c0392b;
+        }
+
+        /* === HERO BANNER (PUBG TEMALI) === */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://via.placeholder.com/1920x1080?text=PUBG+Mobile+Background');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-primary {
+            background-color: var(--pubg-gold);
+            color: #1a1a1a;
+            padding: 15px 40px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: #e6c542;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* === UC PAKETLERİ (KARTLAR) === */
+        .packages {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+
+        .packages h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: var(--pubg-dark);
+            position: relative;
+        }
+
+        .packages h2::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: var(--pubg-red);
+            margin: 15px auto 0;
+        }
+
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .package-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: all 0.3s;
+            border: 1px solid #eee;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .package-card.featured {
+            border: 2px solid var(--pubg-gold);
+        }
+
+        .package-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background-color: var(--pubg-red);
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .package-header h3 {
+            font-size: 2rem;
+            color: var(--pubg-dark);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .package-price {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1.2rem;
+            display: block;
+        }
+
+        .new-price {
+            font-size: 2.2rem;
+            color: var(--pubg-red);
+            font-weight: bold;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .package-features li {
+            margin-bottom: 12px;
+            color: #555;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .package-features li i {
+            color: var(--pubg-gold);
+            position: absolute;
+            left: 0;
+            top: 3px;
+        }
+
+        .btn-buy {
+            display: block;
+            background-color: var(--pubg-dark);
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .btn-buy:hover {
+            background-color: #333;
+            letter-spacing: 1px;
+        }
+
+        /* === ÖZELLİKLER BÖLÜMÜ === */
+        .features {
+            padding: 80px 0;
+            background-color: var(--pubg-dark);
+            color: #fff;
+            background-image: url('https://via.placeholder.com/1920x300?text=Dark+Pattern');
+            background-blend-mode: overlay;
+        }
+
+        .features h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: var(--pubg-gold);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 40px 30px;
+            background-color: rgba(26, 26, 26, 0.8);
+            border-radius: 10px;
+            border: 1px solid rgba(248, 211, 71, 0.3);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: scale(1.05);
+            border-color: var(--pubg-gold);
+        }
+
+        .feature-card i {
+            font-size: 3.5rem;
+            color: var(--pubg-gold);
+            margin-bottom: 25px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .feature-card p {
+            color: #bbb;
+            line-height: 1.6;
+        }
+
+        /* === FOOTER === */
+        footer {
+            background-color: #111;
+            color: #fff;
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--pubg-gold);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h4::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--pubg-red);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 15px;
+        }
+
+        .footer-col ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: block;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--pubg-gold);
+            padding-left: 5px;
+        }
+
+        .footer-col i {
+            margin-right: 10px;
+            color: var(--pubg-red);
+            width: 20px;
+            text-align: center;
+        }
+
+        .payment-methods {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .payment-methods img {
+            max-width: 500px;
+            filter: grayscale(100%) brightness(2);
+            opacity: 0.8;
+            transition: all 0.3s;
+        }
+
+        .payment-methods img:hover {
+            filter: grayscale(0%) brightness(1);
+            opacity: 1;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin: 20px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 5px 10px;
+            }
+
+            .auth-buttons {
+                margin-top: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .package-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Üst Menü -->
     <header>
         <div class="container">
             <div class="logo">
-                <img src="logo.png" alt="PUBG Türkiye">
+                <img src="https://via.placeholder.com/200x50?text=PUBG+TURKIYE" alt="PUBG Türkiye">
             </div>
             <nav>
                 <ul>
@@ -56,6 +480,7 @@
                     <ul class="package-features">
                         <li><i class="fas fa-bolt"></i> 5 Dakikada Teslimat</li>
                         <li><i class="fas fa-shield-alt"></i> Güvenli Ödeme</li>
+                        <li><i class="fas fa-headset"></i> 7/24 Destek</li>
                     </ul>
                     <a href="#" class="btn-buy">Satın Al</a>
                 </div>
@@ -73,6 +498,7 @@
                     <ul class="package-features">
                         <li><i class="fas fa-bolt"></i> 5 Dakikada Teslimat</li>
                         <li><i class="fas fa-gift"></i> +100 UC Hediye</li>
+                        <li><i class="fas fa-crown"></i> VIP Destek</li>
                     </ul>
                     <a href="#" class="btn-buy">Satın Al</a>
                 </div>
@@ -88,7 +514,8 @@
                     </div>
                     <ul class="package-features">
                         <li><i class="fas fa-bolt"></i> 5 Dakikada Teslimat</li>
-                        <li><i class="fas fa-crown"></i> VIP Destek</li>
+                        <li><i class="fas fa-gem"></i> Özel Avatar Çerçevesi</li>
+                        <li><i class="fas fa-star"></i> Premium Destek</li>
                     </ul>
                     <a href="#" class="btn-buy">Satın Al</a>
                 </div>
@@ -104,17 +531,17 @@
                 <div class="feature-card">
                     <i class="fas fa-rocket"></i>
                     <h3>Anında Teslimat</h3>
-                    <p>Siparişiniz 5 dakika içinde hesabınıza yüklenir.</p>
+                    <p>Siparişiniz 5 dakika içinde hesabınıza yüklenir. Gecikme durumunda iade garantisi.</p>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-lock"></i>
                     <h3>Güvenli Ödeme</h3>
-                    <p>256-bit SSL ile korunan ödeme sistemleri.</p>
+                    <p>256-bit SSL şifreleme ile %100 güvenli alışveriş. Bilgileriniz asla paylaşılmaz.</p>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-headset"></i>
                     <h3>7/24 Destek</h3>
-                    <p>WhatsApp ve canlı destek ile yanınızdayız.</p>
+                    <p>WhatsApp, canlı destek ve telefonla ulaşabileceğiniz Türkçe müşteri hizmetleri.</p>
                 </div>
             </div>
         </div>
@@ -127,17 +554,19 @@
                 <div class="footer-col">
                     <h4>Hızlı Linkler</h4>
                     <ul>
-                        <li><a href="#">Ana Sayfa</a></li>
-                        <li><a href="#">UC Paketleri</a></li>
-                        <li><a href="#">Hesap Yükleme</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Ana Sayfa</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> UC Paketleri</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Hesaplar</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Kampanyalar</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Yardım</h4>
                     <ul>
-                        <li><a href="#">SSS</a></li>
-                        <li><a href="#">İade Politikası</a></li>
-                        <li><a href="#">Kullanım Koşulları</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Sık Sorulan Sorular</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Ödeme Yöntemleri</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> İade Politikası</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Kullanım Koşulları</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -145,14 +574,15 @@
                     <ul>
                         <li><i class="fab fa-whatsapp"></i> WhatsApp: +90 555 123 4567</li>
                         <li><i class="fas fa-envelope"></i> Email: destek@pubgturkiye.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Adres: İstanbul, Türkiye</li>
                     </ul>
                 </div>
             </div>
             <div class="payment-methods">
-                <img src="payment-methods.png" alt="Ödeme Yöntemleri">
+                <img src="https://via.placeholder.com/500x50?text=BANKA+KREDI+KARTI+PAPARA+PAYTR" alt="Ödeme Yöntemleri">
             </div>
             <div class="copyright">
-                <p>© 2023 PUBG Türkiye. Tüm hakları saklıdır.</p>
+                <p>© 2023 PUBG Türkiye. Tüm hakları saklıdır. PUBG Mobile ve logosu Tencent'in ticari markalarıdır.</p>
             </div>
         </div>
     </footer>
