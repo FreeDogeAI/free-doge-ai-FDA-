@@ -1,73 +1,319 @@
+/* Genel Stil */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #f8f9fa;
-  color: #212529;
+    background-color: #f5f5f5;
+    color: #333;
 }
 
 .container {
-  max-width: 800px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.card {
-  border: none;
-  border-radius: 15px;
+/* Header */
+header {
+    background-color: #1a1a1a;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #f8d347;
+}
+
+.auth-buttons .btn-login {
+    color: #fff;
+    margin-right: 10px;
+}
+
+.auth-buttons .btn-register {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('pubg-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
 }
 
 .btn-primary {
-  background-color: #6c5ce7;
-  border: none;
-  padding: 12px 24px;
-  font-weight: 600;
-  transition: all 0.3s;
+    background-color: #f8d347;
+    color: #1a1a1a;
+    padding: 12px 30px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
 }
 
 .btn-primary:hover {
-  background-color: #5649c0;
-  transform: translateY(-2px);
+    background-color: #e6c542;
 }
 
-.btn-success {
-  padding: 12px 24px;
-  font-weight: 600;
-  transition: all 0.3s;
+/* Paketler */
+.packages {
+    padding: 80px 0;
 }
 
-.btn-success:hover {
-  transform: translateY(-2px);
-}
-
-.alert {
-  border-radius: 10px;
-}
-
-.buy-section {
-  background-color: rgba(108, 92, 231, 0.05);
-}
-
-.form-control, .form-select {
-  border-radius: 10px;
-  padding: 12px 15px;
-}
-
-.form-control:focus, .form-select:focus {
-  border-color: #6c5ce7;
-  box-shadow: 0 0 0 0.25rem rgba(108, 92, 231, 0.25);
-}
-
-code {
-  word-break: break-all;
-}
-
-@media (max-width: 576px) {
-  .container {
-    padding: 15px;
-  }
-  
-  .display-4 {
+.packages h2 {
+    text-align: center;
+    margin-bottom: 50px;
     font-size: 2rem;
-  }
-  
-  .btn-primary, .btn-success {
-    width: 100%;
-  }
+    color: #1a1a1a;
 }
+
+.package-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.package-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.package-card:hover {
+    transform: translateY(-10px);
+}
+
+.package-card.featured {
+    border: 2px solid #f8d347;
+}
+
+.package-badge {
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.package-header h3 {
+    font-size: 1.8rem;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
+
+.package-price {
+    margin-bottom: 20px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 1.2rem;
+}
+
+.new-price {
+    font-size: 1.8rem;
+    color: #e74c3c;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.package-features {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.package-features li {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.package-features i {
+    color: #f8d347;
+    margin-right: 10px;
+}
+
+.btn-buy {
+    display: block;
+    background-color: #1a1a1a;
+    color: #fff;
+    text-align: center;
+    padding: 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-buy:hover {
+    background-color: #333;
+}
+
+/* Özellikler */
+.features {
+    padding: 80px 0;
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+.features h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    text-align: center;
+    padding: 30px;
+    background-color: #252525;
+    border-radius: 8px;
+}
+
+.feature-card i {
+    font-size: 3rem;
+    color: #f8d347;
+    margin-bottom: 20px;
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.feature-card p {
+    color: #bbb;
+}
+
+/* Footer */
+footer {
+    background-color: #252525;
+    color: #fff;
+    padding: 50px 0 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-col h4 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #f8d347;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    color: #bbb;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-col ul li a:hover {
+    color: #f8d347;
+}
+
+.footer-col i {
+    margin-right: 10px;
+    color: #f8d347;
+}
+
+.payment-methods {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.payment-methods img {
+    max-width: 400px;
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #444;
+    color: #bbb;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+    }
+
+    nav ul {
+        margin: 20px 0;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+  }
