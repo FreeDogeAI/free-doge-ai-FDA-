@@ -294,7 +294,100 @@
                     <img src="logo.png" alt="FreeDogeAI Logo">
                 </div>
                 <h1>FreeDogeAI Presale</h1>
-                
+                <!-- Countdown Timer Start -->
+<div class="countdown-container">
+  <div class="countdown-item">
+    <span id="countdown-days">00</span>
+    <span>Days</span>
+  </div>
+  <div class="countdown-item">
+    <span id="countdown-hours">00</span>
+    <span>Hours</span>
+  </div>
+  <div class="countdown-item">
+    <span id="countdown-minutes">00</span>
+    <span>Minutes</span>
+  </div>
+  <div class="countdown-item">
+    <span id="countdown-seconds">00</span>
+    <span>Seconds</span>
+  </div>
+</div>
+<p style="text-align: center; margin-top: 1rem; font-size: 1rem; color: var(--secondary); font-weight: bold;">
+  Presale ends in:
+</p>
+
+<style>
+.countdown-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.countdown-item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--primary);
+  border-radius: 16px;
+  padding: 1.5rem 1rem;
+  min-width: 90px;
+  box-shadow: 0 0 20px rgba(0, 255, 102, 0.15);
+  text-align: center;
+}
+
+.countdown-item span:first-child {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: var(--secondary);
+  display: block;
+  margin-bottom: 0.3rem;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.countdown-item span:last-child {
+  font-size: 0.9rem;
+  color: #ccc;
+  opacity: 0.8;
+}
+</style>
+
+<script>
+(function startCountdown() {
+  // Sayfa yayına alındığı andan itibaren 100 gün
+  const startTime = new Date("2025-06-09T00:00:00Z").getTime();
+  const endTime = startTime + 100 * 24 * 60 * 60 * 1000;
+
+  function updateCountdown() {
+    const now = Date.now();
+    const distance = endTime - now;
+
+    if (distance < 0) {
+      document.getElementById("countdown-days").textContent = "00";
+      document.getElementById("countdown-hours").textContent = "00";
+      document.getElementById("countdown-minutes").textContent = "00";
+      document.getElementById("countdown-seconds").textContent = "00";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown-days").textContent = String(days).padStart(2, '0');
+    document.getElementById("countdown-hours").textContent = String(hours).padStart(2, '0');
+    document.getElementById("countdown-minutes").textContent = String(minutes).padStart(2, '0');
+    document.getElementById("countdown-seconds").textContent = String(seconds).padStart(2, '0');
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+})();
+</script>
+<!-- Countdown Timer End -->
+
                 <div class="payment-method">
                     <label for="paymentMethod"><strong>Payment Method:</strong></label>
                     <select id="paymentMethod">
@@ -519,7 +612,7 @@
             calculateFDAI();
         }
 
-     async function connectWallet() {
+        async function connectWallet() {
             try {
                 if (!window.ethereum) {
                     // Mobile cihazlarda doğrudan MetaMask linki aç
