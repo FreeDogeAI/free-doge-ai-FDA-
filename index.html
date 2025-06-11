@@ -100,6 +100,32 @@
             box-shadow: 0 0 30px var(--primary);
         }
 
+        .language-selector-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 100;
+        }
+
+        .language-selector {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--secondary);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: var(--light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .language-selector:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
+        }
+
         button {
             background: var(--gradient);
             color: white;
@@ -232,7 +258,6 @@
             font-size: 1.3rem;
         }
 
-        /* Team Section */
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -263,31 +288,99 @@
             margin: 0 auto 1rem;
         }
 
-        /* Language Selector */
-        .language-selector {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 100;
-        }
-        
-        .language-btn {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--secondary);
-            color: var(--light);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-        
-        .language-btn:hover {
-            background: rgba(0, 184, 255, 0.3);
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding-left: 50px;
         }
 
-        /* Countdown Styles */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            border-radius: 10px;
+            z-index: 1;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 30px;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--gradient);
+            border: 3px solid var(--secondary);
+            z-index: 2;
+            box-shadow: 0 0 0 4px rgba(0, 184, 255, 0.2);
+        }
+
+        .timeline-content {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 25px;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 25px rgba(0, 255, 102, 0.1);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 255, 102, 0.2);
+            border-color: var(--primary);
+        }
+
+        .timeline-content h4 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            position: relative;
+        }
+
+        .timeline-content h4::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 3px;
+        }
+
+        .timeline-content ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .timeline-content li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .timeline-content li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
         .countdown-container {
             display: flex;
             justify-content: center;
@@ -322,7 +415,6 @@
             opacity: 0.8;
         }
 
-        /* Responsive Design */
         @media (max-width: 1200px) {
             .main-container {
                 flex-direction: column;
@@ -343,29 +435,57 @@
                 padding: 1.5rem;
             }
             
+            .language-selector-container {
+                position: static;
+                margin-bottom: 1rem;
+                display: flex;
+                justify-content: center;
+            }
+            
             .language-selector {
-                top: 10px;
-                right: 10px;
+                max-width: 100%;
+            }
+            
+            .timeline {
+                padding-left: 30px;
+            }
+            
+            .timeline::before {
+                left: 10px;
+            }
+            
+            .timeline-marker {
+                width: 20px;
+                height: 20px;
+                left: -5px;
+            }
+            
+            .timeline-content {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Language Selector -->
-    <div class="language-selector">
-        <button class="language-btn" id="lang-en">EN</button>
-        <button class="language-btn" id="lang-tr">TR</button>
-    </div>
-
     <div class="main-container">
         <div class="left-column">
             <div class="container">
+                <div class="language-selector-container">
+                    <select class="language-selector" id="languageSelector">
+                        <option value="en">EN</option>
+                        <option value="tr">TR</option>
+                        <option value="zh">中文</option>
+                        <option value="ja">日本語</option>
+                        <option value="hi">हिन्दी</option>
+                        <option value="fil">Filipino</option>
+                    </select>
+                </div>
+
                 <div class="logo-container">
                     <img src="logo.png" alt="FreeDogeAI Logo">
                 </div>
                 <h1 data-i18n="presale_title">FreeDogeAI Presale</h1>
                 
-                <!-- Countdown Timer -->
                 <div class="countdown-container">
                     <div class="countdown-item">
                         <span id="countdown-days">00</span>
@@ -434,53 +554,62 @@
         </div>
 
         <div class="right-column">
-            <!-- About Section -->
             <div class="container">
                 <h3 data-i18n="about_title">About FreeDogeAI</h3>
-                <p data-i18n="about_text">FreeDogeAI is an innovative project combining the power of artificial intelligence with the viral appeal of meme-based cryptocurrencies. Our mission is to create a decentralized ecosystem that leverages AI to empower users, foster community engagement, and drive financial freedom. Join us in revolutionizing the future of finance with FreeDogeAI!</p>
+                <p data-i18n="about_text">FreeDogeAI, yapay zeka ile meme tabanlı kripto paraların viral enerjisini birleştiren çığır açan bir projedir. Amacımız, yapay zekayı kullanarak kullanıcıları güçlendiren, topluluk etkileşimini artıran ve finansal bağımsızlığı teşvik eden merkeziyetsiz bir platform oluşturmaktır. FreeDogeAI hareketine katılın ve merkeziyetsiz finansın geleceğini şekillendirmeye yardımcı olun!</p>
             </div>
 
-            <!-- Roadmap Section -->
             <div class="container">
                 <h3 data-i18n="roadmap_title">Roadmap</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                    <div>
-                        <h4 data-i18n="phase1">Phase 1: Launch</h4>
-                        <ul>
-                            <li data-i18n="website_launched">Official website launched: <a href="https://freedogeai.com" target="_blank">freedogeai.com</a></li>
-                            <li data-i18n="twitter_link">Twitter: <a href="https://x.com/FreeDogeAI_FDAI" target="_blank">@FreeDogeAI_FDAI</a></li>
-                            <li data-i18n="telegram_link">Telegram: <a href="https://t.me/freedogeaiFDAI" target="_blank">@freedogeaiFDAI</a></li>
-                            <li data-i18n="presale_launched">Presale was successfully launched</li>
-                        </ul>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4 data-i18n="phase1">Phase 1: Launch</h4>
+                            <ul>
+                                <li data-i18n="website_launched">Official website launched: <a href="https://freedogeai.com" target="_blank">freedogeai.com</a></li>
+                                <li data-i18n="twitter_link">Twitter: <a href="https://x.com/FreeDogeAI_FDAI" target="_blank">@FreeDogeAI_FDAI</a></li>
+                                <li data-i18n="telegram_link">Telegram: <a href="https://t.me/freedogeaiFDAI" target="_blank">@freedogeaiFDAI</a></li>
+                                <li data-i18n="presale_launched">Presale was successfully launched</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-marker"></div>
                     </div>
-                    <div>
-                        <h4 data-i18n="phase2">Phase 2: Growth</h4>
-                        <ul>
-                            <li data-i18n="airdrop_campaigns">Airdrop campaigns and community events</li>
-                            <li data-i18n="dex_listings">DEX visibility and token listings</li>
-                            <li data-i18n="marketing_collabs">Strategic marketing and influencer collaborations</li>
-                        </ul>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4 data-i18n="phase2">Phase 2: Growth</h4>
+                            <ul>
+                                <li data-i18n="airdrop_campaigns">Airdrop campaigns and community events</li>
+                                <li data-i18n="dex_listings">DEX visibility and token listings</li>
+                                <li data-i18n="marketing_collabs">Strategic marketing and influencer collaborations</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-marker"></div>
                     </div>
-                    <div>
-                        <h4 data-i18n="phase3">Phase 3: AI Utility</h4>
-                        <ul>
-                            <li data-i18n="ai_games">AI-powered mini-game and interaction system</li>
-                            <li data-i18n="reward_models">FDAI integrated into task/reward models</li>
-                            <li data-i18n="beta_testing">Beta testing with real utility</li>
-                        </ul>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4 data-i18n="phase3">Phase 3: AI Utility</h4>
+                            <ul>
+                                <li data-i18n="ai_games">AI-powered mini-game and interaction system</li>
+                                <li data-i18n="reward_models">FDAI integrated into task/reward models</li>
+                                <li data-i18n="beta_testing">Beta testing with real utility</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-marker"></div>
                     </div>
-                    <div>
-                        <h4 data-i18n="phase4">Phase 4: Global Expansion</h4>
-                        <ul>
-                            <li data-i18n="cex_listing">Surprise centralized exchange listing</li>
-                            <li data-i18n="nft_integration">NFT + AI feature integration</li>
-                            <li data-i18n="global_outreach">Global outreach and scaling</li>
-                        </ul>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4 data-i18n="phase4">Phase 4: Global Expansion</h4>
+                            <ul>
+                                <li data-i18n="cex_listing">Surprise centralized exchange listing</li>
+                                <li data-i18n="nft_integration">NFT + AI feature integration</li>
+                                <li data-i18n="global_outreach">Global outreach and scaling</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-marker"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Tokenomics Section -->
             <div class="container">
                 <h3 data-i18n="tokenomics_title">Tokenomics</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
@@ -503,7 +632,6 @@
                 </div>
             </div>
 
-            <!-- Locked Release Schedule -->
             <div class="container">
                 <h3 data-i18n="release_schedule">Locked Token Release Schedule</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
@@ -516,7 +644,6 @@
                 </div>
             </div>
 
-            <!-- Team Section -->
             <div class="container">
                 <h3 data-i18n="team_title">Our Team</h3>
                 <div class="team-grid">
@@ -541,7 +668,6 @@
                 </div>
             </div>
 
-            <!-- Community Section -->
             <div class="container">
                 <h3 data-i18n="join_community">Join Our Community</h3>
                 <div style="display: flex; gap: 20px; justify-content: center;">
@@ -550,7 +676,6 @@
                 </div>
             </div>
 
-            <!-- Whitepaper Download -->
             <div class="container">
                 <h3 data-i18n="whitepaper_title">Download FreeDogeAI Whitepaper</h3>
                 <p style="text-align: center;"><a href="FreeDogeAI%20-%20Whitepaper.pdf" download data-i18n="download_whitepaper">Click here to download the whitepaper</a></p>
@@ -572,7 +697,6 @@
         let usdtContract;
         let currentLanguage = 'en';
 
-        // Translation dictionary
         const translations = {
             en: {
                 presale_title: "FreeDogeAI Presale",
@@ -597,7 +721,7 @@
                 note: "NOTE:",
                 token_note: "If FDAI tokens do not appear, add this contract address:",
                 about_title: "About FreeDogeAI",
-                about_text: "FreeDogeAI is an innovative project combining the power of artificial intelligence with the viral appeal of meme-based cryptocurrencies. Our mission is to create a decentralized ecosystem that leverages AI to empower users, foster community engagement, and drive financial freedom. Join us in revolutionizing the future of finance with FreeDogeAI!",
+                about_text: "FreeDogeAI is a groundbreaking project that merges artificial intelligence with the viral energy of meme-based cryptocurrencies. Our goal is to build a decentralized platform that harnesses AI to empower users, boost community interaction, and promote financial independence. Be part of the FreeDogeAI movement and help shape the future of decentralized finance!",
                 roadmap_title: "Roadmap",
                 phase1: "Phase 1: Launch",
                 website_launched: "Official website launched:",
@@ -663,7 +787,7 @@
                 note: "NOT:",
                 token_note: "Eğer FDAI tokenleri görünmüyorsa, bu kontrat adresini ekleyin:",
                 about_title: "FreeDogeAI Hakkında",
-                about_text: "FreeDogeAI, yapay zeka gücünü meme tabanlı kripto paraların viral çekiciliğiyle birleştiren yenilikçi bir projedir. Misyonumuz, kullanıcıları güçlendiren, topluluk katılımını teşvik eden ve finansal özgürlüğü destekleyen merkeziyetsiz bir ekosistem yaratmaktır. FreeDogeAI ile finansın geleceğini yeniden şekillendirmek için bize katılın!",
+                about_text: "FreeDogeAI, yapay zeka ile meme tabanlı kripto paraların viral enerjisini birleştiren çığır açan bir projedir. Amacımız, yapay zekayı kullanarak kullanıcıları güçlendiren, topluluk etkileşimini artıran ve finansal bağımsızlığı teşvik eden merkeziyetsiz bir platform oluşturmaktır. FreeDogeAI hareketine katılın ve merkeziyetsiz finansın geleceğini şekillendirmeye yardımcı olun!",
                 roadmap_title: "Yol Haritası",
                 phase1: "Aşama 1: Başlangıç",
                 website_launched: "Resmi web sitesi yayınlandı:",
@@ -705,10 +829,273 @@
                 join_community: "Topluluğumuza Katılın",
                 whitepaper_title: "FreeDogeAI Whitepaper'ı İndirin",
                 download_whitepaper: "Whitepaper'ı indirmek için tıklayın"
+            },
+            zh: {
+                presale_title: "FreeDogeAI 预售",
+                days: "天",
+                hours: "小时",
+                minutes: "分钟",
+                seconds: "秒",
+                presale_ends: "预售结束倒计时:",
+                payment_method: "支付方式:",
+                connect_wallet: "🔗 连接 MetaMask",
+                your_wallet: "您的钱包",
+                address: "地址:",
+                bnb_balance: "BNB 余额:",
+                usdt_balance: "USDT 余额:",
+                amount: "金额:",
+                you_will_receive: "您将获得:",
+                buy_tokens: "🚀 购买 FDAI 代币",
+                important_info: "重要信息",
+                token_delivery_info: "代币购买后，将在24小时内反映在您的钱包中。",
+                network_warning: "请确保您已连接到",
+                network: "网络。",
+                note: "注意:",
+                token_note: "如果 FDAI 代币未显示，请添加此合约地址:",
+                about_title: "关于 FreeDogeAI",
+                about_text: "FreeDogeAI 是一个开创性的项目，将人工智能与迷因加密货币的病毒式能量相结合。我们的目标是构建一个去中心化平台，利用人工智能赋能用户，提升社区互动，并促进财务独立。加入 FreeDogeAI 运动，助力塑造去中心化金融的未来！",
+                roadmap_title: "路线图",
+                phase1: "第一阶段: 启动",
+                website_launched: "官方网站已上线:",
+                twitter_link: "推特:",
+                telegram_link: "电报:",
+                presale_launched: "预售已成功启动",
+                phase2: "第二阶段: 增长",
+                airdrop_campaigns: "空投活动和社区活动",
+                dex_listings: "DEX 可见性和代币上市",
+                marketing_collabs: "战略营销和影响者合作",
+                phase3: "第三阶段: AI 应用",
+                ai_games: "AI 驱动的小游戏和互动系统",
+                reward_models: "FDAI 集成到任务/奖励模型中",
+                beta_testing: "具有实际效用的 Beta 测试",
+                phase4: "第四阶段: 全球扩展",
+                cex_listing: "惊喜的中心化交易所上市",
+                nft_integration: "NFT + AI 功能集成",
+                global_outreach: "全球推广和扩展",
+                tokenomics_title: "代币经济学",
+                category: "类别",
+                percentage: "百分比",
+                presale: "预售",
+                airdrop: "空投 & 活动",
+                burn: "销毁",
+                listing: "DEX & CEX 上市",
+                reserve: "锁定储备",
+                team: "团队",
+                total_supply: "总供应量:",
+                circulating_supply: "流通供应量:",
+                locked_supply: "锁定供应量:",
+                release_schedule: "锁定代币释放计划",
+                team_title: "我们的团队",
+                ceo_title: "CEO & 创始人",
+                ceo_exp: "10年以上区块链和AI技术经验",
+                cto_title: "CTO",
+                cto_exp: "智能合约和DeFi专家",
+                cmo_title: "CMO",
+                cmo_exp: "数字营销专家",
+                join_community: "加入我们的社区",
+                whitepaper_title: "下载 FreeDogeAI 白皮书",
+                download_whitepaper: "点击此处下载白皮书"
+            },
+            ja: {
+                presale_title: "FreeDogeAI プレセール",
+                days: "日",
+                hours: "時間",
+                minutes: "分",
+                seconds: "秒",
+                presale_ends: "プレセール終了まで:",
+                payment_method: "支払い方法:",
+                connect_wallet: "🔗 MetaMaskで接続",
+                your_wallet: "あなたのウォレット",
+                address: "アドレス:",
+                bnb_balance: "BNB 残高:",
+                usdt_balance: "USDT 残高:",
+                amount: "金額:",
+                you_will_receive: "受け取る数量:",
+                buy_tokens: "🚀 FDAIトークンを購入",
+                important_info: "重要なお知らせ",
+                token_delivery_info: "トークン購入後、24時間以内にウォレットに反映されます。",
+                network_warning: "接続しているネットワークが",
+                network: "であることを確認してください。",
+                note: "注意:",
+                token_note: "FDAIトークンが表示されない場合は、このコントラクトアドレスを追加してください:",
+                about_title: "FreeDogeAIについて",
+                about_text: "FreeDogeAIは、人工知能とミームベースの暗号通貨のバイラルなエネルギーを融合させた画期的なプロジェクトです。私たちの目標は、AIを活用してユーザーをエンパワーし、コミュニティの相互作用を高め、財務の独立を促進する分散型プラットフォームを構築することです。FreeDogeAIムーブメントに参加し、分散型金融の未来を形作る手助けをしてください！",
+                roadmap_title: "ロードマップ",
+                phase1: "フェーズ1: ローンチ",
+                website_launched: "公式ウェブサイト公開:",
+                twitter_link: "Twitter:",
+                telegram_link: "Telegram:",
+                presale_launched: "プレセールが開始されました",
+                phase2: "フェーズ2: 成長",
+                airdrop_campaigns: "エアドロップキャンペーンとコミュニティイベント",
+                dex_listings: "DEXの可視化とトークン上場",
+                marketing_collabs: "戦略的マーケティングとインフルエンサーコラボ",
+                phase3: "フェーズ3: AIユーティリティ",
+                ai_games: "AI搭載のミニゲームとインタラクションシステム",
+                reward_models: "タスク/報酬モデルへのFDAI統合",
+                beta_testing: "実際のユーティリティでのベータテスト",
+                phase4: "フェーズ4: グローバル展開",
+                cex_listing: "サプライズの中央集権型取引所上場",
+                nft_integration: "NFT + AI機能統合",
+                global_outreach: "グローバル展開とスケーリング",
+                tokenomics_title: "トークノミクス",
+                category: "カテゴリー",
+                percentage: "パーセンテージ",
+                presale: "プレセール",
+                airdrop: "エアドロップ & キャンペーン",
+                burn: "バーン",
+                listing: "DEX & CEX上場",
+                reserve: "ロック済みリザーブ",
+                team: "チーム",
+                total_supply: "総供給量:",
+                circulating_supply: "流通供給量:",
+                locked_supply: "ロック済み供給量:",
+                release_schedule: "ロック済みトークンリリーススケジュール",
+                team_title: "私たちのチーム",
+                ceo_title: "CEO & 創設者",
+                ceo_exp: "10年以上のブロックチェーンとAI技術の経験",
+                cto_title: "CTO",
+                cto_exp: "スマートコントラクトとDeFiの専門家",
+                cmo_title: "CMO",
+                cmo_exp: "デジタルマーケティングの専門家",
+                join_community: "コミュニティに参加",
+                whitepaper_title: "FreeDogeAI ホワイトペーパーをダウンロード",
+                download_whitepaper: "ホワイトペーパーをダウンロードするにはこちらをクリック"
+            },
+            hi: {
+                presale_title: "FreeDogeAI प्रीसेल",
+                days: "दिन",
+                hours: "घंटे",
+                minutes: "मिनट",
+                seconds: "सेकंड",
+                presale_ends: "प्रीसेल समाप्त होने में:",
+                payment_method: "भुगतान विधि:",
+                connect_wallet: "🔗 MetaMask से कनेक्ट करें",
+                your_wallet: "आपका वॉलेट",
+                address: "पता:",
+                bnb_balance: "BNB बैलेंस:",
+                usdt_balance: "USDT बैलेंस:",
+                amount: "राशि:",
+                you_will_receive: "आपको प्राप्त होंगे:",
+                buy_tokens: "🚀 FDAI टोकन खरीदें",
+                important_info: "महत्वपूर्ण जानकारी",
+                token_delivery_info: "टोकन खरीदने के बाद, आपके टोकन 24 घंटे के भीतर आपके वॉलेट में दिखाई देंगे।",
+                network_warning: "कृपया सुनिश्चित करें कि आप",
+                network: "नेटवर्क से जुड़े हैं।",
+                note: "नोट:",
+                token_note: "यदि FDAI टोकन दिखाई नहीं देते हैं, तो इस कॉन्ट्रैक्ट एड्रेस को जोड़ें:",
+                about_title: "FreeDogeAI के बारे में",
+                about_text: "FreeDogeAI एक क्रांतिकारी परियोजना है जो कृत्रिम बुद्धिमत्ता को मीम-आधारित क्रिप्टोकरेंसी की वायरल ऊर्जा के साथ जोड़ती है। हमारा लक्ष्य एक विकेंद्रीकृत मंच बनाना है जो कृत्रिम बुद्धिमत्ता का उपयोग करके उपयोगकर्ताओं को सशक्त बनाता है, समुदाय की बातचीत को बढ़ावा देता है, और वित्तीय स्वतंत्रता को बढ़ावा देता है। FreeDogeAI आंदोलन का हिस्सा बनें और विकेंद्रीकृत वित्त के भविष्य को आकार देने में मदद करें!",
+                roadmap_title: "रोडमैप",
+                phase1: "चरण 1: लॉन्च",
+                website_launched: "आधिकारिक वेबसाइट लॉन्च:",
+                twitter_link: "ट्विटर:",
+                telegram_link: "टेलीग्राम:",
+                presale_launched: "प्रीसेल सफलतापूर्वक शुरू किया गया",
+                phase2: "चरण 2: विकास",
+                airdrop_campaigns: "एयरड्रॉप अभियान और सामुदायिक कार्यक्रम",
+                dex_listings: "DEX दृश्यता और टोकन लिस्टिंग",
+                marketing_collabs: "रणनीतिक मार्केटिंग और प्रभावशाली सहयोग",
+                phase3: "चरण 3: AI उपयोगिता",
+                ai_games: "AI-संचालित मिनी-गेम और इंटरैक्शन सिस्टम",
+                reward_models: "FDAI को कार्य/पुरस्कार मॉडल में एकीकृत किया गया",
+                beta_testing: "वास्तविक उपयोगिता के साथ बीटा परीक्षण",
+                phase4: "चरण 4: वैश्विक विस्तार",
+                cex_listing: "आश्चर्यजनक केंद्रीकृत एक्सचेंज लिस्टिंग",
+                nft_integration: "NFT + AI सुविधा एकीकरण",
+                global_outreach: "वैश्विक पहुंच और स्केलिंग",
+                tokenomics_title: "टोकनॉमिक्स",
+                category: "श्रेणी",
+                percentage: "प्रतिशत",
+                presale: "प्रीसेल",
+                airdrop: "एयरड्रॉप और अभियान",
+                burn: "बर्न",
+                listing: "DEX और CEX लिस्टिंग",
+                reserve: "लॉक्ड रिजर्व",
+                team: "टीम",
+                total_supply: "कुल आपूर्ति:",
+                circulating_supply: "परिसंचारी आपूर्ति:",
+                locked_supply: "लॉक्ड आपूर्ति:",
+                release_schedule: "लॉक्ड टोकन रिलीज शेड्यूल",
+                team_title: "हमारी टीम",
+                ceo_title: "CEO और संस्थापक",
+                ceo_exp: "ब्लॉकचेन और AI प्रौद्योगिकी में 10+ वर्षों का अनुभव",
+                cto_title: "CTO",
+                cto_exp: "स्मार्ट कॉन्ट्रैक्ट और DeFi विशेषज्ञ",
+                cmo_title: "CMO",
+                cmo_exp: "डिजिटल मार्केटिंग विशेषज्ञ",
+                join_community: "हमारे समुदाय में शामिल हों",
+                whitepaper_title: "FreeDogeAI व्हाइटपेपर डाउनलोड करें",
+                download_whitepaper: "व्हाइटपेपर डाउनलोड करने के लिए यहां क्लिक करें"
+            },
+            fil: {
+                presale_title: "FreeDogeAI Presale",
+                days: "Araw",
+                hours: "Oras",
+                minutes: "Minuto",
+                seconds: "Segundo",
+                presale_ends: "Matatapos ang Presale sa:",
+                payment_method: "Paraan ng Pagbabayad:",
+                connect_wallet: "🔗 Kumonekta sa MetaMask",
+                your_wallet: "Iyong Wallet",
+                address: "Address:",
+                bnb_balance: "BNB Balance:",
+                usdt_balance: "USDT Balance:",
+                amount: "Halaga:",
+                you_will_receive: "Matatanggap mo:",
+                buy_tokens: "🚀 Bumili ng FDAI Tokens",
+                important_info: "Mahalagang Impormasyon",
+                token_delivery_info: "Pagkatapos ng iyong token purchase, makikita ang iyong mga token sa iyong wallet sa loob ng 24 oras.",
+                network_warning: "Mangyaring siguraduhin na nakakonekta ka sa",
+                network: "network.",
+                note: "PAUNAWA:",
+                token_note: "Kung hindi lumilitaw ang FDAI tokens, idagdag ang contract address na ito:",
+                about_title: "Tungkol sa FreeDogeAI",
+                about_text: "Ang FreeDogeAI ay isang makabagong proyekto na pinagsasama ang artificial intelligence sa viral na enerhiya ng meme-based na cryptocurrencies. Ang aming layunin ay bumuo ng isang desentralisadong platform na gumagamit ng AI upang bigyan ng kapangyarihan ang mga user, palakasin ang interaksyon ng komunidad, at itaguyod ang kalayaan sa pananalapi. Maging bahagi ng FreeDogeAI movement at tulungan ang hubugin ang hinaharap ng desentralisadong pananalapi!",
+                roadmap_title: "Roadmap",
+                phase1: "Phase 1: Launch",
+                website_launched: "Inilunsad ang opisyal na website:",
+                twitter_link: "Twitter:",
+                telegram_link: "Telegram:",
+                presale_launched: "Matagumpay na inilunsad ang Presale",
+                phase2: "Phase 2: Growth",
+                airdrop_campaigns: "Mga airdrop campaign at community events",
+                dex_listings: "DEX visibility at token listings",
+                marketing_collabs: "Strategic marketing at influencer collaborations",
+                phase3: "Phase 3: AI Utility",
+                ai_games: "AI-powered mini-game at interaction system",
+                reward_models: "FDAI isinama sa task/reward models",
+                beta_testing: "Beta testing na may tunay na utility",
+                phase4: "Phase 4: Global Expansion",
+                cex_listing: "Sorpresang centralized exchange listing",
+                nft_integration: "NFT + AI feature integration",
+                global_outreach: "Global outreach at scaling",
+                tokenomics_title: "Tokenomics",
+                category: "Kategorya",
+                percentage: "Porsyento",
+                presale: "Presale",
+                airdrop: "Airdrop at Campaigns",
+                burn: "Burn",
+                listing: "DEX at CEX Listing",
+                reserve: "Locked Reserve",
+                team: "Team",
+                total_supply: "Kabuuang Supply:",
+                circulating_supply: "Circulating Supply:",
+                locked_supply: "Locked Supply:",
+                release_schedule: "Locked Token Release Schedule",
+                team_title: "Ang Aming Team",
+                ceo_title: "CEO at Founder",
+                ceo_exp: "10+ taon sa blockchain at AI technology",
+                cto_title: "CTO",
+                cto_exp: "Smart contract at DeFi expert",
+                cmo_title: "CMO",
+                cmo_exp: "Digital marketing specialist",
+                join_community: "Sumali sa Aming Komunidad",
+                whitepaper_title: "I-download ang FreeDogeAI Whitepaper",
+                download_whitepaper: "I-click dito para i-download ang whitepaper"
             }
         };
 
-        // Function to translate the page
         function translatePage(lang) {
             currentLanguage = lang;
             const elements = document.querySelectorAll('[data-i18n]');
@@ -719,36 +1106,44 @@
                 }
             });
             
-            // Update input placeholders
             const method = document.getElementById('paymentMethod').value;
             if (method === 'bnb') {
-                document.getElementById('amount').placeholder = lang === 'tr' ? 'Miktar girin (örn: 0.1 BNB)' : 'Enter amount (e.g., 0.1 BNB)';
+                document.getElementById('amount').placeholder = 
+                    lang === 'tr' ? 'Miktar girin (örn: 0.1 BNB)' :
+                    lang === 'zh' ? '输入金额 (例如: 0.1 BNB)' :
+                    lang === 'ja' ? '金額を入力 (例: 0.1 BNB)' :
+                    lang === 'hi' ? 'राशि दर्ज करें (उदा: 0.1 BNB)' :
+                    lang === 'fil' ? 'Ilagay ang halaga (hal: 0.1 BNB)' :
+                    'Enter amount (e.g., 0.1 BNB)';
             } else {
-                document.getElementById('amount').placeholder = lang === 'tr' ? 'Miktar girin (örn: 1 USDT)' : 'Enter amount (e.g., 1 USDT)';
+                document.getElementById('amount').placeholder = 
+                    lang === 'tr' ? 'Miktar girin (örn: 1 USDT)' :
+                    lang === 'zh' ? '输入金额 (例如: 1 USDT)' :
+                    lang === 'ja' ? '金額を入力 (例: 1 USDT)' :
+                    lang === 'hi' ? 'राशि दर्ज करें (उदा: 1 USDT)' :
+                    lang === 'fil' ? 'Ilagay ang halaga (hal: 1 USDT)' :
+                    'Enter amount (e.g., 1 USDT)';
             }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            // Language switcher
-            document.getElementById('lang-en').addEventListener('click', () => translatePage('en'));
-            document.getElementById('lang-tr').addEventListener('click', () => translatePage('tr'));
+            document.getElementById('languageSelector').addEventListener('change', (e) => {
+                translatePage(e.target.value);
+            });
             
             document.getElementById('connectWalletBtn').addEventListener('click', connectWallet);
             document.getElementById('buyBtn').addEventListener('click', sendPayment);
             document.getElementById('amount').addEventListener('input', calculateFDAI);
             document.getElementById('paymentMethod').addEventListener('change', togglePaymentMethod);
             
-            // Initialize countdown
             startCountdown();
             
-            // Check if wallet is already connected
             if (window.ethereum) {
                 checkConnectedWallet();
             }
         });
 
         function startCountdown() {
-            // Sayfa yayına alındığı andan itibaren 100 gün
             const startTime = new Date("2025-06-09T00:00:00Z").getTime();
             const endTime = startTime + 100 * 24 * 60 * 60 * 1000;
 
@@ -796,12 +1191,24 @@
             const method = document.getElementById('paymentMethod').value;
             if (method === 'bnb') {
                 document.getElementById('rateInfo').textContent = '1 BNB = 120,000,000,000 FDAI';
-                document.getElementById('amount').placeholder = currentLanguage === 'tr' ? 'Miktar girin (örn: 0.1 BNB)' : 'Enter amount (e.g., 0.1 BNB)';
+                document.getElementById('amount').placeholder = 
+                    currentLanguage === 'tr' ? 'Miktar girin (örn: 0.1 BNB)' :
+                    currentLanguage === 'zh' ? '输入金额 (例如: 0.1 BNB)' :
+                    currentLanguage === 'ja' ? '金額を入力 (例: 0.1 BNB)' :
+                    currentLanguage === 'hi' ? 'राशि दर्ज करें (उदा: 0.1 BNB)' :
+                    currentLanguage === 'fil' ? 'Ilagay ang halaga (hal: 0.1 BNB)' :
+                    'Enter amount (e.g., 0.1 BNB)';
                 document.getElementById('amount').step = '0.01';
                 document.getElementById('amount').min = '0.01';
             } else {
                 document.getElementById('rateInfo').textContent = '1 USDT = 200,000,000 FDAI';
-                document.getElementById('amount').placeholder = currentLanguage === 'tr' ? 'Miktar girin (örn: 1 USDT)' : 'Enter amount (e.g., 1 USDT)';
+                document.getElementById('amount').placeholder = 
+                    currentLanguage === 'tr' ? 'Miktar girin (örn: 1 USDT)' :
+                    currentLanguage === 'zh' ? '输入金额 (例如: 1 USDT)' :
+                    currentLanguage === 'ja' ? '金額を入力 (例: 1 USDT)' :
+                    currentLanguage === 'hi' ? 'राशि दर्ज करें (उदा: 1 USDT)' :
+                    currentLanguage === 'fil' ? 'Ilagay ang halaga (hal: 1 USDT)' :
+                    'Enter amount (e.g., 1 USDT)';
                 document.getElementById('amount').step = '1';
                 document.getElementById('amount').min = '1';
             }
@@ -811,16 +1218,18 @@
         async function connectWallet() {
             try {
                 if (!window.ethereum) {
-                    // Improved cross-browser MetaMask detection
                     const userAgent = navigator.userAgent.toLowerCase();
                     const isMobile = /android|iphone|ipad|ipod/i.test(userAgent);
+                    const isSafari = /safari/i.test(userAgent) && !/chrome/i.test(userAgent);
+                    const isFirefox = /firefox/i.test(userAgent);
                     
                     if (isMobile) {
-                        // Try to open MetaMask in-app browser
                         window.location.href = `https://metamask.app.link/dapp/${window.location.host}${window.location.pathname}`;
                         return;
+                    } else if (isSafari || isFirefox) {
+                        window.open("https://metamask.io/download.html", "_blank");
+                        return;
                     } else {
-                        // Desktop browser without MetaMask
                         const installLink = document.createElement('a');
                         installLink.href = 'https://metamask.io/download.html';
                         installLink.target = '_blank';
@@ -838,9 +1247,21 @@
                 await updateWalletUI();
             } catch (error) {
                 console.log("Connection error:", error);
-                alert(currentLanguage === 'tr' ? 
-                    "Bağlantı hatası: " + (error.message || error) : 
-                    "Connection error: " + (error.message || error));
+                let errorMessage = "Connection error: " + (error.message || error);
+                
+                if (currentLanguage === 'tr') {
+                    errorMessage = "Bağlantı hatası: " + (error.message || error);
+                } else if (currentLanguage === 'zh') {
+                    errorMessage = "连接错误: " + (error.message || error);
+                } else if (currentLanguage === 'ja') {
+                    errorMessage = "接続エラー: " + (error.message || error);
+                } else if (currentLanguage === 'hi') {
+                    errorMessage = "कनेक्शन त्रुटि: " + (error.message || error);
+                } else if (currentLanguage === 'fil') {
+                    errorMessage = "Connection error: " + (error.message || error);
+                }
+                
+                alert(errorMessage);
             }
         }
 
@@ -872,9 +1293,21 @@
                 }
             } catch (error) {
                 console.log("Network check failed:", error);
-                alert(currentLanguage === 'tr' ? 
-                    "Lütfen BSC ağına manuel olarak geçiş yapın" : 
-                    "Please switch to BSC network manually");
+                let errorMessage = "Please switch to BSC network manually";
+                
+                if (currentLanguage === 'tr') {
+                    errorMessage = "Lütfen BSC ağına manuel olarak geçiş yapın";
+                } else if (currentLanguage === 'zh') {
+                    errorMessage = "请手动切换到BSC网络";
+                } else if (currentLanguage === 'ja') {
+                    errorMessage = "手動でBSCネットワークに切り替えてください";
+                } else if (currentLanguage === 'hi') {
+                    errorMessage = "कृपया मैन्युअली BSC नेटवर्क पर स्विच करें";
+                } else if (currentLanguage === 'fil') {
+                    errorMessage = "Mangyaring manual na lumipat sa BSC network";
+                }
+                
+                alert(errorMessage);
             }
         }
 
@@ -917,7 +1350,15 @@
             document.getElementById('walletAddress').textContent = shortAddress;
             
             document.getElementById('walletInfo').style.display = 'block';
-            document.getElementById('connectWalletBtn').textContent = currentLanguage === 'tr' ? '✅ Bağlandı' : '✅ Connected';
+            
+            let connectedText = '✅ Connected';
+            if (currentLanguage === 'tr') connectedText = '✅ Bağlandı';
+            else if (currentLanguage === 'zh') connectedText = '✅ 已连接';
+            else if (currentLanguage === 'ja') connectedText = '✅ 接続済み';
+            else if (currentLanguage === 'hi') connectedText = '✅ कनेक्टेड';
+            else if (currentLanguage === 'fil') connectedText = '✅ Nakakonek';
+            
+            document.getElementById('connectWalletBtn').textContent = connectedText;
             document.getElementById('buyBtn').disabled = false;
             
             try {
@@ -950,9 +1391,14 @@
             const amount = parseFloat(document.getElementById('amount').value);
             
             if (!amount || amount <= 0) {
-                alert(currentLanguage === 'tr' ? 
-                    "Lütfen geçerli bir miktar girin!" : 
-                    "Please enter a valid amount!");
+                let errorMessage = "Please enter a valid amount!";
+                if (currentLanguage === 'tr') errorMessage = "Lütfen geçerli bir miktar girin!";
+                else if (currentLanguage === 'zh') errorMessage = "请输入有效金额!";
+                else if (currentLanguage === 'ja') errorMessage = "有効な金額を入力してください!";
+                else if (currentLanguage === 'hi') errorMessage = "कृपया एक वैध राशि दर्ज करें!";
+                else if (currentLanguage === 'fil') errorMessage = "Mangyaring maglagay ng wastong halaga!";
+                
+                alert(errorMessage);
                 return;
             }
             
@@ -964,9 +1410,14 @@
                 }
             } catch (error) {
                 console.error("Payment error:", error);
-                alert(currentLanguage === 'tr' ? 
-                    "İşlem başarısız: " + (error.message || error) : 
-                    "Transaction failed: " + (error.message || error));
+                let errorMessage = "Transaction failed: " + (error.message || error);
+                if (currentLanguage === 'tr') errorMessage = "İşlem başarısız: " + (error.message || error);
+                else if (currentLanguage === 'zh') errorMessage = "交易失败: " + (error.message || error);
+                else if (currentLanguage === 'ja') errorMessage = "トランザクション失敗: " + (error.message || error);
+                else if (currentLanguage === 'hi') errorMessage = "लेन-देन विफल: " + (error.message || error);
+                else if (currentLanguage === 'fil') errorMessage = "Nabigo ang transaksyon: " + (error.message || error);
+                
+                alert(errorMessage);
             }
         }
 
@@ -983,9 +1434,22 @@
             };
             
             const receipt = await web3.eth.sendTransaction(tx);
-            alert(currentLanguage === 'tr' ? 
-                `✅ ${bnbAmount} BNB başarıyla gönderildi!\n\nAlacaklarınız: ${(bnbAmount * CONFIG.TOKENS_PER_BNB).toLocaleString()} FDAI\nİşlem Hash: ${receipt.transactionHash}` : 
-                `✅ ${bnbAmount} BNB successfully sent!\n\nYou will receive: ${(bnbAmount * CONFIG.TOKENS_PER_BNB).toLocaleString()} FDAI\nTX Hash: ${receipt.transactionHash}`);
+            
+            let successMessage = `✅ ${bnbAmount} BNB successfully sent!\n\nYou will receive: ${(bnbAmount * CONFIG.TOKENS_PER_BNB).toLocaleString()} FDAI\nTX Hash: ${receipt.transactionHash}`;
+            
+            if (currentLanguage === 'tr') {
+                successMessage = `✅ ${bnbAmount} BNB başarıyla gönderildi!\n\nAlacaklarınız: ${(bnbAmount * CONFIG.TOKENS_PER_BNB).toLocaleString()} FDAI\nİşlem Hash: ${receipt.transactionHash}`;
+            } else if (currentLanguage === 'zh') {
+                successMessage = `✅ ${bnbAmount} BNB 发送成功!\n\n您将获得: ${(bnbAmount * CONFIG.TOKENS_PER_BNB).toLocaleString()} FDAI\n交易哈希: ${receipt.transactionHash}`;
+            } else if (currentLanguage === 'ja') {
+                successMessage = `✅ ${bnbAmount} BNB の送信に成功しました!\n\n受け取る数量: ${(bnbAmount * CONFIG.TOKENS_PER_BNB).toLocaleString()} FDAI\nトランザクションハッシュ: ${receipt.transactionHash}`;
+            } else if (currentLanguage === 'hi') {
+                successMessage = `✅ ${bnbAmount} BNB सफलतापूर्वक भेजा गया!\n\nआपको प्राप्त होंगे: ${(bnbAmount * CONFIG.TOKENS_PER_BNB).toLocaleString()} FDAI\nट्रांजैक्शन हैश: ${receipt.transactionHash}`;
+            } else if (currentLanguage === 'fil') {
+                successMessage = `✅ ${bnbAmount} BNB matagumpay na naipadala!\n\nMatatanggap mo: ${(bnbAmount * CONFIG.TOKENS_PER_BNB).toLocaleString()} FDAI\nTX Hash: ${receipt.transactionHash}`;
+            }
+            
+            alert(successMessage);
         }
 
         async function sendUSDT() {
@@ -1001,30 +1465,30 @@
                 gasPrice: await web3.eth.getGasPrice()
             });
             
-            alert(currentLanguage === 'tr' ? 
-                `✅ ${usdtAmount} USDT başarıyla gönderildi!\n\nAlacaklarınız: ${(usdtAmount * CONFIG.TOKENS_PER_USDT).toLocaleString()} FDAI\nİşlem Hash: ${receipt.transactionHash}` : 
-                `✅ ${usdtAmount} USDT successfully sent!\n\nYou will receive: ${(usdtAmount * CONFIG.TOKENS_PER_USDT).toLocaleString()} FDAI\nTX Hash: ${receipt.transactionHash}`);
+            let successMessage = `✅ ${usdtAmount} USDT successfully sent!\n\nYou will receive: ${(usdtAmount * CONFIG.TOKENS_PER_USDT).toLocaleString()} FDAI\nTX Hash: ${receipt.transactionHash}`;
+            
+            if (currentLanguage === 'tr') {
+                successMessage = `✅ ${usdtAmount} USDT başarıyla gönderildi!\n\nAlacaklarınız: ${(usdtAmount * CONFIG.TOKENS_PER_USDT).toLocaleString()} FDAI\nİşlem Hash: ${receipt.transactionHash}`;
+            } else if (currentLanguage === 'zh') {
+                successMessage = `✅ ${usdtAmount} USDT 发送成功!\n\n您将获得: ${(usdtAmount * CONFIG.TOKENS_PER_USDT).toLocaleString()} FDAI\n交易哈希: ${receipt.transactionHash}`;
+            } else if (currentLanguage === 'ja') {
+                successMessage = `✅ ${usdtAmount} USDT の送信に成功しました!\n\n受け取る数量: ${(usdtAmount * CONFIG.TOKENS_PER_USDT).toLocaleString()} FDAI\nトランザクションハッシュ: ${receipt.transactionHash}`;
+            } else if (currentLanguage === 'hi') {
+                successMessage = `✅ ${usdtAmount} USDT सफलतापूर्वक भेजा गया!\n\nआपको प्राप्त होंगे: ${(usdtAmount * CONFIG.TOKENS_PER_USDT).toLocaleString()} FDAI\nट्रांजैक्शन हैश: ${receipt.transactionHash}`;
+            } else if (currentLanguage === 'fil') {
+                successMessage = `✅ ${usdtAmount} USDT matagumpay na naipadala!\n\nMatatanggap mo: ${(usdtAmount * CONFIG.TOKENS_PER_USDT).toLocaleString()} FDAI\nTX Hash: ${receipt.transactionHash}`;
+            }
+            
+            alert(successMessage);
         }
 
-        // Handle wallet and chain changes
         if (window.ethereum) {
             window.ethereum.on('accountsChanged', (accounts) => {
                 if (accounts.length > 0) {
                     userAddress = accounts[0];
                     updateWalletUI();
                 } else {
-                    // Wallet disconnected
                     document.getElementById('walletInfo').style.display = 'none';
-                    document.getElementById('connectWalletBtn').textContent = currentLanguage === 'tr' ? 
-                        '🔗 MetaMask ile Bağlan' : '🔗 Connect with MetaMask';
-                    document.getElementById('buyBtn').disabled = true;
-                }
-            });
-            
-            window.ethereum.on('chainChanged', () => {
-                window.location.reload();
-            });
-        }
-    </script>
-</body>
-</html>
+                    
+                    let connectText = '🔗 Connect with MetaMask';
+                    if (currentLanguage
