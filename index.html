@@ -5,9 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Arya Dekorasyon Yorumlar</title>
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+    }
     #yorumlar-listesi div {
-      border-bottom: 1px solid #ccc;
-      padding: 6px 0;
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
     }
     textarea {
       width: 100%;
@@ -22,20 +31,18 @@
 </head>
 <body>
 
-  <!-- Mevcut sitenin diğer içerikleri buraya -->
+  <h2>Müşteri Yorumları</h2>
 
-  <section id="yorumlar-bolumu">
-    <h3>Müşteri Yorumları</h3>
-    <div id="yorumlar-listesi"></div>
+  <div id="yorumlar-listesi"></div>
 
-    <textarea id="yorum-girdi" placeholder="Yorum yaz..."></textarea>
-    <button id="yorum-gonder">Gönder</button>
-  </section>
+  <textarea id="yorum-girdi" placeholder="Yorum yazın..."></textarea>
+  <button id="yorum-gonder">Gönder</button>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
     import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 
+    // Firebase ayarların
     const firebaseConfig = {
       apiKey: "AIzaSyDNVEP4hszf-gyFqag3vKKkIFeqR71nCxU",
       authDomain: "aryadekorasyon-b4439.firebaseapp.com",
@@ -46,33 +53,28 @@
       appId: "1:249853373952:web:993f739b8756def44772e5"
     };
 
-    // Firebase başlat
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
-    const yorumlarRef = ref(db, 'yorumlar');
+    const yorumlarRef = ref(db, "yorumlar");
 
-    const yorumlarListesi = document.getElementById('yorumlar-listesi');
-    const yorumGirdi = document.getElementById('yorum-girdi');
-    const yorumGonderBtn = document.getElementById('yorum-gonder');
+    const yorumlarListesi = document.getElementById("yorumlar-listesi");
+    const yorumGirdi = document.getElementById("yorum-girdi");
+    const yorumGonderBtn = document.getElementById("yorum-gonder");
 
-    // Yorum gönderme işlemi
-    yorumGonderBtn.addEventListener('click', () => {
+    yorumGonderBtn.addEventListener("click", () => {
       const text = yorumGirdi.value.trim();
-      if (text.length === 0) {
-        alert("Lütfen yorum yazınız.");
-        return;
-      }
+      if (text.length === 0) return alert("Yorum boş olamaz.");
+
       push(yorumlarRef, {
         text: text,
-        timestamp: Date.now()
+        tarih: new Date().toISOString()
       });
-      yorumGirdi.value = '';
+      yorumGirdi.value = "";
     });
 
-    // Yorumları dinleyip ekranda göster
     onChildAdded(yorumlarRef, (data) => {
       const yorum = data.val();
-      const div = document.createElement('div');
+      const div = document.createElement("div");
       div.textContent = yorum.text;
       yorumlarListesi.appendChild(div);
     });
