@@ -1,84 +1,255 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Arya Dekorasyon Yorumlar</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-    }
-    h2 {
-      text-align: center;
-    }
-    #yorumlar-listesi div {
-      border-bottom: 1px solid #ddd;
-      padding: 10px 0;
-    }
-    textarea {
-      width: 100%;
-      height: 80px;
-      margin-top: 10px;
-    }
-    button {
-      margin-top: 5px;
-      padding: 8px 16px;
-    }
-  </style>
+    <!-- Diğer head içeriği aynı kalacak -->
+    <!-- ... -->
+    <style>
+        /* Önceki CSS tanımlarınız aynen kalacak */
+        /* Sadece yorumlar bölümüne ek stil ekliyorum */
+        #comments-list {
+            max-height: 500px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+        
+        .loading-comments {
+            text-align: center;
+            padding: 20px;
+            color: var(--primary);
+            font-style: italic;
+        }
+    </style>
 </head>
 <body>
+    <!-- Diğer HTML içeriği aynı kalacak -->
+    <!-- ... -->
 
-  <h2>Müşteri Yorumları</h2>
+    <!-- Comments Section (Aynı yapıda kalacak) -->
+    <section class="comments" id="comments">
+        <div class="section-title">
+            <h2>Müşteri Yorumları</h2>
+        </div>
+        
+        <div class="comments-container">
+            <div id="comments-list" class="loading-comments">
+                <!-- Yorumlar buraya dinamik olarak eklenecek -->
+            </div>
+            
+            <div class="comment-form">
+                <h3>Yorumunuzu Ekleyin</h3>
+                <form id="comment-form">
+                    <div class="form-group">
+                        <input type="text" id="comment-name" placeholder="Adınız" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="comment-text" placeholder="Yorumunuz" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Yorum Gönder</button>
+                </form>
+                <div id="success-message" class="success-message">
+                    Yorumunuz başarıyla gönderildi! Teşekkür ederiz.
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <div id="yorumlar-listesi"></div>
+    <!-- Diğer bölümler aynı kalacak -->
+    <!-- ... -->
 
-  <textarea id="yorum-girdi" placeholder="Yorum yazın..."></textarea>
-  <button id="yorum-gonder">Gönder</button>
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDNVEP4hszf-gyFqag3vKKkIFeqR71nCxU",
+            authDomain: "aryadekorasyon-b4439.firebaseapp.com",
+            databaseURL: "https://aryadekorasyon-b4439-default-rtdb.firebaseio.com",
+            projectId: "aryadekorasyon-b4439",
+            storageBucket: "aryadekorasyon-b4439.firebasestorage.app",
+            messagingSenderId: "249853373952",
+            appId: "1:249853373952:web:993f739b8756def44772e5"
+        };
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-    import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
 
-    // Firebase ayarların
-    const firebaseConfig = {
-      apiKey: "AIzaSyDNVEP4hszf-gyFqag3vKKkIFeqR71nCxU",
-      authDomain: "aryadekorasyon-b4439.firebaseapp.com",
-      databaseURL: "https://aryadekorasyon-b4439-default-rtdb.firebaseio.com",
-      projectId: "aryadekorasyon-b4439",
-      storageBucket: "aryadekorasyon-b4439.firebasestorage.app",
-      messagingSenderId: "249853373952",
-      appId: "1:249853373952:web:993f739b8756def44772e5"
-    };
+        // Sayfa yüklendiğinde çalışacak fonksiyon
+        document.addEventListener('DOMContentLoaded', function() {
+            // Canlı yorum dinleyicisini başlat
+            listenForComments();
+            
+            // Yorum formu gönderimi
+            document.getElementById('comment-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                submitComment();
+            });
+            
+            // Diğer fonksiyonlarınız (menü, scroll vs.)
+            initMobileMenu();
+            initSmoothScrolling();
+            initHeaderScrollEffect();
+            initProjectHover();
+            initHeroBackgroundRotation();
+        });
 
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-    const yorumlarRef = ref(db, "yorumlar");
+        // Canlı yorum dinleyici
+        function listenForComments() {
+            const commentsRef = database.ref('comments');
+            
+            commentsRef.orderByChild('timestamp').on('value', (snapshot) => {
+                const commentsList = document.getElementById('comments-list');
+                
+                // Yükleniyor göstergesini kaldır
+                commentsList.classList.remove('loading-comments');
+                commentsList.innerHTML = '';
+                
+                if (!snapshot.exists()) {
+                    commentsList.innerHTML = '<p class="no-comments">Henüz yorum yok, ilk yorumu sen yap!</p>';
+                    return;
+                }
+                
+                const commentsData = snapshot.val();
+                const sortedComments = Object.values(commentsData).sort((a, b) => b.timestamp - a.timestamp);
+                
+                sortedComments.forEach(comment => {
+                    const commentDiv = createCommentElement(comment);
+                    commentsList.appendChild(commentDiv);
+                });
+            }, (error) => {
+                console.error("Yorumlar yüklenirken hata:", error);
+                document.getElementById('comments-list').innerHTML = 
+                    '<p class="error-text">Yorumlar şu anda gösterilemiyor</p>';
+            });
+        }
 
-    const yorumlarListesi = document.getElementById("yorumlar-listesi");
-    const yorumGirdi = document.getElementById("yorum-girdi");
-    const yorumGonderBtn = document.getElementById("yorum-gonder");
+        // Yorum gönderme fonksiyonu
+        function submitComment() {
+            const name = document.getElementById('comment-name').value.trim();
+            const text = document.getElementById('comment-text').value.trim();
+            
+            if (!name || !text) {
+                alert('Lütfen adınızı ve yorumunuzu giriniz!');
+                return;
+            }
+            
+            // Yeni yorum nesnesi
+            const newComment = {
+                name: name,
+                text: text,
+                timestamp: Date.now()
+            };
+            
+            // Firebase'e ekle
+            database.ref('comments').push(newComment)
+                .then(() => {
+                    // Formu temizle
+                    document.getElementById('comment-form').reset();
+                    
+                    // Başarı mesajını göster
+                    const successMsg = document.getElementById('success-message');
+                    successMsg.style.display = 'block';
+                    setTimeout(() => {
+                        successMsg.style.display = 'none';
+                    }, 3000);
+                })
+                .catch(error => {
+                    console.error("Yorum gönderilemedi:", error);
+                    alert("Yorum gönderilirken bir hata oluştu. Lütfen tekrar deneyin.");
+                });
+        }
 
-    yorumGonderBtn.addEventListener("click", () => {
-      const text = yorumGirdi.value.trim();
-      if (text.length === 0) return alert("Yorum boş olamaz.");
+        // Yorum elementi oluşturma
+        function createCommentElement(comment) {
+            const commentDiv = document.createElement('div');
+            commentDiv.className = 'comment';
+            
+            const commentDate = new Date(comment.timestamp);
+            const dateString = `${commentDate.getDate()} ${getMonthName(commentDate.getMonth())} ${commentDate.getFullYear()}`;
+            
+            commentDiv.innerHTML = `
+                <div class="comment-header">
+                    <div class="comment-avatar">${comment.name.charAt(0).toUpperCase()}</div>
+                    <div class="comment-author">${comment.name}</div>
+                    <div class="comment-date">${dateString}</div>
+                </div>
+                <div class="comment-text">${comment.text}</div>
+            `;
+            
+            return commentDiv;
+        }
 
-      push(yorumlarRef, {
-        text: text,
-        tarih: new Date().toISOString()
-      });
-      yorumGirdi.value = "";
-    });
+        // Yardımcı fonksiyonlar
+        function getMonthName(monthIndex) {
+            const months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 
+                          'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+            return months[monthIndex];
+        }
 
-    onChildAdded(yorumlarRef, (data) => {
-      const yorum = data.val();
-      const div = document.createElement("div");
-      div.textContent = yorum.text;
-      yorumlarListesi.appendChild(div);
-    });
-  </script>
+        // Diğer fonksiyonlarınız (initMobileMenu, initSmoothScrolling vb.)
+        function initMobileMenu() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                this.innerHTML = mobileMenu.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+            
+            document.querySelectorAll('.mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+        }
 
+        function initSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(this.getAttribute('href'));
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        }
+
+        function initHeaderScrollEffect() {
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                header.style.boxShadow = window.scrollY > 100 ? 
+                    '0 5px 20px rgba(0, 0, 0, 0.1)' : '0 2px 15px rgba(0, 0, 0, 0.1)';
+            });
+        }
+
+        function initProjectHover() {
+            document.querySelectorAll('.project-card').forEach(card => {
+                card.addEventListener('mouseenter', () => card.style.transform = 'translateY(-10px)');
+                card.addEventListener('mouseleave', () => card.style.transform = 'translateY(0)');
+            });
+        }
+
+        function initHeroBackgroundRotation() {
+            const hero = document.querySelector('.hero');
+            const heroBackgrounds = document.querySelectorAll('.hero-background');
+            let currentBackground = 0;
+            
+            setTimeout(() => heroBackgrounds[0].classList.add('active'), 500);
+            
+            function rotateBackground() {
+                heroBackgrounds[currentBackground].classList.remove('active');
+                hero.style.backgroundColor = '#000';
+                
+                setTimeout(() => {
+                    currentBackground = (currentBackground + 1) % heroBackgrounds.length;
+                    heroBackgrounds[currentBackground].classList.add('active');
+                }, 300);
+            }
+            
+            setTimeout(() => setInterval(rotateBackground, 5000), 500);
+        }
+    </script>
 </body>
 </html>
