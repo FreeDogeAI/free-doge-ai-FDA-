@@ -1,255 +1,1717 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <!-- Diğer head içeriği aynı kalacak -->
-    <!-- ... -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutfak Tasarımı ve İç Dekorasyon | Arya Dekorasyon</title>
+    <meta name="description" content="Arya Dekorasyon ile İstanbul'da lüks mutfak tasarımı, premium iç mekan dekorasyonu ve banyo renovasyon hizmetleri. Profesyonel çözümler için hemen ulaşın.">
+    <meta name="keywords" content="lüks mutfak tasarımı, premium dekorasyon, banyo renovasyon, İstanbul dekorasyon, Esenyurt dekorasyon, Arya Dekorasyon">
+    <meta name="author" content="Arya Dekorasyon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
-        /* Önceki CSS tanımlarınız aynen kalacak */
-        /* Sadece yorumlar bölümüne ek stil ekliyorum */
-        #comments-list {
-            max-height: 500px;
-            overflow-y: auto;
+        :root {
+            --primary: #8b5a2b;
+            --primary-dark: #6b4521;
+            --secondary: #d4b996;
+            --dark: #2c2416;
+            --light: #f8f5f0;
+            --accent: #c19a6b;
+            --white: #ffffff;
+            --gray: #6c757d;
+            --light-gray: #f8f9fa;
+            --transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--white);
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dark);
+            line-height: 1.3;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-padding {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(139, 90, 43, 0.2);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: var(--dark);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(193, 154, 107, 0.2);
+        }
+        
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: var(--white);
+        }
+        
+        .btn-whatsapp:hover {
+            background-color: #1da851;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .mb-30 {
+            margin-bottom: 30px;
+        }
+        
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        
+        .logo-icon i {
+            color: var(--white);
+            font-size: 24px;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo-text span {
+            color: var(--dark);
+        }
+        
+        /* Navigation */
+        .desktop-nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .desktop-nav ul li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        .desktop-nav ul li a {
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .desktop-nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .desktop-nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--dark);
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--white);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: var(--transition);
+            padding: 80px 30px 30px;
+        }
+        
+        .mobile-nav.active {
+            right: 0;
+        }
+        
+        .mobile-nav ul {
+            list-style: none;
+        }
+        
+        .mobile-nav ul li {
             margin-bottom: 20px;
         }
         
-        .loading-comments {
-            text-align: center;
-            padding: 20px;
+        .mobile-nav ul li a {
+            font-size: 18px;
+            display: block;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .mobile-nav ul li a:hover {
             color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            margin-top: 90px;
+        }
+        
+        .hero-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--white);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        /* About Section */
+        .about {
+            background-color: var(--light);
+        }
+        
+        .about-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-image {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            transition: var(--transition);
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.03);
+        }
+        
+        .about-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .about-content p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+        
+        .about-features {
+            margin-top: 30px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .feature-icon i {
+            color: var(--white);
+            font-size: 20px;
+        }
+        
+        .feature-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .feature-text p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+        
+        /* Services Section */
+        .services {
+            background-color: var(--white);
+        }
+        
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            opacity: 0;
+            z-index: -1;
+            transition: var(--transition);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card:hover::before {
+            opacity: 0.1;
+        }
+        
+        .service-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .service-card:hover .service-image img {
+            transform: scale(1.1);
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+        
+        .service-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .read-more i {
+            margin-left: 5px;
+            transition: var(--transition);
+        }
+        
+        .read-more:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* Projects Section */
+        .projects {
+            background-color: var(--light);
+        }
+        
+        .projects-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+        
+        .filter-btn {
+            padding: 8px 20px;
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .project-image {
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+        
+        .project-category {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+        
+        .project-title {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--white);
+            font-weight: 600;
+        }
+        
+        .project-link i {
+            margin-left: 5px;
+            transition: var(--transition);
+        }
+        
+        .project-link:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            background-color: var(--white);
+        }
+        
+        .testimonials-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-slider {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonial-slide {
+            padding: 30px;
+            background-color: var(--light);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            margin: 0 15px;
+        }
+        
+        .client-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            border: 3px solid var(--primary);
+        }
+        
+        .client-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .client-rating {
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
+        .client-comment {
             font-style: italic;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .client-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .client-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: var(--light);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info p {
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .contact-icon i {
+            color: var(--white);
+            font-size: 20px;
+        }
+        
+        .contact-details h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .contact-details p, .contact-details a {
+            color: var(--gray);
+        }
+        
+        .contact-details a:hover {
+            color: var(--primary);
+        }
+        
+        .contact-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        .contact-form {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139, 90, 43, 0.1);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 80px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+        
+        .footer-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            display: inline-block;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+        
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+        
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--white);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .preloader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid var(--light);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .section-padding {
+                padding: 80px 0;
+            }
+            
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .section-padding {
+                padding: 70px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .header-container {
+                padding: 15px 0;
+            }
+            
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 60px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                margin-top: 80px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            .about-container, .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+            
+            .contact-form {
+                padding: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .section-padding {
+                padding: 50px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .logo-text {
+                font-size: 20px;
+            }
+            
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .footer-col {
+                margin-bottom: 30px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Diğer HTML içeriği aynı kalacak -->
-    <!-- ... -->
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-spinner"></div>
+    </div>
 
-    <!-- Comments Section (Aynı yapıda kalacak) -->
-    <section class="comments" id="comments">
-        <div class="section-title">
-            <h2>Müşteri Yorumları</h2>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="logo-text">ARYA <span>DEKORASYON</span></div>
+                </div>
+                
+                <nav class="desktop-nav">
+                    <ul>
+                        <li><a href="#home">Ana Sayfa</a></li>
+                        <li><a href="#about">Hakkımızda</a></li>
+                        <li><a href="#services">Hizmetler</a></li>
+                        <li><a href="#projects">Projeler</a></li>
+                        <li><a href="#contact">İletişim</a></li>
+                    </ul>
+                </nav>
+                
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
         
-        <div class="comments-container">
-            <div id="comments-list" class="loading-comments">
-                <!-- Yorumlar buraya dinamik olarak eklenecek -->
-            </div>
-            
-            <div class="comment-form">
-                <h3>Yorumunuzu Ekleyin</h3>
-                <form id="comment-form">
-                    <div class="form-group">
-                        <input type="text" id="comment-name" placeholder="Adınız" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="comment-text" placeholder="Yorumunuz" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-button">Yorum Gönder</button>
-                </form>
-                <div id="success-message" class="success-message">
-                    Yorumunuz başarıyla gönderildi! Teşekkür ederiz.
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="#home">Ana Sayfa</a></li>
+                <li><a href="#about">Hakkımızda</a></li>
+                <li><a href="#services">Hizmetler</a></li>
+                <li><a href="#projects">Projeler</a></li>
+                <li><a href="#contact">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-slider">
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1600566752229-250d58d2406e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content animate__animated animate__fadeIn">
+                <h1>Mekanlarınıza Lüks Dokunuş</h1>
+                <p>İstanbul'da premium mutfak tasarımı, iç mekan dekorasyonu ve banyo renovasyon hizmetleri</p>
+                <div class="hero-buttons">
+                    <a href="https://wa.me/905457884975" class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp'tan Ulaşın
+                    </a>
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-phone-alt"></i> Hemen Teklif Alın
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Diğer bölümler aynı kalacak -->
-    <!-- ... -->
+    <!-- About Section -->
+    <section class="about section-padding" id="about">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Arya Dekorasyon Hakkında">
+                </div>
+                <div class="about-content">
+                    <h2>15 Yıllık Dekorasyon Deneyimi</h2>
+                    <p>Arya Dekorasyon olarak, İstanbul'da 15 yılı aşkın süredir premium iç mekan tasarımı ve dekorasyon hizmetleri sunmaktayız. Müşteri memnuniyetini her şeyin üzerinde tutan anlayışımızla, her projeye özel çözümler üretiyoruz.</p>
+                    <p>Modern tasarımlar, kaliteli malzemeler ve uzman ekibimizle hayalinizdeki mekanları gerçeğe dönüştürüyoruz.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Kaliteli Malzemeler</h3>
+                                <p>En iyi markalarla çalışıyor, uzun ömürlü çözümler sunuyoruz</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Uzman Ekip</h3>
+                                <p>Alanında deneyimli profesyonellerle çalışıyoruz</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Zamanında Teslim</h3>
+                                <p>Projelerimizi belirlenen sürelerde tamamlıyoruz</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services section-padding" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Hizmetlerimiz</h2>
+                <p>Uzmanlık alanlarımız ve sunduğumuz premium hizmetler</p>
+            </div>
+            
+            <div class="services-container">
+                <!-- Mutfak Tasarımı -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Mutfak Tasarımı">
+                    </div>
+                    <div class="service-content">
+                        <h3>Mutfak Tasarımı</h3>
+                        <p>Modern ve fonksiyonel mutfak tasarımları ile yaşam alanlarınızı yenileyin. En son trendler ve premium malzemelerle hayalinizdeki mutfağı tasarlıyoruz.</p>
+                        <a href="#contact" class="read-more">Detaylı Bilgi <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Banyo Renovasyonu -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Banyo Renovasyonu">
+                    </div>
+                    <div class="service-content">
+                        <h3>Banyo Renovasyonu</h3>
+                        <p>Lüks ve hijyenik banyo tasarımları ile konforunuzu artırıyoruz. Su yalıtımından fayans seçimine kadar her detayı özenle planlıyoruz.</p>
+                        <a href="#contact" class="read-more">Detaylı Bilgi <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- İç Mekan Dekorasyonu -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="İç Mekan Dekorasyonu">
+                    </div>
+                    <div class="service-content">
+                        <h3>İç Mekan Dekorasyonu</h3>
+                        <p>Yaşam alanlarınızı kişisel zevklerinize göre tasarlıyoruz. Renk uyumundan mobilya seçimine kadar her detayı özenle planlıyoruz.</p>
+                        <a href="#contact" class="read-more">Detaylı Bilgi <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Dış Cephe Kaplama -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Dış Cephe Kaplama">
+                    </div>
+                    <div class="service-content">
+                        <h3>Dış Cephe Kaplama</h3>
+                        <p>Binanızın dış görünümünü modern malzemelerle yenileyin. Isı yalıtımı sağlarken aynı zamanda estetik bir görünüm kazandırıyoruz.</p>
+                        <a href="#contact" class="read-more">Detaylı Bilgi <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Villa Dekorasyonu -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Villa Dekorasyonu">
+                    </div>
+                    <div class="service-content">
+                        <h3>Villa Dekorasyonu</h3>
+                        <p>Lüks villalar için özel tasarım çözümleri sunuyoruz. Bahçe düzenlemesinden iç mekan tasarımına kadar bütüncül bir hizmet anlayışı.</p>
+                        <a href="#contact" class="read-more">Detaylı Bilgi <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Ofis Tasarımı -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Ofis Tasarımı">
+                    </div>
+                    <div class="service-content">
+                        <h3>Ofis Tasarımı</h3>
+                        <p>Verimliliği artıran, modern ofis tasarımları ile çalışma alanlarınızı yenileyin. Ergonomik ve fonksiyonel çözümler sunuyoruz.</p>
+                        <a href="#contact" class="read-more">Detaylı Bilgi <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects section-padding" id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tamamlanan Projeler</h2>
+                <p>Gerçekleştirdiğimiz öne çıkan projelerden bazıları</p>
+            </div>
+            
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">Tümü</button>
+                <button class="filter-btn" data-filter="mutfak">Mutfak</button>
+                <button class="filter-btn" data-filter="banyo">Banyo</button>
+                <button class="filter-btn" data-filter="ic-mekan">İç Mekan</button>
+                <button class="filter-btn" data-filter="dis-cephe">Dış Cephe</button>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Villa Dekorasyonu -->
+                <div class="project-card" data-category="ic-mekan">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Lüks Villa Dekorasyonu">
+                    </div>
+                    <div class="project-overlay">
+                        <span class="project-category">Villa Dekorasyonu</span>
+                        <h3 class="project-title">İstanbul'da Lüks Villa</h3>
+                        <a href="#" class="project-link">Projeyi İncele <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Banyo Tasarımı -->
+                <div class="project-card" data-category="banyo">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Premium Banyo Tasarımı">
+                    </div>
+                    <div class="project-overlay">
+                        <span class="project-category">Banyo Tasarımı</span>
+                        <h3 class="project-title">Modern Banyo Renovasyonu</h3>
+                        <a href="#" class="project-link">Projeyi İncele <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Mutfak Tasarımı -->
+                <div class="project-card" data-category="mutfak">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Modern Mutfak Tasarımı">
+                    </div>
+                    <div class="project-overlay">
+                        <span class="project-category">Mutfak Tasarımı</span>
+                        <h3 class="project-title">Şık Mutfak Yenileme</h3>
+                        <a href="#" class="project-link">Projeyi İncele <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Döşeme Dekorasyonu -->
+                <div class="project-card" data-category="ic-mekan">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Lüks Döşeme Dekorasyonu">
+                    </div>
+                    <div class="project-overlay">
+                        <span class="project-category">Döşeme Dekorasyonu</span>
+                        <h3 class="project-title">Premium Döşeme Tasarımı</h3>
+                        <a href="#" class="project-link">Projeyi İncele <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Dış Cephe Boyama -->
+                <div class="project-card" data-category="dis-cephe">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Dış Cephe Boyama">
+                    </div>
+                    <div class="project-overlay">
+                        <span class="project-category">Dış Cephe</span>
+                        <h3 class="project-title">Modern Dış Cephe Kaplama</h3>
+                        <a href="#" class="project-link">Projeyi İncele <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Oturma Odası Dekorasyonu -->
+                <div class="project-card" data-category="ic-mekan">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Şık Oturma Odası Tasarımı">
+                    </div>
+                    <div class="project-overlay">
+                        <span class="project-category">İç Mekan</span>
+                        <h3 class="project-title">Premium Oturma Odası</h3>
+                        <a href="#" class="project-link">Projeyi İncele <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Müşteri Yorumları</h2>
+                <p>Memnun müşterilerimizin deneyimleri</p>
+            </div>
+            
+            <div class="testimonials-container">
+                <div class="testimonial-slider">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-slide">
+                        <div class="client-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Ayşe K.">
+                        </div>
+                        <div class="client-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="client-comment">"Arya Dekorasyon ile mutfağımı yeniledik. Profesyonel ekibin titiz çalışması ve önerileri sayesinde hayalimdeki mutfağa kavuştum. Zamanında teslim ve sorunsuz bir süreç yaşadık."</p>
+                        <div class="client-info">
+                            <h4>Ayşe K.</h4>
+                            <p>Esenyurt, İstanbul</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-slide">
+                        <div class="client-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Mehmet T.">
+                        </div>
+                        <div class="client-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="client-comment">"Villamızın tüm dekorasyonunu Arya Dekorasyon'a yaptırdık. Kaliteli malzeme seçimleri ve estetik anlayışları için teşekkür ederiz. Kesinlikle tavsiye ediyorum."</p>
+                        <div class="client-info">
+                            <h4>Mehmet T.</h4>
+                            <p>Beylikdüzü, İstanbul</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-slide">
+                        <div class="client-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Zeynep A.">
+                        </div>
+                        <div class="client-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="client-comment">"Banyo renovasyonu için Arya Dekorasyon'u tercih ettik. İşlerinde çok titizler ve her detayı düşünüyorlar. Fiyat-performans açısından da çok memnun kaldık."</p>
+                        <div class="client-info">
+                            <h4>Zeynep A.</h4>
+                            <p>Avcılar, İstanbul</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section-padding" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>İletişim</h2>
+                <p>Profesyonel çözümler için hemen iletişime geçin</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Bize Ulaşın</h3>
+                    <p>Dekorasyon ihtiyaçlarınız için uzman ekibimizle iletişime geçin. Size özel çözümler sunmaktan mutluluk duyarız.</p>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Telefon</h4>
+                            <a href="tel:05457884975">0545 788 49 75</a>
+                            <a href="tel:05541674804">0554 167 48 04</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>E-posta</h4>
+                            <a href="mailto:info@aryadekorasyon.com">info@aryadekorasyon.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Adres</h4>
+                            <p>Esenyurt, İstanbul, Türkiye</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/905457884975" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Adınız Soyadınız" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="E-posta Adresiniz" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control" placeholder="Telefon Numaranız" required>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" required>
+                                <option value="" disabled selected>Hizmet Türü</option>
+                                <option value="mutfak">Mutfak Tasarımı</option>
+                                <option value="banyo">Banyo Renovasyonu</option>
+                                <option value="ic-mekan">İç Mekan Dekorasyonu</option>
+                                <option value="dis-cephe">Dış Cephe Kaplama</option>
+                                <option value="villa">Villa Dekorasyonu</option>
+                                <option value="diger">Diğer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Proje Detayları" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Mesaj Gönder</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <div class="footer-logo">ARYA DEKORASYON</div>
+                    <div class="footer-about">
+                        <p>İstanbul'da premium dekorasyon hizmetleri sunuyoruz. 15 yıllık deneyimimizle hayalinizdeki mekanları tasarlıyoruz.</p>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">Hızlı Linkler</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Ana Sayfa</a></li>
+                        <li><a href="#about">Hakkımızda</a></li>
+                        <li><a href="#services">Hizmetler</a></li>
+                        <li><a href="#projects">Projeler</a></li>
+                        <li><a href="#contact">İletişim</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">Hizmetlerimiz</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services">Mutfak Tasarımı</a></li>
+                        <li><a href="#services">Banyo Renovasyonu</a></li>
+                        <li><a href="#services">İç Mekan Dekorasyonu</a></li>
+                        <li><a href="#services">Dış Cephe Kaplama</a></li>
+                        <li><a href="#services">Villa Dekorasyonu</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">İletişim Bilgileri</h3>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-phone-alt"></i> 0545 788 49 75</p>
+                        <p><i class="fas fa-phone-alt"></i> 0554 167 48 04</p>
+                        <p><i class="fas fa-envelope"></i> info@aryadekorasyon.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Esenyurt, İstanbul, Türkiye</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 Arya Dekorasyon. Tüm Hakları Saklıdır.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 
     <script>
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDNVEP4hszf-gyFqag3vKKkIFeqR71nCxU",
-            authDomain: "aryadekorasyon-b4439.firebaseapp.com",
-            databaseURL: "https://aryadekorasyon-b4439-default-rtdb.firebaseio.com",
-            projectId: "aryadekorasyon-b4439",
-            storageBucket: "aryadekorasyon-b4439.firebasestorage.app",
-            messagingSenderId: "249853373952",
-            appId: "1:249853373952:web:993f739b8756def44772e5"
-        };
-
-        // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
-
-        // Sayfa yüklendiğinde çalışacak fonksiyon
-        document.addEventListener('DOMContentLoaded', function() {
-            // Canlı yorum dinleyicisini başlat
-            listenForComments();
-            
-            // Yorum formu gönderimi
-            document.getElementById('comment-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                submitComment();
-            });
-            
-            // Diğer fonksiyonlarınız (menü, scroll vs.)
-            initMobileMenu();
-            initSmoothScrolling();
-            initHeaderScrollEffect();
-            initProjectHover();
-            initHeroBackgroundRotation();
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            preloader.style.visibility = 'hidden';
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
         });
 
-        // Canlı yorum dinleyici
-        function listenForComments() {
-            const commentsRef = database.ref('comments');
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileNav = document.querySelector('.mobile-nav');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileNav.classList.toggle('active');
+            this.innerHTML = mobileNav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 90,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Back to Top Button
+        const backToTopBtn = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('active');
+            } else {
+                backToTopBtn.classList.remove('active');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Hero Slider
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[n].classList.add('active');
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+        
+        // Start slideshow after 3 seconds
+        setTimeout(() => {
+            setInterval(nextSlide, 5000);
+        }, 3000);
+        
+        // Projects Filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterBtns.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const filterValue = this.getAttribute('data-filter');
+                
+                projectCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Testimonial Slider (Simple Version)
+        const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+        let currentTestimonial = 0;
+        
+        function showTestimonial(n) {
+            testimonialSlides.forEach(slide => slide.style.display = 'none');
+            testimonialSlides[n].style.display = 'block';
+        }
+        
+        function nextTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % testimonialSlides.length;
+            showTestimonial(currentTestimonial);
+        }
+        
+        // Initialize first testimonial
+        showTestimonial(0);
+        // Rotate testimonials every 5 seconds
+        setInterval(nextTestimonial, 5000);
+        
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            commentsRef.orderByChild('timestamp').on('value', (snapshot) => {
-                const commentsList = document.getElementById('comments-list');
+            // Here you would typically send the form data to a server
+            // For demo purposes, we'll just show an alert
+            alert('Mesajınız başarıyla gönderildi! En kısa sürede sizinle iletişime geçeceğiz.');
+            this.reset();
+        });
+        
+        // Animation on Scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.service-card, .project-card, .feature-item');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
                 
-                // Yükleniyor göstergesini kaldır
-                commentsList.classList.remove('loading-comments');
-                commentsList.innerHTML = '';
-                
-                if (!snapshot.exists()) {
-                    commentsList.innerHTML = '<p class="no-comments">Henüz yorum yok, ilk yorumu sen yap!</p>';
-                    return;
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animate__animated', 'animate__fadeInUp');
                 }
-                
-                const commentsData = snapshot.val();
-                const sortedComments = Object.values(commentsData).sort((a, b) => b.timestamp - a.timestamp);
-                
-                sortedComments.forEach(comment => {
-                    const commentDiv = createCommentElement(comment);
-                    commentsList.appendChild(commentDiv);
-                });
-            }, (error) => {
-                console.error("Yorumlar yüklenirken hata:", error);
-                document.getElementById('comments-list').innerHTML = 
-                    '<p class="error-text">Yorumlar şu anda gösterilemiyor</p>';
             });
         }
-
-        // Yorum gönderme fonksiyonu
-        function submitComment() {
-            const name = document.getElementById('comment-name').value.trim();
-            const text = document.getElementById('comment-text').value.trim();
-            
-            if (!name || !text) {
-                alert('Lütfen adınızı ve yorumunuzu giriniz!');
-                return;
-            }
-            
-            // Yeni yorum nesnesi
-            const newComment = {
-                name: name,
-                text: text,
-                timestamp: Date.now()
-            };
-            
-            // Firebase'e ekle
-            database.ref('comments').push(newComment)
-                .then(() => {
-                    // Formu temizle
-                    document.getElementById('comment-form').reset();
-                    
-                    // Başarı mesajını göster
-                    const successMsg = document.getElementById('success-message');
-                    successMsg.style.display = 'block';
-                    setTimeout(() => {
-                        successMsg.style.display = 'none';
-                    }, 3000);
-                })
-                .catch(error => {
-                    console.error("Yorum gönderilemedi:", error);
-                    alert("Yorum gönderilirken bir hata oluştu. Lütfen tekrar deneyin.");
-                });
-        }
-
-        // Yorum elementi oluşturma
-        function createCommentElement(comment) {
-            const commentDiv = document.createElement('div');
-            commentDiv.className = 'comment';
-            
-            const commentDate = new Date(comment.timestamp);
-            const dateString = `${commentDate.getDate()} ${getMonthName(commentDate.getMonth())} ${commentDate.getFullYear()}`;
-            
-            commentDiv.innerHTML = `
-                <div class="comment-header">
-                    <div class="comment-avatar">${comment.name.charAt(0).toUpperCase()}</div>
-                    <div class="comment-author">${comment.name}</div>
-                    <div class="comment-date">${dateString}</div>
-                </div>
-                <div class="comment-text">${comment.text}</div>
-            `;
-            
-            return commentDiv;
-        }
-
-        // Yardımcı fonksiyonlar
-        function getMonthName(monthIndex) {
-            const months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 
-                          'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
-            return months[monthIndex];
-        }
-
-        // Diğer fonksiyonlarınız (initMobileMenu, initSmoothScrolling vb.)
-        function initMobileMenu() {
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const mobileMenu = document.querySelector('.mobile-menu');
-            
-            mobileMenuBtn.addEventListener('click', function() {
-                mobileMenu.classList.toggle('active');
-                this.innerHTML = mobileMenu.classList.contains('active') ? 
-                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-            });
-            
-            document.querySelectorAll('.mobile-menu a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                });
-            });
-        }
-
-        function initSmoothScrolling() {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetElement = document.querySelector(this.getAttribute('href'));
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                });
-            });
-        }
-
-        function initHeaderScrollEffect() {
-            window.addEventListener('scroll', function() {
-                const header = document.querySelector('header');
-                header.style.boxShadow = window.scrollY > 100 ? 
-                    '0 5px 20px rgba(0, 0, 0, 0.1)' : '0 2px 15px rgba(0, 0, 0, 0.1)';
-            });
-        }
-
-        function initProjectHover() {
-            document.querySelectorAll('.project-card').forEach(card => {
-                card.addEventListener('mouseenter', () => card.style.transform = 'translateY(-10px)');
-                card.addEventListener('mouseleave', () => card.style.transform = 'translateY(0)');
-            });
-        }
-
-        function initHeroBackgroundRotation() {
-            const hero = document.querySelector('.hero');
-            const heroBackgrounds = document.querySelectorAll('.hero-background');
-            let currentBackground = 0;
-            
-            setTimeout(() => heroBackgrounds[0].classList.add('active'), 500);
-            
-            function rotateBackground() {
-                heroBackgrounds[currentBackground].classList.remove('active');
-                hero.style.backgroundColor = '#000';
-                
-                setTimeout(() => {
-                    currentBackground = (currentBackground + 1) % heroBackgrounds.length;
-                    heroBackgrounds[currentBackground].classList.add('active');
-                }, 300);
-            }
-            
-            setTimeout(() => setInterval(rotateBackground, 5000), 500);
-        }
+        
+        window.addEventListener('scroll', animateOnScroll);
+        // Initial check in case elements are already in view
+        animateOnScroll();
     </script>
 </body>
 </html>
