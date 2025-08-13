@@ -377,20 +377,8 @@
                 timestamp: new Date().toISOString()
             };
             
-            // Here you would normally send this data to your server
-            // For demonstration, we'll log it and show success message
-            console.log('Form data submitted:', formData);
-            
-            // Show success message
-            document.getElementById('successMessage').style.display = 'block';
-            
-            // Reset form
-            this.reset();
-            
-            // In a real implementation, you would send this data to your backend
-            // Example using fetch API:
-            /*
-            fetch('https://your-backend-endpoint.com/submit', {
+            // Send data to backend
+            fetch('https://your-api-endpoint.com/submit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -401,13 +389,12 @@
             .then(data => {
                 console.log('Success:', data);
                 document.getElementById('successMessage').style.display = 'block';
-                this.reset();
+                document.getElementById('registrationForm').reset();
             })
             .catch((error) => {
                 console.error('Error:', error);
                 alert('Bir hata oluştu, lütfen tekrar deneyin.');
             });
-            */
         });
     </script>
 </body>
