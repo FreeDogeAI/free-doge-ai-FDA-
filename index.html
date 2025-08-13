@@ -4,39 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CAN TEAM UC - Resmi Satış Platformu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@400;700&family=Teko:wght@400;700&display=swap');
         
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Oswald', sans-serif;
-            background-color: #111;
-            color: white;
-            overflow-x: hidden;
+        :root {
+            --primary: #ff0000;
+            --secondary: #ffcc00;
+            --dark: #0a0a0a;
+            --light: #ffffff;
+            --accent: #ff6600;
         }
         
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Teko', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1560253023-3ec5d502959f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             position: relative;
+            padding: 0 20px;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, var(--dark), transparent);
+            z-index: 1;
         }
         
         .logo {
             font-family: 'Bangers', cursive;
             font-size: 8rem;
-            color: #ff0000;
+            color: var(--primary);
             text-shadow: 4px 4px 0px #000, 8px 8px 0px rgba(255,0,0,0.3);
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             letter-spacing: 5px;
             animation: pulse 1.5s infinite alternate;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo img {
+            height: 120px;
+            margin-right: 15px;
+            vertical-align: middle;
         }
         
         @keyframes pulse {
@@ -45,184 +83,488 @@
         }
         
         .tagline {
-            font-size: 2rem;
-            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
             text-shadow: 2px 2px 4px #000;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
         }
         
         .coming-soon {
-            font-size: 3rem;
-            color: #ffcc00;
+            font-size: 3.5rem;
+            color: var(--secondary);
             font-weight: bold;
             margin-bottom: 2rem;
             text-transform: uppercase;
             animation: blink 2s infinite;
+            position: relative;
+            z-index: 2;
         }
         
         @keyframes blink {
             0% { opacity: 1; }
-            50% { opacity: 0.5; }
+            50% { opacity: 0.7; }
             100% { opacity: 1; }
         }
         
+        /* Leaders Section */
         .leaders {
             display: flex;
             justify-content: center;
             gap: 3rem;
             margin-top: 2rem;
+            position: relative;
+            z-index: 2;
+            flex-wrap: wrap;
         }
         
         .leader-card {
-            background: rgba(255,255,255,0.1);
+            background: rgba(20,20,20,0.8);
             backdrop-filter: blur(10px);
             padding: 2rem;
-            border-radius: 10px;
-            width: 250px;
-            transition: transform 0.3s;
+            border-radius: 15px;
+            width: 280px;
+            transition: all 0.4s ease;
+            border: 2px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 30px rgba(255,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .leader-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,0,0,0.1), transparent 70%);
+            z-index: -1;
         }
         
         .leader-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255,0,0,0.3);
+            border-color: var(--primary);
+        }
+        
+        .leader-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            margin: 0 auto 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
         
         .leader-name {
-            font-size: 1.8rem;
-            color: #ff0000;
+            font-size: 2rem;
+            color: var(--primary);
             margin-bottom: 0.5rem;
+            font-weight: 700;
         }
         
         .leader-title {
-            font-size: 1.2rem;
-            color: #ffcc00;
+            font-size: 1.5rem;
+            color: var(--secondary);
             margin-bottom: 1rem;
+            font-weight: 500;
         }
         
+        /* Countdown */
         .countdown {
             font-size: 2rem;
             margin: 3rem 0;
             display: flex;
             justify-content: center;
             gap: 1.5rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
         }
         
         .countdown-item {
             background: rgba(255,0,0,0.2);
-            padding: 1rem 2rem;
-            border-radius: 5px;
+            padding: 1.5rem 2.5rem;
+            border-radius: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-width: 120px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .countdown-item:hover {
+            background: rgba(255,0,0,0.3);
+            transform: scale(1.05);
         }
         
         .countdown-number {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: bold;
+            line-height: 1;
+            font-family: 'Oswald', sans-serif;
         }
         
         .countdown-label {
-            font-size: 1rem;
+            font-size: 1.2rem;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
+        /* Sections */
         .section {
-            padding: 5rem 10%;
+            padding: 6rem 10%;
             text-align: center;
+            position: relative;
+        }
+        
+        .section-dark {
+            background: linear-gradient(to right, #0a0a0a, #1a1a1a, #0a0a0a);
         }
         
         .section-title {
-            font-size: 3rem;
+            font-size: 4rem;
             margin-bottom: 3rem;
-            color: #ff0000;
+            color: var(--primary);
             text-transform: uppercase;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--secondary);
         }
         
         .about-text {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             line-height: 1.8;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto 3rem;
+            font-weight: 400;
         }
         
         .highlight {
-            color: #ffcc00;
+            color: var(--secondary);
             font-weight: bold;
         }
         
+        /* Buttons */
         .btn {
             display: inline-block;
-            padding: 1rem 2.5rem;
-            background: linear-gradient(45deg, #ff0000, #ff6600);
+            padding: 1rem 3rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
             color: white;
             text-decoration: none;
             font-weight: bold;
             text-transform: uppercase;
             border-radius: 50px;
             margin: 1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
             border: none;
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            transition: all 0.4s ease;
+            z-index: -1;
         }
         
         .btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(255,0,0,0.3);
+            box-shadow: 0 10px 25px rgba(255,0,0,0.4);
         }
         
+        .btn:hover::before {
+            left: 0;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--light);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--light);
+        }
+        
+        /* Features */
         .features {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 3rem;
+            margin-top: 4rem;
         }
         
         .feature {
-            background: rgba(255,255,255,0.05);
-            padding: 2rem;
-            border-radius: 10px;
-            width: 300px;
-            transition: transform 0.3s;
+            background: rgba(30,30,30,0.8);
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            width: 320px;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            transition: all 0.3s ease;
         }
         
         .feature:hover {
-            transform: scale(1.05);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255,0,0,0.2);
+            border-color: rgba(255,0,0,0.3);
+        }
+        
+        .feature:hover::before {
+            width: 100%;
+            opacity: 0.1;
         }
         
         .feature-icon {
-            font-size: 3rem;
-            color: #ff0000;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
         }
         
         .feature-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #ffcc00;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+            font-weight: 700;
         }
         
-        footer {
-            background: #000;
+        .feature-desc {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+        
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 4rem;
+        }
+        
+        .gallery-item {
+            height: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255,0,0,0.3);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            font-size: 1.3rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        /* Notification Form */
+        .notify-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(30,30,30,0.8);
             padding: 3rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+            color: var(--secondary);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.2rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 5px;
+            color: var(--light);
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255,255,255,0.15);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, #0a0a0a, #1a1a1a);
+            padding: 4rem 2rem;
             text-align: center;
-            font-size: 1rem;
+            font-size: 1.2rem;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--primary), transparent);
+        }
+        
+        .footer-logo {
+            font-family: 'Bangers', cursive;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            letter-spacing: 3px;
         }
         
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 2rem;
             margin: 2rem 0;
+            flex-wrap: wrap;
         }
         
         .social-link {
-            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            color: var(--light);
             font-size: 1.5rem;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
+            text-decoration: none;
         }
         
         .social-link:hover {
-            color: #ff0000;
+            background: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255,0,0,0.3);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-link {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            opacity: 0.7;
+            font-size: 1.1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .section {
+                padding: 5rem 5%;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .logo {
+                font-size: 6rem;
+            }
+            
+            .tagline {
+                font-size: 2rem;
+            }
+            
+            .coming-soon {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 3rem;
+            }
         }
         
         @media (max-width: 768px) {
@@ -238,21 +580,88 @@
                 font-size: 2rem;
             }
             
-            .leaders {
-                flex-direction: column;
-                align-items: center;
+            .countdown-item {
+                padding: 1rem 1.5rem;
+                min-width: 90px;
             }
             
-            .countdown {
-                flex-wrap: wrap;
+            .countdown-number {
+                font-size: 2.5rem;
             }
+            
+            .leader-card {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .feature {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo {
+                font-size: 3rem;
+            }
+            
+            .countdown-item {
+                min-width: 70px;
+                padding: 0.8rem;
+            }
+            
+            .countdown-number {
+                font-size: 2rem;
+            }
+            
+            .countdown-label {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 2rem;
+                font-size: 1.1rem;
+            }
+            
+            .notify-form {
+                padding: 2rem 1.5rem;
+            }
+        }
+        
+        /* Particle Background */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
+    <!-- Particle Background -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="logo">CAN TEAM</div>
-        <div class="tagline">PUBG Mobile'in Efsanevi Ekibi Resmi UC Satış Platformuyla Karşınızda!</div>
+        <div class="logo">
+            <img src="https://via.placeholder.com/120x120/ff0000/ffffff?text=CT" alt="Can Team Logo">
+            CAN TEAM
+        </div>
+        <div class="tagline">PUBG MOBİL'İN DEVRİMCİ UC SATIŞ PLATFORMU</div>
         <div class="coming-soon">YAKINDA HİZMETE AÇILIYOR</div>
         
         <div class="countdown">
@@ -276,21 +685,24 @@
         
         <div class="leaders">
             <div class="leader-card">
+                <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Can Barzani" class="leader-photo">
                 <div class="leader-name">CAN BARZANİ</div>
                 <div class="leader-title">KURUCU & TAKIM LİDERİ</div>
-                <p>Strateji dehası ve efsanevi oyunculuğuyla Can Team'in yılmaz lideri!</p>
+                <p>"Strateji dehası ve efsanevi oyunculuğuyla Can Team'in yılmaz lideri!"</p>
             </div>
             <div class="leader-card">
+                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Can General" class="leader-photo">
                 <div class="leader-name">CAN GENERAL</div>
                 <div class="leader-title">KURUCU & TAKIM LİDERİ</div>
-                <p>Savaş meydanlarının korkusuz komutanı ve takımın teknik beyin gücü!</p>
+                <p>"Savaş meydanlarının korkusuz komutanı ve takımın teknik beyin gücü!"</p>
             </div>
         </div>
         
         <a href="#notify" class="btn">AÇILIŞTA HABER VER</a>
     </section>
     
-    <section class="section">
+    <!-- About Section -->
+    <section class="section section-dark">
         <h2 class="section-title">CAN TEAM UC SATIŞ PLATFORMU</h2>
         <p class="about-text">
             <span class="highlight">PUBG Mobile'in en büyük ve en başarılı takımlarından Can Team</span>, şimdi resmi UC satış platformuyla sizlerle! 
@@ -303,45 +715,108 @@
         
         <div class="features">
             <div class="feature">
-                <div class="feature-icon">⚡</div>
+                <div class="feature-icon"><i class="fas fa-bolt"></i></div>
                 <div class="feature-title">ANINDA TESLİMAT</div>
-                <p>Siparişleriniz en geç 15 dakika içinde hesabınıza ulaşır.</p>
+                <p class="feature-desc">Siparişleriniz en geç 15 dakika içinde hesabınıza ulaşır.</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">💰</div>
+                <div class="feature-icon"><i class="fas fa-tag"></i></div>
                 <div class="feature-title">EN UYGUN FİYAT</div>
-                <p>Piyasadaki en rekabetçi fiyatlar sadece bizde!</p>
+                <p class="feature-desc">Piyasadaki en rekabetçi fiyatlar sadece bizde!</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">🛡️</div>
+                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
                 <div class="feature-title">%100 GÜVENLİ</div>
-                <p>Resmi Can Team garantisiyle güvenli alışveriş.</p>
+                <p class="feature-desc">Resmi Can Team garantisiyle güvenli alışveriş.</p>
             </div>
         </div>
     </section>
     
-    <section class="section" id="notify" style="background: rgba(255,0,0,0.1);">
+    <!-- Gallery Section -->
+    <section class="section">
+        <h2 class="section-title">CAN TEAM GALERİ</h2>
+        <p class="about-text">
+            Can Team'in efsanevi anları ve başarı dolu hikayesinden kareler. <span class="highlight">Siz de bu ailenin bir parçası olun!</span>
+        </p>
+        
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Can Team Turnuva">
+                <div class="gallery-caption">Turnuva Zaferi</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1553481187-be93c21490a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Can Team Ekip">
+                <div class="gallery-caption">Ekip Ruhu</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Can Team Strateji">
+                <div class="gallery-caption">Strateji Toplantısı</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Can Team Ödül">
+                <div class="gallery-caption">Şampiyonluk Ödülü</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Can Team Antrenman">
+                <div class="gallery-caption">Yoğun Antrenman</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Can Team Gaming">
+                <div class="gallery-caption">Profesyonel Oyun</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Notification Section -->
+    <section class="section section-dark" id="notify">
         <h2 class="section-title">AÇILIŞI KAÇIRMAYIN!</h2>
         <p class="about-text">
             Platformumuzun açılışında <span class="highlight">özel indirimler ve sürpriz hediyeler</span> sizleri bekliyor. 
             Açılış haberlerini almak için hemen mail listemize kaydolun!
         </p>
         
-        <form style="max-width: 500px; margin: 0 auto;">
-            <input type="email" placeholder="E-posta adresiniz" style="width: 100%; padding: 1rem; margin-bottom: 1rem; border-radius: 50px; border: none; font-size: 1rem;">
-            <button type="submit" class="btn">BİLDİRİM ALMAK İSTİYORUM</button>
+        <form class="notify-form">
+            <div class="form-group">
+                <label for="name" class="form-label">Adınız</label>
+                <input type="text" id="name" class="form-control" placeholder="Adınız ve Soyadınız">
+            </div>
+            <div class="form-group">
+                <label for="email" class="form-label">E-posta Adresiniz</label>
+                <input type="email" id="email" class="form-control" placeholder="E-posta adresiniz">
+            </div>
+            <div class="form-group">
+                <label for="gameid" class="form-label">PUBG ID (Opsiyonel)</label>
+                <input type="text" id="gameid" class="form-control" placeholder="PUBG Oyuncu ID'niz">
+            </div>
+            <button type="submit" class="btn">KAYDOL VE HABER AL</button>
         </form>
     </section>
     
+    <!-- Footer -->
     <footer>
+        <div class="footer-logo">CAN TEAM</div>
+        <p>PUBG Mobile'in en büyük takımlarından resmi UC satış platformu</p>
+        
         <div class="social-links">
-            <a href="#" class="social-link">📱 Instagram</a>
-            <a href="#" class="social-link">📘 Facebook</a>
-            <a href="#" class="social-link">🐦 Twitter</a>
-            <a href="#" class="social-link">🎮 Discord</a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitch"></i></a>
         </div>
-        <p>© 2023 CAN TEAM UC SATIŞ PLATFORMU. Tüm hakları saklıdır.</p>
-        <p>PUBG Mobile ve PUBG, KRAFTON, Inc.'in ticari markalarıdır.</p>
+        
+        <div class="footer-links">
+            <a href="#" class="footer-link">Hakkımızda</a>
+            <a href="#" class="footer-link">SSS</a>
+            <a href="#" class="footer-link">İletişim</a>
+            <a href="#" class="footer-link">Gizlilik Politikası</a>
+            <a href="#" class="footer-link">Kullanım Şartları</a>
+        </div>
+        
+        <div class="copyright">
+            © 2023 CAN TEAM UC SATIŞ PLATFORMU. Tüm hakları saklıdır.<br>
+            PUBG Mobile ve PUBG, KRAFTON, Inc.'in ticari markalarıdır.
+        </div>
     </footer>
     
     <script>
@@ -363,9 +838,57 @@
             document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
         }
         
-        // Her saniye geri sayımı güncelle
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
+        // Particle effect
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 1px and 3px
+                const size = Math.random() * 2 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random opacity
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                
+                // Random animation
+                const duration = Math.random() * 20 + 10;
+                particle.style.animation = `float ${duration}s linear infinite`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Add floating animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0% {
+                    transform: translateY(0) translateX(0);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-100vh) translateX(${Math.random() > 0.5 ? '-' : ''}${Math.random() * 100}px);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            createParticles();
+        });
     </script>
 </body>
 </html>
