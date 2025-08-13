@@ -3,943 +3,369 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAN TEAM UC - PUBG Mobile UC Satın Al</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>CAN TEAM UC - Resmi Satış Platformu</title>
     <style>
-        :root {
-            --primary: #ff4500; /* Kırmızımsı turuncu */
-            --secondary: #1a1a1a;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --success: #28a745;
-            --military: #5a5a5a;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Rajdhani', 'Arial Narrow', Arial, sans-serif;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@400;700&display=swap');
         
         body {
-            background-color: #f5f5f5;
-            color: var(--dark);
-        }
-        
-        @font-face {
-            font-family: 'Rajdhani';
-            src: url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap');
-        }
-        
-        header {
-            background-color: var(--secondary);
+            margin: 0;
+            padding: 0;
+            font-family: 'Oswald', sans-serif;
+            background-color: #111;
             color: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo img {
-            height: 40px;
-            margin-right: 10px;
-        }
-        
-        .logo span {
-            color: white;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 1.5rem;
-            position: relative;
-        }
-        
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-        
-        nav ul li a:hover {
-            color: var(--primary);
+            overflow-x: hidden;
         }
         
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x1080/333/666?text=MILITARY+PUBG+BACKGROUND') no-repeat center center/cover;
-            color: white;
-            padding: 12rem 0 8rem;
-            text-align: center;
-            position: relative;
-            margin-top: 60px;
-        }
-        
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            text-align: center;
+            position: relative;
         }
         
-        .hero h1 {
-            font-size: 4.5rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-            color: var(--primary);
-            font-weight: 700;
-        }
-        
-        .hero h1 span {
-            color: white;
-            display: block;
-            font-size: 2.5rem;
-            margin-top: 10px;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
+        .logo {
+            font-family: 'Bangers', cursive;
+            font-size: 8rem;
+            color: #ff0000;
+            text-shadow: 4px 4px 0px #000, 8px 8px 0px rgba(255,0,0,0.3);
             margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            letter-spacing: 5px;
+            animation: pulse 1.5s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+        
+        .tagline {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            text-shadow: 2px 2px 4px #000;
+        }
+        
+        .coming-soon {
+            font-size: 3rem;
+            color: #ffcc00;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            animation: blink 2s infinite;
+        }
+        
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .leaders {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .leader-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 10px;
+            width: 250px;
+            transition: transform 0.3s;
+        }
+        
+        .leader-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .leader-name {
+            font-size: 1.8rem;
+            color: #ff0000;
+            margin-bottom: 0.5rem;
+        }
+        
+        .leader-title {
+            font-size: 1.2rem;
+            color: #ffcc00;
+            margin-bottom: 1rem;
+        }
+        
+        .countdown {
+            font-size: 2rem;
+            margin: 3rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        
+        .countdown-item {
+            background: rgba(255,0,0,0.2);
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .countdown-number {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        
+        .countdown-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+        
+        .section {
+            padding: 5rem 10%;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #ff0000;
+            text-transform: uppercase;
+        }
+        
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        
+        .highlight {
+            color: #ffcc00;
+            font-weight: bold;
         }
         
         .btn {
             display: inline-block;
-            background-color: var(--primary);
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, #ff0000, #ff6600);
             color: white;
-            padding: 0.8rem 2.5rem;
-            border-radius: 3px;
             text-decoration: none;
             font-weight: bold;
-            transition: all 0.3s;
+            text-transform: uppercase;
+            border-radius: 50px;
+            margin: 1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
             border: none;
             cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .btn:hover {
-            background-color: #e03c00;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid white;
-            margin-left: 1rem;
-        }
-        
-        .btn-outline:hover {
-            background-color: white;
-            color: var(--secondary);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin: 3rem 0 2rem;
-            font-size: 2.5rem;
-            color: var(--secondary);
-            text-transform: uppercase;
-            position: relative;
-            letter-spacing: 2px;
-        }
-        
-        .section-title:after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background-color: var(--primary);
-            margin: 15px auto;
-        }
-        
-        .uc-packages {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-        
-        .package-card {
-            background-color: white;
-            border-radius: 5px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-            border-top: 4px solid var(--primary);
-        }
-        
-        .package-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 25px rgba(0,0,0,0.15);
-        }
-        
-        .package-header {
-            background-color: var(--military);
-            color: white;
-            padding: 1.5rem;
-            text-align: center;
-            position: relative;
-        }
-        
-        .package-header:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://via.placeholder.com/300x100/444/888?text=CAMO') no-repeat center center/cover;
-            opacity: 0.2;
-        }
-        
-        .package-header h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            position: relative;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .package-header .price {
-            font-size: 2.5rem;
-            font-weight: bold;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-        }
-        
-        .package-header .price span {
-            font-size: 1rem;
-            margin-top: 5px;
-            margin-right: 3px;
-        }
-        
-        .package-body {
-            padding: 1.5rem;
-            position: relative;
-        }
-        
-        .package-body ul {
-            list-style: none;
-            margin-bottom: 1.5rem;
-        }
-        
-        .package-body ul li {
-            padding: 0.7rem 0;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            align-items: center;
-        }
-        
-        .package-body ul li i {
-            color: var(--success);
-            margin-right: 0.8rem;
-            font-size: 1.1rem;
-        }
-        
-        .features {
-            background-color: var(--light);
-            padding: 4rem 0;
-            background: url('https://via.placeholder.com/1920x600/222/555?text=TACTICAL+BACKGROUND') no-repeat center center/cover;
-            background-attachment: fixed;
-            position: relative;
-            color: white;
-        }
-        
-        .features:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-        }
-        
-        .features .section-title {
-            color: white;
-            position: relative;
-        }
-        
-        .features .section-title:after {
-            background-color: white;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            position: relative;
-        }
-        
-        .feature-card {
-            background-color: rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 5px;
-            text-align: center;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: transform 0.3s;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            background-color: rgba(255,69,0,0.2);
-            border-color: var(--primary);
-        }
-        
-        .feature-card i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-        
-        .feature-card h3 {
-            margin-bottom: 1rem;
-            color: white;
-            font-size: 1.3rem;
-        }
-        
-        .feature-card p {
-            color: #ddd;
-        }
-        
-        .testimonials {
-            padding: 4rem 0;
-            background-color: white;
-        }
-        
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .testimonial-card {
-            background-color: var(--light);
-            padding: 2rem;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-left: 4px solid var(--primary);
-        }
-        
-        .testimonial-card .stars {
-            color: var(--primary);
-            margin-bottom: 1rem;
             font-size: 1.2rem;
         }
         
-        .testimonial-card p {
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255,0,0,0.3);
         }
         
-        .testimonial-card .user {
+        .features {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
         }
         
-        .testimonial-card .user img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 1rem;
-            border: 2px solid var(--primary);
-        }
-        
-        .user-info h4 {
-            margin-bottom: 0.2rem;
-            color: var(--secondary);
-        }
-        
-        .user-info p {
-            font-style: normal;
-            color: #666;
-            font-size: 0.9rem;
-            margin: 0;
-        }
-        
-        .faq {
-            background-color: var(--light);
-            padding: 4rem 0;
-        }
-        
-        .accordion {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .accordion-item {
-            background-color: white;
-            margin-bottom: 1rem;
-            border-radius: 5px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            border-left: 4px solid var(--military);
-        }
-        
-        .accordion-header {
-            padding: 1.5rem;
-            background-color: white;
-            color: var(--secondary);
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background-color 0.3s;
-        }
-        
-        .accordion-header:hover {
-            background-color: #f9f9f9;
-        }
-        
-        .accordion-header i {
-            color: var(--primary);
+        .feature {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            width: 300px;
             transition: transform 0.3s;
         }
         
-        .accordion-item.active .accordion-header i {
-            transform: rotate(180deg);
+        .feature:hover {
+            transform: scale(1.05);
         }
         
-        .accordion-content {
-            padding: 0 1.5rem;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            background-color: #f9f9f9;
+        .feature-icon {
+            font-size: 3rem;
+            color: #ff0000;
+            margin-bottom: 1rem;
         }
         
-        .accordion-item.active .accordion-content {
-            padding: 1.5rem;
-            max-height: 500px;
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ffcc00;
         }
         
         footer {
-            background-color: var(--secondary);
-            color: white;
-            padding: 3rem 0 1rem;
-            background: url('https://via.placeholder.com/1920x300/111/333?text=FOOTER+BACKGROUND') no-repeat center center/cover;
-            position: relative;
-        }
-        
-        footer:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            position: relative;
-            margin-bottom: 2rem;
-        }
-        
-        .footer-column h3 {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column ul li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-column ul li a {
-            color: #ddd;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-column ul li a:hover {
-            color: var(--primary);
+            background: #000;
+            padding: 3rem;
+            text-align: center;
+            font-size: 1rem;
         }
         
         .social-links {
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
         
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255,255,255,0.1);
+        .social-link {
             color: white;
-            border-radius: 50%;
-            transition: all 0.3s;
+            font-size: 1.5rem;
+            transition: color 0.3s;
         }
         
-        .social-links a:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
+        .social-link:hover {
+            color: #ff0000;
         }
         
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            position: relative;
-            color: #aaa;
-            font-size: 0.9rem;
-        }
-        
-        .payment-methods {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .payment-methods img {
-            height: 30px;
-            filter: grayscale(100%) brightness(2);
-            opacity: 0.7;
-            transition: all 0.3s;
-        }
-        
-        .payment-methods img:hover {
-            filter: none;
-            opacity: 1;
-        }
-        
-        /* Responsive Tasarım */
         @media (max-width: 768px) {
-            .header-content {
+            .logo {
+                font-size: 4rem;
+            }
+            
+            .tagline {
+                font-size: 1.5rem;
+            }
+            
+            .coming-soon {
+                font-size: 2rem;
+            }
+            
+            .leaders {
                 flex-direction: column;
+                align-items: center;
             }
             
-            nav ul {
-                margin-top: 1rem;
-            }
-            
-            nav ul li {
-                margin-left: 1rem;
-                margin-right: 1rem;
-            }
-            
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .hero h1 span {
-                font-size: 1.8rem;
-            }
-            
-            .btn-group {
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .btn-outline {
-                margin-left: 0;
-                margin-top: 1rem;
+            .countdown {
+                flex-wrap: wrap;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="https://via.placeholder.com/40x40/ff4500/ffffff?text=CT" alt="CAN TEAM Logo">
-                    <span>CAN TEAM UC</span>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="#anasayfa">Anasayfa</a></li>
-                        <li><a href="#uc-paketleri">UC Paketleri</a></li>
-                        <li><a href="#nasil-calisir">Nasıl Çalışır?</a></li>
-                        <li><a href="#sss">SSS</a></li>
-                        <li><a href="#iletisim">İletişim</a></li>
-                    </ul>
-                </nav>
+    <section class="hero">
+        <div class="logo">CAN TEAM</div>
+        <div class="tagline">PUBG Mobile'in Efsanevi Ekibi Resmi UC Satış Platformuyla Karşınızda!</div>
+        <div class="coming-soon">YAKINDA HİZMETE AÇILIYOR</div>
+        
+        <div class="countdown">
+            <div class="countdown-item">
+                <div class="countdown-number" id="days">00</div>
+                <div class="countdown-label">Gün</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="hours">00</div>
+                <div class="countdown-label">Saat</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="minutes">00</div>
+                <div class="countdown-label">Dakika</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="seconds">00</div>
+                <div class="countdown-label">Saniye</div>
             </div>
         </div>
-    </header>
-
-    <section class="hero" id="anasayfa">
-        <div class="hero-overlay">
-            <div class="container">
-                <h1>CAN TEAM <span>PUBG MOBILE</span></h1>
-                <p>En uygun fiyatlarla PUBG Mobile UC satın alın, anında hesabınıza yüklensin!</p>
-                <div class="btn-group">
-                    <a href="#uc-paketleri" class="btn">UC Satın Al</a>
-                    <a href="#nasil-calisir" class="btn btn-outline">Nasıl Çalışır?</a>
-                </div>
+        
+        <div class="leaders">
+            <div class="leader-card">
+                <div class="leader-name">CAN BARZANİ</div>
+                <div class="leader-title">KURUCU & TAKIM LİDERİ</div>
+                <p>Strateji dehası ve efsanevi oyunculuğuyla Can Team'in yılmaz lideri!</p>
+            </div>
+            <div class="leader-card">
+                <div class="leader-name">CAN GENERAL</div>
+                <div class="leader-title">KURUCU & TAKIM LİDERİ</div>
+                <p>Savaş meydanlarının korkusuz komutanı ve takımın teknik beyin gücü!</p>
+            </div>
+        </div>
+        
+        <a href="#notify" class="btn">AÇILIŞTA HABER VER</a>
+    </section>
+    
+    <section class="section">
+        <h2 class="section-title">CAN TEAM UC SATIŞ PLATFORMU</h2>
+        <p class="about-text">
+            <span class="highlight">PUBG Mobile'in en büyük ve en başarılı takımlarından Can Team</span>, şimdi resmi UC satış platformuyla sizlerle! 
+            En uygun fiyatlarla, en güvenilir şekilde UC temin etmenin adresi artık Can Team Uc Satış Platformu.
+        </p>
+        <p class="about-text">
+            Can Barzani ve Can General liderliğindeki efsanevi ekip, sahaya iniyor! <span class="highlight">Yakında hizmete açılacak platformumuzda</span>, 
+            sadece UC satışı değil, aynı zamanda özel etkinlikler, turnuvalar ve sürpriz hediyeler de sizleri bekliyor olacak.
+        </p>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-title">ANINDA TESLİMAT</div>
+                <p>Siparişleriniz en geç 15 dakika içinde hesabınıza ulaşır.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💰</div>
+                <div class="feature-title">EN UYGUN FİYAT</div>
+                <p>Piyasadaki en rekabetçi fiyatlar sadece bizde!</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🛡️</div>
+                <div class="feature-title">%100 GÜVENLİ</div>
+                <p>Resmi Can Team garantisiyle güvenli alışveriş.</p>
             </div>
         </div>
     </section>
-
-    <section class="container">
-        <h2 class="section-title" id="uc-paketleri">UC PAKETLERİ</h2>
-        <div class="uc-packages">
-            <div class="package-card">
-                <div class="package-header">
-                    <h3>Başlangıç Paketi</h3>
-                    <div class="price"><span>₺</span>49.99</div>
-                </div>
-                <div class="package-body">
-                    <ul>
-                        <li><i class="fas fa-check"></i> 600 UC</li>
-                        <li><i class="fas fa-check"></i> Anında Teslimat</li>
-                        <li><i class="fas fa-check"></i> 7/24 Destek</li>
-                        <li><i class="fas fa-check"></i> Güvenli Ödeme</li>
-                    </ul>
-                    <a href="#" class="btn" style="width: 100%; text-align: center;">Satın Al</a>
-                </div>
-            </div>
-            
-            <div class="package-card">
-                <div class="package-header">
-                    <h3>Orta Paket</h3>
-                    <div class="price"><span>₺</span>99.99</div>
-                </div>
-                <div class="package-body">
-                    <ul>
-                        <li><i class="fas fa-check"></i> 1,500 UC</li>
-                        <li><i class="fas fa-check"></i> Anında Teslimat</li>
-                        <li><i class="fas fa-check"></i> 7/24 Destek</li>
-                        <li><i class="fas fa-check"></i> Güvenli Ödeme</li>
-                        <li><i class="fas fa-check"></i> %5 Bonus UC</li>
-                    </ul>
-                    <a href="#" class="btn" style="width: 100%; text-align: center;">Satın Al</a>
-                </div>
-            </div>
-            
-            <div class="package-card">
-                <div class="package-header">
-                    <h3>Premium Paket</h3>
-                    <div class="price"><span>₺</span>199.99</div>
-                </div>
-                <div class="package-body">
-                    <ul>
-                        <li><i class="fas fa-check"></i> 3,500 UC</li>
-                        <li><i class="fas fa-check"></i> Anında Teslimat</li>
-                        <li><i class="fas fa-check"></i> 7/24 Destek</li>
-                        <li><i class="fas fa-check"></i> Güvenli Ödeme</li>
-                        <li><i class="fas fa-check"></i> %10 Bonus UC</li>
-                        <li><i class="fas fa-check"></i> Özel Destek Hattı</li>
-                    </ul>
-                    <a href="#" class="btn" style="width: 100%; text-align: center;">Satın Al</a>
-                </div>
-            </div>
-        </div>
+    
+    <section class="section" id="notify" style="background: rgba(255,0,0,0.1);">
+        <h2 class="section-title">AÇILIŞI KAÇIRMAYIN!</h2>
+        <p class="about-text">
+            Platformumuzun açılışında <span class="highlight">özel indirimler ve sürpriz hediyeler</span> sizleri bekliyor. 
+            Açılış haberlerini almak için hemen mail listemize kaydolun!
+        </p>
+        
+        <form style="max-width: 500px; margin: 0 auto;">
+            <input type="email" placeholder="E-posta adresiniz" style="width: 100%; padding: 1rem; margin-bottom: 1rem; border-radius: 50px; border: none; font-size: 1rem;">
+            <button type="submit" class="btn">BİLDİRİM ALMAK İSTİYORUM</button>
+        </form>
     </section>
-
-    <section class="features">
-        <div class="container">
-            <h2 class="section-title">NEDEN BİZİ SEÇMELİSİNİZ?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-bolt"></i>
-                    <h3>Anında Teslimat</h3>
-                    <p>Siparişiniz tamamlandıktan sonra UC'ler anında hesabınıza yüklenir.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Güvenli Ödeme</h3>
-                    <p>256-bit SSL şifreleme ile güvenli ödeme yapabilirsiniz.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <i class="fas fa-headset"></i>
-                    <h3>7/24 Destek</h3>
-                    <p>Profesyonel destek ekibimiz her zaman yardıma hazır.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <i class="fas fa-gem"></i>
-                    <h3>Bonuslar</h3>
-                    <p>Büyük paketlerde ekstra UC bonusları kazanırsınız.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="testimonials">
-        <div class="container">
-            <h2 class="section-title">MÜŞTERİ YORUMLARI</h2>
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p>"Çok hızlı teslimat, 2 dakika içinde UC'ler hesabımdaydı. Kesinlikle tavsiye ederim!"</p>
-                    <div class="user">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Kullanıcı">
-                        <div class="user-info">
-                            <h4>Ahmet Y.</h4>
-                            <p>PUBG Mobile Oyuncusu</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p>"Uzun süredir alışveriş yapıyorum, hiç sorun yaşamadım. Fiyatlar da çok uygun."</p>
-                    <div class="user">
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Kullanıcı">
-                        <div class="user-info">
-                            <h4>Ayşe K.</h4>
-                            <p>PUBG Mobile Oyuncusu</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p>"Destek ekibi çok ilgili, küçük bir sorunum oldu ve hemen çözdüler. Teşekkürler CAN TEAM!"</p>
-                    <div class="user">
-                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Kullanıcı">
-                        <div class="user-info">
-                            <h4>Mehmet T.</h4>
-                            <p>PUBG Mobile Oyuncusu</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="faq">
-        <div class="container">
-            <h2 class="section-title">SIKÇA SORULAN SORULAR</h2>
-            <div class="accordion">
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <span>UC'ler ne kadar sürede hesabıma geçer?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="accordion-content">
-                        <p>Siparişinizi tamamladıktan sonra UC'ler genellikle 1-5 dakika içinde hesabınıza yüklenir. Nadiren yoğunluğa bağlı olarak bu süre 15-20 dakikaya kadar çıkabilir.</p>
-                    </div>
-                </div>
-                
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <span>Hangi ödeme yöntemlerini kabul ediyorsunuz?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="accordion-content">
-                        <p>Kredi kartı, banka havalesi, PayPal ve tüm sanal kartlarla ödeme yapabilirsiniz. Ayrıca mobil ödeme seçeneklerimiz de mevcuttur.</p>
-                    </div>
-                </div>
-                
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <span>Hesap bilgilerim güvende mi?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="accordion-content">
-                        <p>Evet, tüm bilgileriniz 256-bit SSL şifreleme ile korunmaktadır. Sadece UC yükleme işlemi için gerekli olan minimum bilgiyi istiyoruz ve bu bilgileri asla üçüncü şahıslarla paylaşmıyoruz.</p>
-                    </div>
-                </div>
-                
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <span>İade politikası nedir?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="accordion-content">
-                        <p>UC'ler hesabınıza yüklendikten sonra iade edilemez. Ancak yükleme işlemi başarısız olursa, ödemeniz iade edilir veya UC'ler tekrar yüklenir.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>CAN TEAM UC</h3>
-                    <p>PUBG Mobile UC satışında güvenilir adres. En uygun fiyatlar ve anında teslimat garantisi.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-discord"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Hızlı Linkler</h3>
-                    <ul>
-                        <li><a href="#anasayfa">Anasayfa</a></li>
-                        <li><a href="#uc-paketleri">UC Paketleri</a></li>
-                        <li><a href="#nasil-calisir">Nasıl Çalışır?</a></li>
-                        <li><a href="#sss">SSS</a></li>
-                        <li><a href="#iletisim">İletişim</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Yardım</h3>
-                    <ul>
-                        <li><a href="#">Sipariş Takibi</a></li>
-                        <li><a href="#">Ödeme Yöntemleri</a></li>
-                        <li><a href="#">Güvenlik Politikası</a></li>
-                        <li><a href="#">İade Politikası</a></li>
-                        <li><a href="#">Kullanım Koşulları</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>İletişim</h3>
-                    <ul>
-                        <li><i class="fas fa-envelope"></i> info@canteamuc.com</li>
-                        <li><i class="fas fa-phone"></i> +90 555 123 45 67</li>
-                        <li><i class="fas fa-map-marker-alt"></i> İstanbul, Türkiye</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <div class="payment-methods">
-                    <img src="https://via.placeholder.com/60x40/fff/fff?text=VISA" alt="Visa">
-                    <img src="https://via.placeholder.com/60x40/fff/fff?text=MC" alt="Mastercard">
-                    <img src="https://via.placeholder.com/60x40/fff/fff?text=PP" alt="PayPal">
-                    <img src="https://via.placeholder.com/60x40/fff/fff?text=BTC" alt="Bitcoin">
-                    <img src="https://via.placeholder.com/60x40/fff/fff?text=TR" alt="Türkiye Kartları">
-                </div>
-                <p>&copy; 2023 CAN TEAM UC. Tüm hakları saklıdır.</p>
-            </div>
+        <div class="social-links">
+            <a href="#" class="social-link">📱 Instagram</a>
+            <a href="#" class="social-link">📘 Facebook</a>
+            <a href="#" class="social-link">🐦 Twitter</a>
+            <a href="#" class="social-link">🎮 Discord</a>
         </div>
+        <p>© 2023 CAN TEAM UC SATIŞ PLATFORMU. Tüm hakları saklıdır.</p>
+        <p>PUBG Mobile ve PUBG, KRAFTON, Inc.'in ticari markalarıdır.</p>
     </footer>
-
+    
     <script>
-        // Accordion Fonksiyonu
-        document.querySelectorAll('.accordion-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const item = header.parentElement;
-                const isActive = item.classList.contains('active');
-                
-                // Tüm accordion öğelerini kapat
-                document.querySelectorAll('.accordion-item').forEach(i => {
-                    i.classList.remove('active');
-                });
-                
-                // Eğer tıklanan öğe aktif değilse, sadece onu aç
-                if (!isActive) {
-                    item.classList.add('active');
-                }
-            });
-        });
+        // Geri sayım fonksiyonu
+        function updateCountdown() {
+            // Açılış tarihini ayarlayın (YYYY, MM-1, DD)
+            const launchDate = new Date(2023, 11, 15);
+            const now = new Date();
+            const diff = launchDate - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
         
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Header Scroll Efekti
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.background = 'rgba(26, 26, 26, 0.95)';
-                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.2)';
-            } else {
-                header.style.background = 'var(--secondary)';
-                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-            }
-        });
+        // Her saniye geri sayımı güncelle
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
     </script>
 </body>
 </html>
