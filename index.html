@@ -150,13 +150,17 @@
         }
         
         .leader-photo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--primary);
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
             margin: 0 auto 1rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            filter: drop-shadow(0 5px 15px rgba(255, 200, 0, 0.5));
+            transition: all 0.3s ease;
+        }
+        
+        .leader-card:hover .leader-photo {
+            transform: scale(1.1) rotate(5deg);
+            filter: drop-shadow(0 10px 20px rgba(255, 200, 0, 0.7));
         }
         
         .leader-name {
@@ -171,48 +175,6 @@
             color: var(--secondary);
             margin-bottom: 1rem;
             font-weight: 500;
-        }
-        
-        /* Countdown */
-        .countdown {
-            font-size: 2rem;
-            margin: 3rem 0;
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .countdown-item {
-            background: rgba(255,0,0,0.2);
-            padding: 1.5rem 2.5rem;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-width: 120px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .countdown-item:hover {
-            background: rgba(255,0,0,0.3);
-            transform: scale(1.05);
-        }
-        
-        .countdown-number {
-            font-size: 3.5rem;
-            font-weight: bold;
-            line-height: 1;
-            font-family: 'Oswald', sans-serif;
-        }
-        
-        .countdown-label {
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
         
         /* Sections */
@@ -300,17 +262,6 @@
         
         .btn:hover::before {
             left: 0;
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--light);
-        }
-        
-        .btn-outline:hover {
-            background: var(--primary);
-            color: var(--light);
         }
         
         /* Features */
@@ -565,6 +516,11 @@
             .section-title {
                 font-size: 3rem;
             }
+            
+            .leader-photo {
+                width: 150px;
+                height: 150px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -580,15 +536,6 @@
                 font-size: 2rem;
             }
             
-            .countdown-item {
-                padding: 1rem 1.5rem;
-                min-width: 90px;
-            }
-            
-            .countdown-number {
-                font-size: 2.5rem;
-            }
-            
             .leader-card {
                 width: 100%;
                 max-width: 350px;
@@ -602,24 +549,16 @@
             .section-title {
                 font-size: 2.5rem;
             }
+            
+            .leader-photo {
+                width: 120px;
+                height: 120px;
+            }
         }
         
         @media (max-width: 576px) {
             .logo {
                 font-size: 3rem;
-            }
-            
-            .countdown-item {
-                min-width: 70px;
-                padding: 0.8rem;
-            }
-            
-            .countdown-number {
-                font-size: 2rem;
-            }
-            
-            .countdown-label {
-                font-size: 1rem;
             }
             
             .btn {
@@ -630,31 +569,15 @@
             .notify-form {
                 padding: 2rem 1.5rem;
             }
-        }
-        
-        /* Particle Background */
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            overflow: hidden;
-        }
-        
-        .particle {
-            position: absolute;
-            background: rgba(255,255,255,0.5);
-            border-radius: 50%;
-            pointer-events: none;
+            
+            .leader-photo {
+                width: 100px;
+                height: 100px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Particle Background -->
-    <div class="particles" id="particles"></div>
-    
     <!-- Hero Section -->
     <section class="hero">
         <div class="logo">
@@ -664,34 +587,15 @@
         <div class="tagline">PUBG MOBİL'İN DEVRİMCİ UC SATIŞ PLATFORMU</div>
         <div class="coming-soon">YAKINDA HİZMETE AÇILIYOR</div>
         
-        <div class="countdown">
-            <div class="countdown-item">
-                <div class="countdown-number" id="days">00</div>
-                <div class="countdown-label">Gün</div>
-            </div>
-            <div class="countdown-item">
-                <div class="countdown-number" id="hours">00</div>
-                <div class="countdown-label">Saat</div>
-            </div>
-            <div class="countdown-item">
-                <div class="countdown-number" id="minutes">00</div>
-                <div class="countdown-label">Dakika</div>
-            </div>
-            <div class="countdown-item">
-                <div class="countdown-number" id="seconds">00</div>
-                <div class="countdown-label">Saniye</div>
-            </div>
-        </div>
-        
         <div class="leaders">
             <div class="leader-card">
-                <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Can Barzani" class="leader-photo">
+                <img src="https://i.ibb.co/0jXq0Zz/pubg-character1.png" alt="Can Barzani" class="leader-photo">
                 <div class="leader-name">CAN BARZANİ</div>
                 <div class="leader-title">KURUCU & TAKIM LİDERİ</div>
                 <p>"Strateji dehası ve efsanevi oyunculuğuyla Can Team'in yılmaz lideri!"</p>
             </div>
             <div class="leader-card">
-                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Can General" class="leader-photo">
+                <img src="https://i.ibb.co/7Y5WYh0/pubg-character2.png" alt="Can General" class="leader-photo">
                 <div class="leader-name">CAN GENERAL</div>
                 <div class="leader-title">KURUCU & TAKIM LİDERİ</div>
                 <p>"Savaş meydanlarının korkusuz komutanı ve takımın teknik beyin gücü!"</p>
@@ -818,77 +722,5 @@
             PUBG Mobile ve PUBG, KRAFTON, Inc.'in ticari markalarıdır.
         </div>
     </footer>
-    
-    <script>
-        // Geri sayım fonksiyonu
-        function updateCountdown() {
-            // Açılış tarihini ayarlayın (YYYY, MM-1, DD)
-            const launchDate = new Date(2023, 11, 15);
-            const now = new Date();
-            const diff = launchDate - now;
-            
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
-            document.getElementById('days').textContent = days.toString().padStart(2, '0');
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-        }
-        
-        // Particle effect
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                // Random size between 1px and 3px
-                const size = Math.random() * 2 + 1;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                
-                // Random position
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                
-                // Random opacity
-                particle.style.opacity = Math.random() * 0.5 + 0.1;
-                
-                // Random animation
-                const duration = Math.random() * 20 + 10;
-                particle.style.animation = `float ${duration}s linear infinite`;
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
-        
-        // Add floating animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes float {
-                0% {
-                    transform: translateY(0) translateX(0);
-                    opacity: 1;
-                }
-                100% {
-                    transform: translateY(-100vh) translateX(${Math.random() > 0.5 ? '-' : ''}${Math.random() * 100}px);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-            createParticles();
-        });
-    </script>
 </body>
 </html>
