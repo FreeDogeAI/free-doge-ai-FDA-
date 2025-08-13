@@ -31,14 +31,49 @@
             letter-spacing: 0.5px;
         }
         
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: rgba(10,10,10,0.9);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .header-logo {
+            font-family: 'Bangers', cursive;
+            font-size: 2.5rem;
+            color: var(--primary);
+            letter-spacing: 3px;
+        }
+        
+        .notify-btn {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        
+        .notify-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255,0,0,0.3);
+        }
+        
         /* Hero Section */
         .hero {
             height: 100vh;
             background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1560253023-3ec5d502959f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+                        url('https://gaming-cdn.com/img/products/6469/hcover/6469.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -48,33 +83,14 @@
             padding: 0 20px;
         }
         
-        .hero::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: linear-gradient(to top, var(--dark), transparent);
-            z-index: 1;
-        }
-        
-        .logo {
+        .main-logo {
             font-family: 'Bangers', cursive;
-            font-size: 8rem;
+            font-size: 10rem;
             color: var(--primary);
             text-shadow: 4px 4px 0px #000, 8px 8px 0px rgba(255,0,0,0.3);
             margin-bottom: 1rem;
             letter-spacing: 5px;
             animation: pulse 1.5s infinite alternate;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .logo img {
-            height: 120px;
-            margin-right: 15px;
-            vertical-align: middle;
         }
         
         @keyframes pulse {
@@ -87,25 +103,6 @@
             margin-bottom: 2rem;
             text-shadow: 2px 2px 4px #000;
             font-weight: 700;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .coming-soon {
-            font-size: 3.5rem;
-            color: var(--secondary);
-            font-weight: bold;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-            animation: blink 2s infinite;
-            position: relative;
-            z-index: 2;
-        }
-        
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0.7; }
-            100% { opacity: 1; }
         }
         
         /* Leaders Section */
@@ -114,33 +111,17 @@
             justify-content: center;
             gap: 3rem;
             margin-top: 2rem;
-            position: relative;
-            z-index: 2;
             flex-wrap: wrap;
         }
         
         .leader-card {
             background: rgba(20,20,20,0.8);
-            backdrop-filter: blur(10px);
             padding: 2rem;
             border-radius: 15px;
             width: 280px;
             transition: all 0.4s ease;
             border: 2px solid rgba(255,255,255,0.1);
             box-shadow: 0 10px 30px rgba(255,0,0,0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .leader-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,0,0,0.1), transparent 70%);
-            z-index: -1;
         }
         
         .leader-card:hover {
@@ -152,15 +133,10 @@
         .leader-photo {
             width: 180px;
             height: 180px;
-            object-fit: contain;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
             margin: 0 auto 1rem;
-            filter: drop-shadow(0 5px 15px rgba(255, 200, 0, 0.5));
-            transition: all 0.3s ease;
-        }
-        
-        .leader-card:hover .leader-photo {
-            transform: scale(1.1) rotate(5deg);
-            filter: drop-shadow(0 10px 20px rgba(255, 200, 0, 0.7));
         }
         
         .leader-name {
@@ -181,7 +157,6 @@
         .section {
             padding: 6rem 10%;
             text-align: center;
-            position: relative;
         }
         
         .section-dark {
@@ -194,19 +169,6 @@
             color: var(--primary);
             text-transform: uppercase;
             font-weight: 700;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: var(--secondary);
         }
         
         .about-text {
@@ -214,7 +176,6 @@
             line-height: 1.8;
             max-width: 900px;
             margin: 0 auto 3rem;
-            font-weight: 400;
         }
         
         .highlight {
@@ -222,166 +183,14 @@
             font-weight: bold;
         }
         
-        /* Buttons */
-        .btn {
-            display: inline-block;
-            padding: 1rem 3rem;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            border-radius: 50px;
-            margin: 1rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1.3rem;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--accent), var(--primary));
-            transition: all 0.4s ease;
-            z-index: -1;
-        }
-        
-        .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(255,0,0,0.4);
-        }
-        
-        .btn:hover::before {
-            left: 0;
-        }
-        
-        /* Features */
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 4rem;
-        }
-        
-        .feature {
-            background: rgba(30,30,30,0.8);
-            padding: 3rem 2rem;
-            border-radius: 15px;
-            width: 320px;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(255,255,255,0.05);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .feature::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--primary), var(--accent));
-            transition: all 0.3s ease;
-        }
-        
-        .feature:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(255,0,0,0.2);
-            border-color: rgba(255,0,0,0.3);
-        }
-        
-        .feature:hover::before {
-            width: 100%;
-            opacity: 0.1;
-        }
-        
-        .feature-icon {
-            font-size: 3.5rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-        
-        .feature-title {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--secondary);
-            font-weight: 700;
-        }
-        
-        .feature-desc {
-            font-size: 1.3rem;
-            opacity: 0.9;
-        }
-        
-        /* Gallery */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 4rem;
-        }
-        
-        .gallery-item {
-            height: 250px;
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .gallery-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(255,0,0,0.3);
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            color: white;
-            font-size: 1.3rem;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .gallery-item:hover .gallery-caption {
-            transform: translateY(0);
-        }
-        
-        /* Notification Form */
-        .notify-form {
+        /* Form Section */
+        .notify-section {
             max-width: 600px;
             margin: 0 auto;
             background: rgba(30,30,30,0.8);
             padding: 3rem;
             border-radius: 15px;
             border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
         
         .form-group {
@@ -404,32 +213,40 @@
             border: 1px solid rgba(255,255,255,0.2);
             border-radius: 5px;
             color: var(--light);
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.3rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
         
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: rgba(255,255,255,0.15);
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255,0,0,0.3);
+        }
+        
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: rgba(0,200,0,0.2);
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-top: 1.5rem;
+            border: 1px solid rgba(0,255,0,0.3);
         }
         
         /* Footer */
         footer {
             background: linear-gradient(to right, #0a0a0a, #1a1a1a);
-            padding: 4rem 2rem;
+            padding: 3rem;
             text-align: center;
-            font-size: 1.2rem;
-            position: relative;
-        }
-        
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(to right, transparent, var(--primary), transparent);
         }
         
         .footer-logo {
@@ -437,102 +254,20 @@
             font-size: 3rem;
             color: var(--primary);
             margin-bottom: 1.5rem;
-            letter-spacing: 3px;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-        
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-            color: var(--light);
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-        
-        .social-link:hover {
-            background: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(255,0,0,0.3);
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-        
-        .footer-link {
-            color: var(--light);
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-link:hover {
-            color: var(--secondary);
         }
         
         .copyright {
             margin-top: 2rem;
             opacity: 0.7;
-            font-size: 1.1rem;
         }
         
         /* Responsive */
-        @media (max-width: 1200px) {
-            .section {
-                padding: 5rem 5%;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .logo {
+        @media (max-width: 768px) {
+            .main-logo {
                 font-size: 6rem;
             }
             
-            .tagline {
-                font-size: 2rem;
-            }
-            
-            .coming-soon {
-                font-size: 2.5rem;
-            }
-            
-            .section-title {
-                font-size: 3rem;
-            }
-            
-            .leader-photo {
-                width: 150px;
-                height: 150px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .logo {
-                font-size: 4rem;
-            }
-            
-            .tagline {
-                font-size: 1.5rem;
-            }
-            
-            .coming-soon {
+            .header-logo {
                 font-size: 2rem;
             }
             
@@ -540,187 +275,140 @@
                 width: 100%;
                 max-width: 350px;
             }
-            
-            .feature {
-                width: 100%;
-                max-width: 350px;
-            }
-            
-            .section-title {
-                font-size: 2.5rem;
-            }
-            
-            .leader-photo {
-                width: 120px;
-                height: 120px;
-            }
         }
         
         @media (max-width: 576px) {
-            .logo {
-                font-size: 3rem;
+            .main-logo {
+                font-size: 4rem;
             }
             
-            .btn {
-                padding: 0.8rem 2rem;
-                font-size: 1.1rem;
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
             }
             
-            .notify-form {
-                padding: 2rem 1.5rem;
-            }
-            
-            .leader-photo {
-                width: 100px;
-                height: 100px;
+            .notify-section {
+                padding: 2rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-logo">CAN TEAM UC</div>
+        <a href="#notify" class="notify-btn">AÇILIŞTA HABER VER</a>
+    </div>
+    
     <!-- Hero Section -->
     <section class="hero">
-        <div class="logo">
-            <img src="https://via.placeholder.com/120x120/ff0000/ffffff?text=CT" alt="Can Team Logo">
-            CAN TEAM
-        </div>
-        <div class="tagline">PUBG MOBİL'İN DEVRİMCİ UC SATIŞ PLATFORMU</div>
-        <div class="coming-soon">YAKINDA HİZMETE AÇILIYOR</div>
+        <div class="main-logo">CAN TEAM</div>
+        <div class="tagline">PUBG MOBİL UC SATIŞ PLATFORMU</div>
         
         <div class="leaders">
             <div class="leader-card">
-                <img src="https://i.ibb.co/0jXq0Zz/pubg-character1.png" alt="Can Barzani" class="leader-photo">
+                <img src="https://i.imgur.com/JqYeYnW.jpg" alt="Can Barzani" class="leader-photo">
                 <div class="leader-name">CAN BARZANİ</div>
                 <div class="leader-title">KURUCU & TAKIM LİDERİ</div>
-                <p>"Strateji dehası ve efsanevi oyunculuğuyla Can Team'in yılmaz lideri!"</p>
             </div>
             <div class="leader-card">
-                <img src="https://i.ibb.co/7Y5WYh0/pubg-character2.png" alt="Can General" class="leader-photo">
+                <img src="https://i.imgur.com/mW4QsZP.jpg" alt="Can General" class="leader-photo">
                 <div class="leader-name">CAN GENERAL</div>
                 <div class="leader-title">KURUCU & TAKIM LİDERİ</div>
-                <p>"Savaş meydanlarının korkusuz komutanı ve takımın teknik beyin gücü!"</p>
-            </div>
-        </div>
-        
-        <a href="#notify" class="btn">AÇILIŞTA HABER VER</a>
-    </section>
-    
-    <!-- About Section -->
-    <section class="section section-dark">
-        <h2 class="section-title">CAN TEAM UC SATIŞ PLATFORMU</h2>
-        <p class="about-text">
-            <span class="highlight">PUBG Mobile'in en büyük ve en başarılı takımlarından Can Team</span>, şimdi resmi UC satış platformuyla sizlerle! 
-            En uygun fiyatlarla, en güvenilir şekilde UC temin etmenin adresi artık Can Team Uc Satış Platformu.
-        </p>
-        <p class="about-text">
-            Can Barzani ve Can General liderliğindeki efsanevi ekip, sahaya iniyor! <span class="highlight">Yakında hizmete açılacak platformumuzda</span>, 
-            sadece UC satışı değil, aynı zamanda özel etkinlikler, turnuvalar ve sürpriz hediyeler de sizleri bekliyor olacak.
-        </p>
-        
-        <div class="features">
-            <div class="feature">
-                <div class="feature-icon"><i class="fas fa-bolt"></i></div>
-                <div class="feature-title">ANINDA TESLİMAT</div>
-                <p class="feature-desc">Siparişleriniz en geç 15 dakika içinde hesabınıza ulaşır.</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon"><i class="fas fa-tag"></i></div>
-                <div class="feature-title">EN UYGUN FİYAT</div>
-                <p class="feature-desc">Piyasadaki en rekabetçi fiyatlar sadece bizde!</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-                <div class="feature-title">%100 GÜVENLİ</div>
-                <p class="feature-desc">Resmi Can Team garantisiyle güvenli alışveriş.</p>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Gallery Section -->
-    <section class="section">
-        <h2 class="section-title">CAN TEAM GALERİ</h2>
-        <p class="about-text">
-            Can Team'in efsanevi anları ve başarı dolu hikayesinden kareler. <span class="highlight">Siz de bu ailenin bir parçası olun!</span>
-        </p>
-        
-        <div class="gallery">
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Can Team Turnuva">
-                <div class="gallery-caption">Turnuva Zaferi</div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1553481187-be93c21490a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Can Team Ekip">
-                <div class="gallery-caption">Ekip Ruhu</div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Can Team Strateji">
-                <div class="gallery-caption">Strateji Toplantısı</div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Can Team Ödül">
-                <div class="gallery-caption">Şampiyonluk Ödülü</div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Can Team Antrenman">
-                <div class="gallery-caption">Yoğun Antrenman</div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Can Team Gaming">
-                <div class="gallery-caption">Profesyonel Oyun</div>
             </div>
         </div>
     </section>
     
     <!-- Notification Section -->
     <section class="section section-dark" id="notify">
-        <h2 class="section-title">AÇILIŞI KAÇIRMAYIN!</h2>
+        <h2 class="section-title">KAYIT FORMU</h2>
         <p class="about-text">
-            Platformumuzun açılışında <span class="highlight">özel indirimler ve sürpriz hediyeler</span> sizleri bekliyor. 
-            Açılış haberlerini almak için hemen mail listemize kaydolun!
+            Açılış haberlerini almak için aşağıdaki formu doldurun. <span class="highlight">Özel indirimlerden faydalanın!</span>
         </p>
         
-        <form class="notify-form">
-            <div class="form-group">
-                <label for="name" class="form-label">Adınız</label>
-                <input type="text" id="name" class="form-control" placeholder="Adınız ve Soyadınız">
+        <div class="notify-section">
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="name" class="form-label">Adınız Soyadınız</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="form-label">E-posta Adresiniz</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="pubgId" class="form-label">PUBG Oyuncu ID</label>
+                    <input type="text" id="pubgId" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone" class="form-label">Telefon Numaranız</label>
+                    <input type="tel" id="phone" class="form-control" required>
+                </div>
+                <button type="submit" class="submit-btn">KAYDOL</button>
+            </form>
+            
+            <div class="success-message" id="successMessage">
+                Kaydınız başarıyla alındı! En kısa sürede sizinle iletişime geçeceğiz.
             </div>
-            <div class="form-group">
-                <label for="email" class="form-label">E-posta Adresiniz</label>
-                <input type="email" id="email" class="form-control" placeholder="E-posta adresiniz">
-            </div>
-            <div class="form-group">
-                <label for="gameid" class="form-label">PUBG ID (Opsiyonel)</label>
-                <input type="text" id="gameid" class="form-control" placeholder="PUBG Oyuncu ID'niz">
-            </div>
-            <button type="submit" class="btn">KAYDOL VE HABER AL</button>
-        </form>
+        </div>
     </section>
     
     <!-- Footer -->
     <footer>
-        <div class="footer-logo">CAN TEAM</div>
-        <p>PUBG Mobile'in en büyük takımlarından resmi UC satış platformu</p>
-        
-        <div class="social-links">
-            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-twitch"></i></a>
-        </div>
-        
-        <div class="footer-links">
-            <a href="#" class="footer-link">Hakkımızda</a>
-            <a href="#" class="footer-link">SSS</a>
-            <a href="#" class="footer-link">İletişim</a>
-            <a href="#" class="footer-link">Gizlilik Politikası</a>
-            <a href="#" class="footer-link">Kullanım Şartları</a>
-        </div>
-        
+        <div class="footer-logo">CAN TEAM UC</div>
+        <p>PUBG Mobile UC Satış Platformu</p>
         <div class="copyright">
-            © 2023 CAN TEAM UC SATIŞ PLATFORMU. Tüm hakları saklıdır.<br>
-            PUBG Mobile ve PUBG, KRAFTON, Inc.'in ticari markalarıdır.
+            © 2023 Tüm hakları saklıdır. CAN TEAM
         </div>
     </footer>
+    
+    <script>
+        // Form submission handler
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                pubgId: document.getElementById('pubgId').value,
+                phone: document.getElementById('phone').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Here you would normally send this data to your server
+            // For demonstration, we'll log it and show success message
+            console.log('Form data submitted:', formData);
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Reset form
+            this.reset();
+            
+            // In a real implementation, you would send this data to your backend
+            // Example using fetch API:
+            /*
+            fetch('https://your-backend-endpoint.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                document.getElementById('successMessage').style.display = 'block';
+                this.reset();
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Bir hata oluştu, lütfen tekrar deneyin.');
+            });
+            */
+        });
+    </script>
 </body>
 </html>
