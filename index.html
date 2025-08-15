@@ -3,18 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PUBG UC Satış | Can Team Mobile Resmi Bayisi</title>
+    <title>PUBG UC Satın Al | Can Team Mobile Resmi Bayisi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --pubg-red: #ff3a2d;
+            --pubg-gold: #ffd700;
+            --pubg-dark: #1a1a1a;
+            --pubg-blue: #00a8ff;
+            --pubg-gradient: linear-gradient(135deg, #ff3a2d 0%, #ff6b3d 100%);
+            --pubg-dark-gradient: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .navbar {
+            background: var(--pubg-dark-gradient);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+            font-size: 1.5rem;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-weight: 500;
+            margin: 0 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--pubg-gold) !important;
+            transform: translateY(-2px);
+        }
+        
+        .hero-section {
+            background: var(--pubg-gradient);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("{{ url_for('static', filename='pubg-pattern.png') }}") center/cover;
+            opacity: 0.1;
+        }
+        
+        .btn-pubg {
+            background: var(--pubg-gradient);
+            border: none;
+            color: white;
+            font-weight: bold;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-pubg:hover {
+            background: linear-gradient(135deg, #e63429 0%, #e55f37 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 58, 45, 0.4);
+            color: white;
+        }
+        
+        .btn-outline-pubg {
+            border: 2px solid white;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-pubg:hover {
+            background: white;
+            color: var(--pubg-red);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .team-card, .package-card {
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 15px !important;
+            overflow: hidden;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 58, 45, 0.2);
+        }
+        
+        .package-card.featured {
+            transform: scale(1.03);
+            border: 3px solid var(--pubg-gold);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 58, 45, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 58, 45, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 58, 45, 0); }
+        }
+        
+        .package-ribbon {
+            position: absolute;
+            top: 10px;
+            right: -30px;
+            background: var(--pubg-gold);
+            color: var(--pubg-dark);
+            padding: 5px 30px;
+            transform: rotate(45deg);
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .user-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--pubg-gold);
+        }
+        
+        .team-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--pubg-gold);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .counter-box {
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            border-radius: 15px;
+            padding: 30px 15px;
+        }
+        
+        .counter-box:hover {
+            background: var(--pubg-gradient);
+            transform: translateY(-5px);
+        }
+        
+        .pubg-underline {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .pubg-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--pubg-gradient);
+            border-radius: 3px;
+        }
+        
+        .section-title {
+            font-weight: 700;
+            margin-bottom: 50px;
+            color: var(--pubg-dark);
+        }
+        
+        footer {
+            background: var(--pubg-dark-gradient);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--pubg-gold);
+            transform: translateY(-3px);
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="/">
-                <img src="{{ url_for('static', filename='logo.png') }}" height="40" alt="Can Team Logo"> 
+                <img src="{{ url_for('static', filename='logo.png') }}" height="40" alt="Can Team Logo" class="me-2"> 
                 CAN TEAM MOBİLE
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -25,6 +240,7 @@
                     <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt me-2"></i>Giriş</a>
                     <a class="nav-link" href="/register"><i class="fas fa-user-plus me-2"></i>Kayıt</a>
                     <a class="nav-link" href="#team"><i class="fas fa-users me-2"></i>Ekibimiz</a>
+                    <a class="nav-link" href="#packages"><i class="fas fa-shopping-cart me-2"></i>Paketler</a>
                 </div>
             </div>
         </div>
@@ -32,37 +248,73 @@
 
     <!-- Hero Section -->
     <header class="hero-section">
-        <div class="container">
+        <div class="container position-relative">
             <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h1 class="display-4 fw-bold mb-4">CAN TEAM MOBİLE İLE UC SATIN AL</h1>
-                    <p class="lead mb-4">Profesyonel ekip liderimiz <strong>Can General</strong> öncülüğünde güvenilir ve hızlı UC hizmeti</p>
+                <div class="col-lg-6 animate__animated animate__fadeInLeft">
+                    <h1 class="display-3 fw-bold mb-4">UC SATIN AL <span class="text-warning">CAN TEAM</span> İLE!</h1>
+                    <p class="lead mb-4">En uygun fiyatlarla <span class="fw-bold text-warning">anında</span> UC yüklemesi. Profesyonel ekip liderimiz <strong>Can General</strong> öncülüğünde güvenilir hizmet.</p>
                     <div class="d-flex gap-3">
-                        <a href="/register" class="btn btn-pubg btn-lg px-4">
-                            <i class="fas fa-rocket me-2"></i>Hemen Başla
+                        <a href="/register" class="btn btn-pubg btn-lg px-4 py-3 rounded-pill">
+                            <i class="fas fa-bolt me-2"></i>Hemen Başla
                         </a>
-                        <a href="#team" class="btn btn-outline-pubg btn-lg px-4">
-                            <i class="fas fa-users me-2"></i>Ekibimiz
+                        <a href="#packages" class="btn btn-outline-light btn-lg px-4 py-3 rounded-pill">
+                            <i class="fas fa-gem me-2"></i>Paketleri Gör
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <img src="{{ url_for('static', filename='uc-showcase.png') }}" class="img-fluid" alt="PUBG UC Paketleri">
+                <div class="col-lg-6 animate__animated animate__fadeInRight">
+                    <img src="{{ url_for('static', filename='uc-showcase.png') }}" class="img-fluid floating" alt="PUBG UC Paketleri">
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Team Section -->
-    <section id="team" class="py-5 bg-dark-2">
+    <!-- Stats Section -->
+    <section class="py-5 bg-dark text-white">
         <div class="container">
-            <h2 class="text-center mb-5"><span class="pubg-underline">PROFESYONEL EKİBİMİZ</span></h2>
+            <div class="row g-4">
+                <div class="col-md-3 col-6 text-center">
+                    <div class="counter-box">
+                        <i class="fas fa-users fa-3x text-pubg mb-3"></i>
+                        <h2 class="fw-bold mb-0" data-count="12500">12,500+</h2>
+                        <p class="mb-0">Mutlu Müşteri</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 text-center">
+                    <div class="counter-box">
+                        <i class="fas fa-bolt fa-3x text-pubg mb-3"></i>
+                        <h2 class="fw-bold mb-0" data-count="98">98%</h2>
+                        <p class="mb-0">Anında Teslimat</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 text-center">
+                    <div class="counter-box">
+                        <i class="fas fa-coins fa-3x text-pubg mb-3"></i>
+                        <h2 class="fw-bold mb-0" data-count="500000">500K+</h2>
+                        <p class="mb-0">Satılan UC</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 text-center">
+                    <div class="counter-box">
+                        <i class="fas fa-headset fa-3x text-pubg mb-3"></i>
+                        <h2 class="fw-bold mb-0" data-count="24">7/24</h2>
+                        <p class="mb-0">Müşteri Desteği</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-5">
+        <div class="container">
+            <h2 class="text-center section-title"><span class="pubg-underline">PROFESYONEL EKİBİMİZ</span></h2>
             
             <div class="row justify-content-center">
                 <!-- Team Leader Card -->
                 <div class="col-lg-6 mb-4">
-                    <div class="card team-card">
-                        <div class="card-body text-center">
+                    <div class="card team-card h-100">
+                        <div class="card-body text-center p-4">
                             <img src="{{ url_for('static', filename='can-general.jpg') }}" class="team-img mb-3" alt="Can General">
                             <h3 class="mb-3">Can General</h3>
                             <h5 class="text-pubg mb-3"><i class="fas fa-crown me-2"></i>Ekip Lideri</h5>
@@ -80,8 +332,8 @@
             <div class="row">
                 <!-- Team Member 1 -->
                 <div class="col-md-4 mb-4">
-                    <div class="card team-card">
-                        <div class="card-body text-center">
+                    <div class="card team-card h-100">
+                        <div class="card-body text-center p-4">
                             <img src="{{ url_for('static', filename='team1.jpg') }}" class="team-img mb-3" alt="Takım Üyesi">
                             <h4 class="mb-3">Mehmet Şampiyon</h4>
                             <h6 class="text-pubg mb-3"><i class="fas fa-medal me-2"></i>Satış Müdürü</h6>
@@ -92,8 +344,8 @@
                 
                 <!-- Team Member 2 -->
                 <div class="col-md-4 mb-4">
-                    <div class="card team-card">
-                        <div class="card-body text-center">
+                    <div class="card team-card h-100">
+                        <div class="card-body text-center p-4">
                             <img src="{{ url_for('static', filename='team2.jpg') }}" class="team-img mb-3" alt="Takım Üyesi">
                             <h4 class="mb-3">Ayşe Destek</h4>
                             <h6 class="text-pubg mb-3"><i class="fas fa-headset me-2"></i>Müşteri Temsilcisi</h6>
@@ -104,8 +356,8 @@
                 
                 <!-- Team Member 3 -->
                 <div class="col-md-4 mb-4">
-                    <div class="card team-card">
-                        <div class="card-body text-center">
+                    <div class="card team-card h-100">
+                        <div class="card-body text-center p-4">
                             <img src="{{ url_for('static', filename='team3.jpg') }}" class="team-img mb-3" alt="Takım Üyesi">
                             <h4 class="mb-3">Kaan Teknik</h4>
                             <h6 class="text-pubg mb-3"><i class="fas fa-code me-2"></i>Teknik Sorumlu</h6>
@@ -118,64 +370,82 @@
     </section>
 
     <!-- UC Packages Section -->
-    <section class="py-5">
+    <section id="packages" class="py-5 bg-light">
         <div class="container">
-            <h2 class="text-center mb-5"><span class="pubg-underline">UC PAKETLERİ</span></h2>
+            <h2 class="text-center section-title"><span class="pubg-underline">UC PAKETLERİ</span></h2>
             <div class="row">
                 <!-- Package 1 -->
                 <div class="col-md-4 mb-4">
-                    <div class="card package-card">
-                        <div class="card-header text-center">
-                            <h4 class="my-2">BAŞLANGIÇ</h4>
+                    <div class="card package-card h-100">
+                        <div class="card-header text-center py-4 bg-dark text-white position-relative">
+                            <h4 class="my-0 fw-bold">BAŞLANGIÇ</h4>
+                            <div class="package-ribbon">%5 Tasarruf</div>
                         </div>
-                        <div class="card-body text-center">
-                            <h3 class="price">60 UC <br><span class="text-pubg">₺19.99</span></h3>
+                        <div class="card-body text-center py-5">
+                            <div class="uc-icon mb-3">
+                                <i class="fas fa-coins fa-3x text-warning"></i>
+                            </div>
+                            <h3 class="price fw-bold">60 UC</h3>
+                            <p class="text-muted mb-0">Normal Fiyat: ₺21.00</p>
+                            <h2 class="text-pubg my-3">₺19.99</h2>
                             <ul class="list-unstyled my-4">
-                                <li><i class="fas fa-check text-pubg me-2"></i>Anında Teslimat</li>
-                                <li><i class="fas fa-check text-pubg me-2"></i>7/24 Destek</li>
-                                <li><i class="fas fa-check text-pubg me-2"></i>Güvenli Ödeme</li>
+                                <li class="py-2"><i class="fas fa-bolt text-pubg me-2"></i>Anında Teslimat</li>
+                                <li class="py-2"><i class="fas fa-shield-alt text-pubg me-2"></i>Güvenli Ödeme</li>
+                                <li class="py-2"><i class="fas fa-headset text-pubg me-2"></i>7/24 Destek</li>
                             </ul>
-                            <button class="btn btn-pubg w-100">SATIN AL</button>
+                            <button class="btn btn-pubg btn-lg w-100 rounded-pill py-3 fw-bold">Hemen Satın Al</button>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Package 2 (Featured) -->
                 <div class="col-md-4 mb-4">
-                    <div class="card package-card featured">
-                        <div class="card-header text-center">
+                    <div class="card package-card h-100 featured">
+                        <div class="card-header text-center py-4 bg-dark text-white position-relative">
                             <div class="popular-badge">EN POPÜLER</div>
-                            <h4 class="my-2">ORTA SEVİYE</h4>
+                            <h4 class="my-0 fw-bold">ORTA SEVİYE</h4>
+                            <div class="package-ribbon">%10 Tasarruf</div>
                         </div>
-                        <div class="card-body text-center">
-                            <h3 class="price">325 UC <br><span class="text-pubg">₺99.99</span></h3>
+                        <div class="card-body text-center py-5">
+                            <div class="uc-icon mb-3">
+                                <i class="fas fa-gem fa-3x text-warning"></i>
+                            </div>
+                            <h3 class="price fw-bold">325 UC</h3>
+                            <p class="text-muted mb-0">Normal Fiyat: ₺110.00</p>
+                            <h2 class="text-pubg my-3">₺99.99</h2>
                             <ul class="list-unstyled my-4">
-                                <li><i class="fas fa-check text-pubg me-2"></i>Anında Teslimat</li>
-                                <li><i class="fas fa-check text-pubg me-2"></i>7/24 Destek</li>
-                                <li><i class="fas fa-check text-pubg me-2"></i>Güvenli Ödeme</li>
-                                <li><i class="fas fa-check text-pubg me-2"></i>+5% Bonus UC</li>
+                                <li class="py-2"><i class="fas fa-bolt text-pubg me-2"></i>Anında Teslimat</li>
+                                <li class="py-2"><i class="fas fa-shield-alt text-pubg me-2"></i>Güvenli Ödeme</li>
+                                <li class="py-2"><i class="fas fa-headset text-pubg me-2"></i>7/24 Destek</li>
+                                <li class="py-2"><i class="fas fa-gift text-pubg me-2"></i>+5% Bonus UC</li>
                             </ul>
-                            <button class="btn btn-pubg w-100">SATIN AL</button>
+                            <button class="btn btn-pubg btn-lg w-100 rounded-pill py-3 fw-bold">Hemen Satın Al</button>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Package 3 -->
                 <div class="col-md-4 mb-4">
-                    <div class="card package-card">
-                        <div class="card-header text-center">
-                            <h4 class="my-2">ÜST SEVİYE</h4>
+                    <div class="card package-card h-100">
+                        <div class="card-header text-center py-4 bg-dark text-white position-relative">
+                            <h4 class="my-0 fw-bold">ÜST SEVİYE</h4>
+                            <div class="package-ribbon">%15 Tasarruf</div>
                         </div>
-                        <div class="card-body text-center">
-                            <h3 class="price">660 UC <br><span class="text-pubg">₺199.99</span></h3>
+                        <div class="card-body text-center py-5">
+                            <div class="uc-icon mb-3">
+                                <i class="fas fa-crown fa-3x text-warning"></i>
+                            </div>
+                            <h3 class="price fw-bold">660 UC</h3>
+                            <p class="text-muted mb-0">Normal Fiyat: ₺235.00</p>
+                            <h2 class="text-pubg my-3">₺199.99</h2>
                             <ul class="list-unstyled my-4">
-                                <li><i class="fas fa-check text-pubg me-2"></i>Anında Teslimat</li>
-                                <li><i class="fas fa-check text-pubg me-2"></i>7/24 Destek</li>
-                                <li><i class="fas fa-check text-pubg me-2"></i>Güvenli Ödeme</li>
-                                <li><i class="fas fa-check text-pubg me-2"></i>+10% Bonus UC</li>
-                                <li><i class="fas fa-check text-pubg me-2"></i>Özel Danışman</li>
+                                <li class="py-2"><i class="fas fa-bolt text-pubg me-2"></i>Anında Teslimat</li>
+                                <li class="py-2"><i class="fas fa-shield-alt text-pubg me-2"></i>Güvenli Ödeme</li>
+                                <li class="py-2"><i class="fas fa-headset text-pubg me-2"></i>7/24 Destek</li>
+                                <li class="py-2"><i class="fas fa-gift text-pubg me-2"></i>+10% Bonus UC</li>
+                                <li class="py-2"><i class="fas fa-user-tie text-pubg me-2"></i>Özel Danışman</li>
                             </ul>
-                            <button class="btn btn-pubg w-100">SATIN AL</button>
+                            <button class="btn btn-pubg btn-lg w-100 rounded-pill py-3 fw-bold">Hemen Satın Al</button>
                         </div>
                     </div>
                 </div>
@@ -184,13 +454,13 @@
     </section>
 
     <!-- Testimonials -->
-    <section class="py-5 bg-dark-2">
+    <section class="py-5">
         <div class="container">
-            <h2 class="text-center mb-5"><span class="pubg-underline">MÜŞTERİ YORUMLARI</span></h2>
+            <h2 class="text-center section-title"><span class="pubg-underline">MÜŞTERİ YORUMLARI</span></h2>
             <div class="row">
                 <div class="col-md-4 mb-4">
-                    <div class="card testimonial-card">
-                        <div class="card-body">
+                    <div class="card testimonial-card h-100">
+                        <div class="card-body p-4">
                             <div class="d-flex mb-3">
                                 <img src="{{ url_for('static', filename='user1.jpg') }}" class="user-img me-3" alt="Kullanıcı">
                                 <div>
@@ -204,14 +474,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <p>"Can General liderliğindeki ekip gerçekten çok profesyonel. UC'ler 2 dakikada hesabımdaydı."</p>
+                            <p>"Can General liderliğindeki ekip gerçekten çok profesyonel. UC'ler 2 dakikada hesabımdaydı. Kesinlikle tavsiye ederim!"</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-md-4 mb-4">
-                    <div class="card testimonial-card">
-                        <div class="card-body">
+                    <div class="card testimonial-card h-100">
+                        <div class="card-body p-4">
                             <div class="d-flex mb-3">
                                 <img src="{{ url_for('static', filename='user2.jpg') }}" class="user-img me-3" alt="Kullanıcı">
                                 <div>
@@ -225,14 +495,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <p>"Can Team Mobile'dan 3. alışverişim, hiç sorun yaşamadım. Kesinlikle tavsiye ederim."</p>
+                            <p>"Can Team Mobile'dan 3. alışverişim, hiç sorun yaşamadım. Müşteri hizmetleri çok hızlı ve çözüm odaklı."</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-md-4 mb-4">
-                    <div class="card testimonial-card">
-                        <div class="card-body">
+                    <div class="card testimonial-card h-100">
+                        <div class="card-body p-4">
                             <div class="d-flex mb-3">
                                 <img src="{{ url_for('static', filename='user3.jpg') }}" class="user-img me-3" alt="Kullanıcı">
                                 <div>
@@ -246,7 +516,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <p>"En uygun fiyatları bulduğum site. Can Bey'in ekibi çok ilgili, teşekkürler!"</p>
+                            <p>"En uygun fiyatları bulduğum site. Can Bey'in ekibi çok ilgili, teşekkürler! Artık tüm UC alışverişlerimi buradan yapıyorum."</p>
                         </div>
                     </div>
                 </div>
@@ -254,27 +524,96 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-center py-4">
+    <!-- CTA Section -->
+    <section class="py-5 bg-dark text-white text-center">
         <div class="container">
-            <div class="mb-4">
-                <img src="{{ url_for('static', filename='logo.png') }}" height="50" alt="Can Team Logo" class="mb-3">
-                <h4>CAN TEAM MOBİLE</h4>
-                <p class="mb-4">Profesyonel PUBG Mobile UC Satış Platformu</p>
-                <div class="social-links">
-                    <a href="#" class="text-pubg me-3"><i class="fab fa-instagram fa-lg"></i></a>
-                    <a href="#" class="text-pubg me-3"><i class="fab fa-twitter fa-lg"></i></a>
-                    <a href="#" class="text-pubg me-3"><i class="fab fa-discord fa-lg"></i></a>
-                    <a href="#" class="text-pubg"><i class="fab fa-youtube fa-lg"></i></a>
+            <h2 class="display-5 fw-bold mb-4">Hemen UC Al, Oyun Deneyimini Üst Seviyeye Taşı!</h2>
+            <p class="lead mb-5">Can Team Mobile ile güvenilir ve hızlı UC alımının tadını çıkarın</p>
+            <a href="/register" class="btn btn-pubg btn-lg px-5 py-3 rounded-pill">
+                <i class="fas fa-rocket me-2"></i>Şimdi Kaydol
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 text-center text-md-start">
+                    <img src="{{ url_for('static', filename='logo.png') }}" height="50" alt="Can Team Logo" class="mb-3">
+                    <h4>CAN TEAM MOBİLE</h4>
+                    <p>Profesyonel PUBG Mobile UC Satış Platformu</p>
+                </div>
+                <div class="col-md-4 mb-4 text-center">
+                    <h5 class="mb-4">Hızlı Linkler</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/" class="text-white">Ana Sayfa</a></li>
+                        <li class="mb-2"><a href="#packages" class="text-white">UC Paketleri</a></li>
+                        <li class="mb-2"><a href="#team" class="text-white">Ekibimiz</a></li>
+                        <li class="mb-2"><a href="/login" class="text-white">Giriş Yap</a></li>
+                        <li><a href="/register" class="text-white">Kayıt Ol</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4 text-center text-md-end">
+                    <h5 class="mb-4">İletişim</h5>
+                    <p><i class="fas fa-envelope me-2"></i> info@canteammobile.com</p>
+                    <p><i class="fas fa-phone me-2"></i> 0850 123 45 67</p>
+                    <div class="social-links mt-4">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
             </div>
-            <div class="border-top pt-3">
-                <p class="mb-0">&copy; 2025 Can Team Mobile. Tüm hakları saklıdır.</p>
+            <div class="border-top pt-3 text-center">
+                <p class="mb-0">&copy; 2023 Can Team Mobile. Tüm hakları saklıdır.</p>
             </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        // Sayıları artan animasyon
+        document.addEventListener('DOMContentLoaded', function() {
+            const counters = document.querySelectorAll('[data-count]');
+            const speed = 200;
+            
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-count');
+                const count = +counter.innerText.replace(/,/g, '');
+                const increment = target / speed;
+                
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment).toLocaleString();
+                    setTimeout(updateCount, 1);
+                } else {
+                    counter.innerText = target.toLocaleString();
+                }
+                
+                function updateCount() {
+                    const count = +counter.innerText.replace(/,/g, '');
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + increment).toLocaleString();
+                        setTimeout(updateCount, 1);
+                    } else {
+                        counter.innerText = target.toLocaleString();
+                    }
+                }
+            });
+            
+            // Navbar scroll efekti
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+                    navbar.style.padding = '10px 0';
+                } else {
+                    navbar.style.boxShadow = 'none';
+                    navbar.style.padding = '15px 0';
+                }
+            });
+        });
+    </script>
 </body>
-</html> profesyönel yap
+</html>
