@@ -9,24 +9,49 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Special+Elite&family=Poiret+One&display=swap" rel="stylesheet">
     <style>
+        /* TEMEL STİLLER */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
+        :root {
+            --kirmizi-ana: #ff0000;
+            --kirmizi-koyu: #990000;
+            --kirmizi-acik: #cc0000;
+            --gri-koyu: #1a1a1a;
+            --gri-orta: #333333;
+            --gri-acik: #4d4d4d;
+            --beyaz: #ffffff;
+            --siyah: #000000;
+            --golge: 0 5px 15px rgba(255, 0, 0, 0.3);
+        }
+        
         body {
-            background: #000 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="rgba(0,0,0,0.9)" x="0" y="0" width="100" height="100"/><path d="M0 0 L100 100 M100 0 L0 100" stroke="rgba(20,20,40,0.5)" stroke-width="1"/></svg>');
+            background: var(--siyah) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="rgba(0,0,0,0.9)" x="0" y="0" width="100" height="100"/><path d="M0 0 L100 100 M100 0 L0 100" stroke="rgba(20,20,40,0.5)" stroke-width="1"/></svg>');
             color: #d4d4dc;
             line-height: 1.6;
             overflow-x: hidden;
             font-family: 'Special Elite', cursive;
+            transition: all 0.5s ease;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+        
+        .sayfa {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .sayfa.aktif {
+            display: block;
+            opacity: 1;
         }
         
         /* Header Styles */
@@ -62,12 +87,13 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 28px;
             font-weight: bold;
-            background: linear-gradient(90deg, #ff0000 0%, #990000 100%);
+            background: linear-gradient(90deg, var(--kirmizi-ana) 0%, var(--kirmizi-koyu) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: 3px;
             text-transform: uppercase;
             text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+            cursor: pointer;
         }
         
         nav ul {
@@ -80,13 +106,14 @@
         }
         
         nav ul li a {
-            color: #cc0000;
+            color: var(--kirmizi-acik);
             text-decoration: none;
             font-size: 16px;
             letter-spacing: 1px;
             transition: all 0.3s ease;
             position: relative;
             font-weight: 500;
+            cursor: pointer;
         }
         
         nav ul li a:after {
@@ -96,12 +123,12 @@
             height: 2px;
             bottom: -5px;
             left: 0;
-            background: linear-gradient(90deg, #ff0000 0%, #990000 100%);
+            background: linear-gradient(90deg, var(--kirmizi-ana) 0%, var(--kirmizi-koyu) 100%);
             transition: width 0.3s ease;
         }
         
         nav ul li a:hover {
-            color: #ffffff;
+            color: var(--beyaz);
         }
         
         nav ul li a:hover:after {
@@ -155,7 +182,7 @@
             font-size: 3.8rem;
             font-weight: 700;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, #ffffff 0%, #ff0000 100%);
+            background: linear-gradient(135deg, var(--beyaz) 0%, var(--kirmizi-ana) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1.2;
@@ -164,18 +191,18 @@
         
         .hero-subtitle {
             font-size: 1.5rem;
-            color: #cc0000;
+            color: var(--kirmizi-acik);
             margin-bottom: 30px;
             font-weight: 300;
             font-style: italic;
-            border-left: 3px solid #ff0000;
+            border-left: 3px solid var(--kirmizi-ana);
             padding-left: 20px;
         }
         
         .hero-description {
             font-size: 1.1rem;
             margin-bottom: 40px;
-            color: #cc0000;
+            color: var(--kirmizi-acik);
             line-height: 1.8;
         }
         
@@ -188,7 +215,7 @@
             height: 70%;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: var(--golge);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -215,15 +242,38 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 2.2rem;
             margin-bottom: 25px;
-            color: #ff0000;
+            color: var(--kirmizi-ana);
             text-shadow: 0 2px 10px rgba(255, 0, 0, 0.5);
         }
         
         .hero-image-text {
             font-size: 1.1rem;
-            color: #cc0000;
+            color: var(--kirmizi-acik);
             line-height: 1.6;
             font-style: italic;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(90deg, var(--kirmizi-ana) 0%, var(--kirmizi-koyu) 100%);
+            color: var(--beyaz);
+            text-decoration: none;
+            border-radius: 5px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 14px;
+            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 0, 0, 0.5);
         }
         
         /* Features Section */
@@ -252,7 +302,7 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 2.8rem;
             margin-bottom: 60px;
-            background: linear-gradient(135deg, #ffffff 0%, #ff0000 100%);
+            background: linear-gradient(135deg, var(--beyaz) 0%, var(--kirmizi-ana) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             position: relative;
@@ -266,7 +316,7 @@
             position: absolute;
             width: 100px;
             height: 3px;
-            background: linear-gradient(90deg, #ff0000 0%, #990000 100%);
+            background: linear-gradient(90deg, var(--kirmizi-ana) 0%, var(--kirmizi-koyu) 100%);
             bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
@@ -309,7 +359,7 @@
         .feature-icon {
             font-size: 2.8rem;
             margin-bottom: 25px;
-            color: #ff0000;
+            color: var(--kirmizi-ana);
             text-shadow: 0 2px 10px rgba(255, 0, 0, 0.3);
         }
         
@@ -317,18 +367,18 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 1.6rem;
             margin-bottom: 20px;
-            color: #ffffff;
+            color: var(--beyaz);
         }
         
         .feature-text {
-            color: #cc0000;
+            color: var(--kirmizi-acik);
             line-height: 1.7;
         }
         
         /* Gallery Section */
         .gallery {
             padding: 80px 0;
-            background: #000;
+            background: var(--siyah);
         }
         
         .gallery-grid {
@@ -343,8 +393,9 @@
             border-radius: 10px;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+            box-shadow: var(--golge);
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
         
         .gallery-item:hover {
@@ -368,13 +419,13 @@
             padding: 80px 0;
             background: 
                 radial-gradient(circle at top right, rgba(100, 0, 0, 0.3) 0%, transparent 50%),
-                #000;
+                var(--siyah);
             text-align: center;
         }
         
         .fortune-box {
             background: rgba(20, 0, 0, 0.7);
-            border: 1px solid #ff0000;
+            border: 1px solid var(--kirmizi-ana);
             border-radius: 10px;
             padding: 40px;
             margin: 40px auto;
@@ -383,8 +434,8 @@
         }
         
         .fortune-btn {
-            background: linear-gradient(90deg, #ff0000 0%, #990000 100%);
-            color: white;
+            background: linear-gradient(90deg, var(--kirmizi-ana) 0%, var(--kirmizi-koyu) 100%);
+            color: var(--beyaz);
             border: none;
             padding: 15px 30px;
             font-size: 1.2rem;
@@ -403,16 +454,212 @@
         .fortune-result {
             margin-top: 30px;
             font-size: 1.3rem;
-            color: #ff0000;
+            color: var(--kirmizi-ana);
             min-height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         
+        /* HİZMETLER SAYFASI */
+        .services {
+            padding: 120px 0 80px;
+        }
+        
+        .service-category {
+            margin-bottom: 80px;
+        }
+        
+        .service-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .service-item {
+            background: linear-gradient(135deg, rgba(50, 0, 0, 0.3) 0%, rgba(20, 0, 0, 0.3) 100%);
+            border-radius: 10px;
+            padding: 30px;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 0, 0, 0.4);
+            border-color: rgba(255, 0, 0, 0.4);
+        }
+        
+        .service-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--beyaz);
+        }
+        
+        .service-price {
+            font-size: 1.2rem;
+            color: var(--kirmizi-ana);
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .service-description {
+            color: var(--kirmizi-acik);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        /* İLETİŞİM SAYFASI */
+        .contact {
+            padding: 120px 0 80px;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .contact-info {
+            background: linear-gradient(135deg, rgba(50, 0, 0, 0.3) 0%, rgba(20, 0, 0, 0.3) 100%);
+            border-radius: 10px;
+            padding: 40px;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .contact-form {
+            background: linear-gradient(135deg, rgba(50, 0, 0, 0.3) 0%, rgba(20, 0, 0, 0.3) 100%);
+            border-radius: 10px;
+            padding: 40px;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--kirmizi-acik);
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            border-radius: 5px;
+            color: var(--beyaz);
+            font-family: 'Special Elite', cursive;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--kirmizi-ana);
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* HAKKIMDA SAYFASI */
+        .about {
+            padding: 120px 0 80px;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .about-text {
+            background: linear-gradient(135deg, rgba(50, 0, 0, 0.3) 0%, rgba(20, 0, 0, 0.3) 100%);
+            border-radius: 10px;
+            padding: 40px;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--kirmizi-acik);
+            line-height: 1.7;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--kirmizi-ana), var(--kirmizi-koyu));
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            width: 50%;
+            padding: 20px;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 40px;
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 40px;
+        }
+        
+        .timeline-content {
+            background: linear-gradient(135deg, rgba(50, 0, 0, 0.3) 0%, rgba(20, 0, 0, 0.3) 100%);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .timeline-date {
+            font-size: 1.2rem;
+            color: var(--kirmizi-ana);
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .timeline-text {
+            color: var(--kirmizi-acik);
+            line-height: 1.7;
+        }
+        
         /* Footer */
         footer {
-            background: #000;
+            background: var(--siyah);
             padding: 80px 0 40px;
             border-top: 1px solid rgba(255, 0, 0, 0.2);
             position: relative;
@@ -445,7 +692,7 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 1.4rem;
             margin-bottom: 25px;
-            color: #ffffff;
+            color: var(--beyaz);
             position: relative;
             padding-bottom: 12px;
         }
@@ -457,7 +704,7 @@
             height: 2px;
             bottom: 0;
             left: 0;
-            background: linear-gradient(90deg, #ff0000 0%, #990000 100%);
+            background: linear-gradient(90deg, var(--kirmizi-ana) 0%, var(--kirmizi-koyu) 100%);
         }
         
         .footer-links {
@@ -469,7 +716,7 @@
         }
         
         .footer-links a {
-            color: #cc0000;
+            color: var(--kirmizi-acik);
             text-decoration: none;
             transition: all 0.3s ease;
             display: flex;
@@ -482,7 +729,7 @@
         }
         
         .footer-links a:hover {
-            color: #ffffff;
+            color: var(--beyaz);
             transform: translateX(5px);
         }
         
@@ -490,7 +737,7 @@
             text-align: center;
             padding-top: 40px;
             border-top: 1px solid rgba(255, 0, 0, 0.2);
-            color: #cc0000;
+            color: var(--kirmizi-acik);
             font-size: 0.9rem;
         }
         
@@ -504,6 +751,75 @@
             pointer-events: none;
             z-index: -1;
             opacity: 0.1;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            overflow: auto;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal.show {
+            display: block;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            position: relative;
+            background: linear-gradient(135deg, rgba(50, 0, 0, 0.9) 0%, rgba(20, 0, 0, 0.9) 100%);
+            margin: 5% auto;
+            padding: 40px;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.5);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 28px;
+            color: var(--kirmizi-ana);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: var(--beyaz);
+            transform: rotate(90deg);
+        }
+        
+        .modal-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            filter: grayscale(30%) contrast(120%);
+        }
+        
+        .modal-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--beyaz);
+        }
+        
+        .modal-text {
+            color: var(--kirmizi-acik);
+            line-height: 1.7;
+            margin-bottom: 20px;
         }
         
         /* Responsive Design */
@@ -542,6 +858,18 @@
                 border-left: none;
                 padding-left: 0;
             }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 0;
+                left: 0 !important;
+                text-align: left !important;
+            }
         }
         
         @media (max-width: 768px) {
@@ -575,6 +903,10 @@
             .feature-card {
                 padding: 30px 20px;
             }
+            
+            .footer-content {
+                flex-direction: column;
+            }
         }
         
         /* Scroll Animation */
@@ -599,112 +931,353 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <div class="logo-text">MAVİ AMİRAL</div>
+                    <div class="logo-text" onclick="sayfaGoster('ana-sayfa')">MAVİ AMİRAL</div>
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="#">Ana Sayfa</a></li>
-                        <li><a href="#">Karanlık İşler</a></li>
-                        <li><a href="#">Fal ve Kehanet</a></li>
-                        <li><a href="#">İletişim</a></li>
+                        <li><a onclick="sayfaGoster('ana-sayfa')">Ana Sayfa</a></li>
+                        <li><a onclick="sayfaGoster('hizmetler')">Karanlık İşler</a></li>
+                        <li><a onclick="sayfaGoster('hakkimda')">Hakkımda</a></li>
+                        <li><a onclick="sayfaGoster('iletisim')">İletişim</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="container">
-            <div class="hero-content fade-in">
-                <h1 class="hero-title">Karanlık Derinliklerden Yükseliyoruz</h1>
-                <p class="hero-subtitle">Gölgelerin içinde kaybolmaya hazır mısın?</p>
-                <p class="hero-description">
-                    Gecenin karanlığında, yasak bilgilerin ve karanlık sırların efendisiyim. Ben Mavi Amiral. Gemim hack, okyanusum dark web. Burada, en karmaşık sistemler bile çözülür, en korunaklı kaleler bile düşer.
-                </p>
+    <!-- ANA SAYFA -->
+    <section id="ana-sayfa" class="sayfa aktif">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="hero-bg"></div>
+            <div class="container">
+                <div class="hero-content fade-in">
+                    <h1 class="hero-title">Karanlık Derinliklerden Yükseliyoruz</h1>
+                    <p class="hero-subtitle">Gölgelerin içinde kaybolmaya hazır mısın?</p>
+                    <p class="hero-description">
+                        Gecenin karanlığında, yasak bilgilerin ve karanlık sırların efendisiyim. Ben Mavi Amiral. Gemim hack, okyanusum dark web. Burada, en karmaşık sistemler bile çözülür, en korunaklı kaleler bile düşer.
+                    </p>
+                    <a class="btn" onclick="sayfaGoster('hizmetler')">Hizmetlerimi Gör</a>
+                </div>
+            </div>
+            <div class="hero-image fade-in">
+                <div class="hero-image-content">
+                    <h3 class="hero-image-title">Korkunun Efendisi</h3>
+                    <p class="hero-image-text">
+                        Sınır tanımayan bir güç. Yasaklar benim için sadece birer engel. Karanlık ağların içinde örülmüş bir labirentim. Girmeye cesaretin var mı?
+                    </p>
+                </div>
             </div>
         </div>
-        <div class="hero-image fade-in">
-            <div class="hero-image-content">
-                <h3 class="hero-image-title">Korkunun Efendisi</h3>
-                <p class="hero-image-text">
-                    Sınır tanımayan bir güç. Yasaklar benim için sadece birer engel. Karanlık ağların içinde örülmüş bir labirentim. Girmeye cesaretin var mı?
-                </p>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <h2 class="section-title fade-in">Karanlık Hizmetler</h2>
+                <div class="features-grid">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-skull"></i>
+                        </div>
+                        <h3 class="feature-title">Siber Savaş</h3>
+                        <p class="feature-text">Düşman sistemlerini çökert, verileri ele geçir. Sanal dünyada terör estir. Hiçbir güvenlik önlemi bana engel olamaz.</p>
+                        <a class="btn" onclick="sayfaGoster('hizmetler')">Detaylar</a>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-handcuffs"></i>
+                        </div>
+                        <h3 class="feature-title">Yasak İlişkiler</h3>
+                        <p class="feature-text">Yasak aşklar, gizli tutkular. Kimseye anlatamayacağın zevklerin peşinde koş. Sınırlarını zorlamaya hazır mısın?</p>
+                        <a class="btn" onclick="sayfaGoster('hizmetler')">Detaylar</a>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-gun"></i>
+                        </div>
+                        <h3 class="feature-title">Silahlı Çözümler</h3>
+                        <p class="feature-text">Sorunlarını kalıcı olarak çözmenin en etkili yolu. İz bırakmadan, soru sordurmadan. Kesin çözüm.</p>
+                        <a class="btn" onclick="sayfaGoster('hizmetler')">Detaylar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="gallery">
+            <div class="container">
+                <h2 class="section-title fade-in">Karanlık Galeri</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item fade-in" onclick="modalAc('Karanlık Siluet', 'Gece vakti, şehrin karanlık sokaklarında kaybolmuş bir siluet. Kimse onun nereden geldiğini veya nereye gittiğini bilmiyor. Sadece işini yapıyor ve kayboluyor.')">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect width='200' height='200' fill='%23111'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='%23f00'>Karanlık Siluet</text></svg>" alt="Karanlık Siluet">
+                    </div>
+                    <div class="gallery-item fade-in" onclick="modalAc('Hacker Teması', 'Kodların arasında kaybolmak, sistemlerin içine sızmak. Ekranın parlak ışığı yüzüme yansırken, dünyanın en korunaklı sistemlerini bile çökertebilirim.')">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect width='200' height='200' fill='%23111'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='%23f00'>Hacker Teması</text></svg>" alt="Hacker Teması">
+                    </div>
+                    <div class="gallery-item fade-in" onclick="modalAc('Yasak Aşk', 'Sınırların ötesinde, toplumun kabul etmediği ilişkiler. Yasak meyve her zaman daha tatlıdır. Kimsenin bilmemesi gereken sırlar, paylaşılan anlar.')">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect width='200' height='200' fill='%23111'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='%23f00'>Yasak Aşk</text></svg>" alt="Yasak Aşk">
+                    </div>
+                    <div class="gallery-item fade-in" onclick="modalAc('Ölümcül Silah', 'Soğuk çelik, sessiz ölüm. İz bırakmadan, soru sordurmadan. Sorunların kalıcı çözümü için en etkili yöntem.')">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect width='200' height='200' fill='%23111'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='%23f00'>Ölümcül Silah</text></svg>" alt="Ölümcül Silah">
+                    </div>
+                    <div class="gallery-item fade-in" onclick="modalAc('Karanlık Fal', 'Geleceği görmek, kaderi okumak. Falım her zaman açık ama yoruma bağlı. Bazen en karanlık kehanetler bile gerçek olabilir.')">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect width='200' height='200' fill='%23111'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='%23f00'>Karanlık Fal</text></svg>" alt="Karanlık Fal">
+                    </div>
+                    <div class="gallery-item fade-in" onclick="modalAc('Gizli Buluşma', 'Karanlık bir mekanda, kimsenin bilmediği bir buluşma. Fısıltılar, anlaşmalar, planlar. Gölgelerin arasında kaybolan anlar.')">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect width='200' height='200' fill='%23111'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='%23f00'>Gizli Buluşma</text></svg>" alt="Gizli Buluşma">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fortune Section -->
+        <section class="fortune">
+            <div class="container">
+                <h2 class="section-title fade-in">Karanlık Falınız</h2>
+                <div class="fortune-box fade-in">
+                    <p style="color: #cc0000; margin-bottom: 20px;">Kaderini öğrenmeye cesaretin var mı? Aşağıdaki butona tıkla ve geleceğindeki karanlık sırları öğren...</p>
+                    <button class="fortune-btn" onclick="tellFortune()">Falını Göster</button>
+                    <div class="fortune-result" id="fortuneResult">
+                        <!-- Fortune result will appear here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- HİZMETLER SAYFASI -->
+    <section id="hizmetler" class="sayfa">
+        <div class="services">
+            <div class="container">
+                <h2 class="section-title fade-in">Karanlık Hizmetlerim</h2>
+                
+                <div class="service-category fade-in">
+                    <h3 class="section-title" style="font-size: 2rem; margin-bottom: 30px;">Siber Operasyonlar</h3>
+                    <div class="service-list">
+                        <div class="service-item">
+                            <h4 class="service-title">Kurumsal Hack</h4>
+                            <div class="service-price">$5,000 - $50,000</div>
+                            <p class="service-description">Şirket sistemlerine sızma, veri çekme veya sistem çökertme operasyonları. İstediğiniz hedef, istediğiniz zaman.</p>
+                            <a class="btn" onclick="modalAc('Kurumsal Hack', 'Şirketlerin en korunaklı sistemlerine sızarak istediğiniz verileri elde ediyoruz. İster finansal bilgiler, ister ticari sırlar, isterseniz de tüm sistemi çökertme.')">Detaylar</a>
+                        </div>
+                        <div class="service-item">
+                            <h4 class="service-title">Kişisel Veri Temini</h4>
+                            <div class="service-price">$2,000 - $10,000</div>
+                            <p class="service-description">Hedeflediğiniz kişinin tüm dijital verilerine ulaşma. E-postalar, sosyal medya hesapları, özel fotoğraflar ve daha fazlası.</p>
+                            <a class="btn" onclick="modalAc('Kişisel Veri Temini', 'Hedef kişinin tüm dijital ayak izlerini takip ediyor, şifrelerini kırıyor ve istediğiniz tüm verilere ulaşıyoruz.')">Detaylar</a>
+                        </div>
+                        <div class="service-item">
+                            <h4 class="service-title">Siber İz Silme</h4>
+                            <div class="service-price">$3,000 - $15,000</div>
+                            <p class="service-description">İnternet üzerindeki tüm izlerinizi siliyoruz. Geçmişinizi temizliyor, sizi dijital dünyada görünmez yapıyoruz.</p>
+                            <a class="btn" onclick="modalAc('Siber İz Silme', 'İnternetteki tüm verilerinizi siliyor, arama motoru sonuçlarından isminizi kaldırıyor, dijital geçmişinizi temizliyoruz.')">Detaylar</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-category fade-in">
+                    <h3 class="section-title" style="font-size: 2rem; margin-bottom: 30px;">Fiziksel Operasyonlar</h3>
+                    <div class="service-list">
+                        <div class="service-item">
+                            <h4 class="service-title">Hedef Takip</h4>
+                            <div class="service-price">$1,500 - $7,000</div>
+                            <p class="service-description">Hedefinizin 7/24 takibi, hareketlerinin raporlanması ve istediğiniz bilgilerin toplanması.</p>
+                            <a class="btn" onclick="modalAc('Hedef Takip', 'Hedef kişiyi hiç fark ettirmeden takip ediyor, tüm hareketlerini kayıt altına alıyor ve detaylı rapor hazırlıyoruz.')">Detaylar</a>
+                        </div>
+                        <div class="service-item">
+                            <h4 class="service-title">Özel Teslimat</h4>
+                            <div class="service-price">$5,000 - $20,000</div>
+                            <p class="service-description">İstediğiniz herhangi bir şeyi, istediğiniz yere, iz bırakmadan teslim ediyoruz. Yasaklı maddeler de dahil.</p>
+                            <a class="btn" onclick="modalAc('Özel Teslimat', 'İster yasal ister yasa dışı olsun, istediğiniz ürünü güvenli bir şekilde teslim ediyoruz. Hiçbir iz bırakmadan.')">Detaylar</a>
+                        </div>
+                        <div class="service-item">
+                            <h4 class="service-title">Kalıcı Çözüm</h4>
+                            <div class="service-price">$30,000 - $100,000</div>
+                            <p class="service-description">Sorunlarınızı kalıcı olarak çözüyoruz. İz bırakmadan, soru sordurmadan, kusursuz operasyon.</p>
+                            <a class="btn" onclick="modalAc('Kalıcı Çözüm', 'Problemlerinizi kökünden çözüyoruz. Profesyonel ekip, kusursuz planlama ve sıfır hata garantisi.')">Detaylar</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-category fade-in">
+                    <h3 class="section-title" style="font-size: 2rem; margin-bottom: 30px;">Özel Hizmetler</h3>
+                    <div class="service-list">
+                        <div class="service-item">
+                            <h4 class="service-title">Yasak İlişkiler</h4>
+                            <div class="service-price">$10,000 - $50,000</div>
+                            <p class="service-description">Toplumun kabul etmediği, yasaklanmış ilişkiler için aracılık ve organizasyon hizmeti.</p>
+                            <a class="btn" onclick="modalAc('Yasak İlişkiler', 'Yasak aşklar, gizli buluşmalar, toplumca kabul görmeyen ilişkiler için güvenli ortam sağlıyoruz.')">Detaylar</a>
+                        </div>
+                        <div class="service-item">
+                            <h4 class="service-title">Kimlik Değişim</h4>
+                            <div class="service-price">$25,000 - $75,000</div>
+                            <p class="service-description">Eski kimliğinizi tamamen silip, yeni bir kimlik ve geçmiş oluşturuyoruz. Yepyeni bir hayat.</p>
+                            <a class="btn" onclick="modalAc('Kimlik Değişim', 'Eski hayatınızı geride bırakın. Size yeni bir kimlik, yeni bir geçmiş ve yeni bir hayat veriyoruz.')">Detaylar</a>
+                        </div>
+                        <div class="service-item">
+                            <h4 class="service-title">Karanlık Danışmanlık</h4>
+                            <div class="service-price">$500/saat</div>
+                            <p class="service-description">Karanlık işleriniz için strateji, planlama ve danışmanlık hizmeti. Tecrübe ve bilgimle yol gösteriyorum.</p>
+                            <a class="btn" onclick="modalAc('Karanlık Danışmanlık', 'Karanlık işlerinizde size rehberlik ediyor, stratejiler geliştiriyor ve planlarınızı kusursuz hale getiriyorum.')">Detaylar</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h2 class="section-title fade-in">Karanlık Hizmetler</h2>
-            <div class="features-grid">
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-skull"></i>
+    <!-- HAKKIMDA SAYFASI -->
+    <section id="hakkimda" class="sayfa">
+        <div class="about">
+            <div class="container">
+                <h2 class="section-title fade-in">Karanlığın Efendisi</h2>
+                
+                <div class="about-content">
+                    <div class="about-text fade-in">
+                        <p>Ben kimim? Bu sorunun basit bir cevabı yok. Kimilerine göre bir efsane, kimilerine göre bir hayalet, kimilerine göre ise en büyük kâbus.</p>
+                        <p>Yıllar önce, siber dünyanın henüz emekleme aşamasında olduğu zamanlarda, bu karanlık yola çıktım. O günden beri gölgelerin içinde yaşıyor, sınırların ötesinde işler yapıyorum.</p>
+                        <p>Adımı neden Mavi Amiral koydum? Çünkü mavi, hem derinliği hem de sonsuzluğu temsil eder. Tıpkı benim çalışmalarım gibi. Derinlere iner ve asla bitmez.</p>
+                        <p>Amiral ise, bu karanlık denizlerdeki komutanım. Kuralları ben koyarım, yönü ben belirlerim. Benim denizimde yüzmek isteyen, kurallarıma uymak zorunda.</p>
+                        <p>Şu ana kadar 47 ülkeden 319 önemli iş tamamladım. Hiçbiriyle övünmüyorum, çünkü bu benim işim. Sadece yapılması gerekeni yaptım.</p>
+                        <p>Peki neden buradayım? Çünkü bazı insanların karanlık tarafa ihtiyacı var. Yasaların çözemediği problemleri çözmek, adaletin ulaşamadığı yerlere ulaşmak için.</p>
                     </div>
-                    <h3 class="feature-title">Siber Savaş</h3>
-                    <p class="feature-text">Düşman sistemlerini çökert, verileri ele geçir. Sanal dünyada terör estir. Hiçbir güvenlik önlemi bana engel olamaz.</p>
+                    
+                    <div class="about-text fade-in">
+                        <h3 class="feature-title">İlke ve Kurallarım</h3>
+                        <p>1. Asla müşteri bilgilerini ifşa etmem. Diskreton en önemli kuralımdır.</p>
+                        <p>2. Masumları hedef alan işler yapmam. İşlerim sadece "hak edenlere" yöneliktir.</p>
+                        <p>3. Anlaşmaya sadık kalırım. Üzerinde anlaştığımız şeyi, tam olarak zamanında teslim ederim.</p>
+                        <p>4. İhaneti asla affetmem. Bana ihanet eden, son nefesini verene kadar peşini bırakmam.</p>
+                        <p>5. Ödemeler kripto para ile ve öncelikli olarak yapılır. Pazarlık kabul etmem.</p>
+                        <p>Bu kurallarımı beğenmeyenler, hizmetlerimden yararlanmak zorunda değil. Ama kuralarıma uyanlar, kusursuz hizmet ve sonsuz sadakat garantisi alır.</p>
+                    </div>
                 </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-handcuffs"></i>
+                
+                <h3 class="section-title" style="font-size: 2rem; margin: 60px 0 30px;">Karanlık Kronoloji</h3>
+                
+                <div class="timeline fade-in">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">1999</div>
+                            <div class="timeline-text">İlk hack operasyonumu gerçekleştirdim. Küçük bir bankanın sistemine sızdım ve güvenlik açıklarını belgeledim.</div>
+                        </div>
                     </div>
-                    <h3 class="feature-title">Yasak İlişkiler</h3>
-                    <p class="feature-text">Yasak aşklar, gizli tutkular. Kimseye anlatamayacağın zevklerin peşinde koş. Sınırlarını zorlamaya hazır mısın?</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-gun"></i>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2004</div>
+                            <div class="timeline-text">Dark web'deki ilk pazar yerlerinden birini kurdum. Kısa sürede en güvenilen isim haline geldim.</div>
+                        </div>
                     </div>
-                    <h3 class="feature-title">Silahlı Çözümler</h3>
-                    <p class="feature-text">Sorunlarını kalıcı olarak çözmenin en etkili yolu. İz bırakmadan, soru sordurmadan. Kesin çözüm.</p>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2008</div>
+                            <div class="timeline-text">İlk uluslararası operasyonumu gerçekleştirdim. 3 farklı kıtadan 12 kişilik bir ekibi yönettim.</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2012</div>
+                            <div class="timeline-text">Mavi Amiral kimliğini oluşturdum ve tüm operasyonlarımı bu isim altında topladım.</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2016</div>
+                            <div class="timeline-text">Karanlık ağ üzerinden ilk fiziksel operasyonumu gerçekleştirdim. Sınır ötesi bir teslimatı yönettim.</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2020</div>
+                            <div class="timeline-text">Küresel salgın döneminde siber operasyonlarımı iki katına çıkardım. 17 ülkeden 43 hedefi etkisiz hale getirdim.</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2023</div>
+                            <div class="timeline-text">Bu web sitesini kurarak hizmetlerimi daha geniş kitlelere ulaştırma kararı aldım. Artık daha erişilebilirim.</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="gallery">
-        <div class="container">
-            <h2 class="section-title fade-in">Karanlık Galeri</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item fade-in">
-                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect width='200' height='200' fill='%23111'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='%23f00'>Karanlık Siluet</text></svg>" alt="Karanlık Siluet">
+    <!-- İLETİŞİM SAYFASI -->
+    <section id="iletisim" class="sayfa">
+        <div class="contact">
+            <div class="container">
+                <h2 class="section-title fade-in">Karanlık İletişim</h2>
+                
+                <div class="contact-grid">
+                    <div class="contact-info fade-in">
+                        <h3 class="feature-title">İletişim Bilgileri</h3>
+                        <p style="color: var(--kirmizi-acik); margin-bottom: 25px;">Benimle iletişime geçmek için aşağıdaki yöntemleri kullanabilirsiniz. Tüm iletişimler şifrelidir ve maksimum güvenlik sağlanır.</p>
+                        
+                        <ul class="footer-links">
+                            <li><a><i class="fas fa-envelope"></i> karanlik@maviamiral.com</a></li>
+                            <li><a><i class="fas fa-key"></i> PGP Key: 0x8D3A2BFC5E91A47</a></li>
+                            <li><a><i class="fab fa-telegram"></i> Telegram: @MaviAmiral</a></li>
+                            <li><a><i class="fas fa-lock"></i> Signal: +90 555 666 77 88</a></li>
+                        </ul>
+                        
+                        <div style="margin-top: 30px; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 5px;">
+                            <h4 class="feature-title" style="font-size: 1.2rem; margin-bottom: 15px;">Güvenlik Uyarısı</h4>
+                            <p style="color: var(--kirmizi-acik); font-size: 0.9rem;">Tüm iletişimlerinizi şifreli kanallar üzerinden yapın. Kesinlikle kişisel bilgilerinizi açık metin olarak paylaşmayın. İlk iletişimden sonra size güvenli iletişim yöntemleri hakkında bilgi vereceğim.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form fade-in">
+                        <h3 class="feature-title">Mesaj Gönder</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Kod Adınız</label>
+                                <input type="text" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">İletişim Adresi</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="service">İlgi Alanı</label>
+                                <select id="service" required>
+                                    <option value="">Seçiniz</option>
+                                    <option value="siber">Siber Operasyonlar</option>
+                                    <option value="fiziksel">Fiziksel Operasyonlar</option>
+                                    <option value="ozel">Özel Hizmetler</option>
+                                    <option value="diger">Diğer</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Mesajınız (Şifrelenecektir)</label>
+                                <textarea id="message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Güvenli Gönderim</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="gallery-item fade-in">
-                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect width='200' height='200' fill='%23111'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='%23f00'>Hacker Teması</text></svg>" alt="Hacker Teması">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect width='200' height='200' fill='%23111'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='%23f00'>Yasak Aşk</text></svg>" alt="Yasak Aşk">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect width='200' height='200' fill='%23111'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='%23f00'>Ölümcül Silah</text></svg>" alt="Ölümcül Silah">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect width='200' height='200' fill='%23111'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='%23f00'>Karanlık Fal</text></svg>" alt="Karanlık Fal">
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect width='200' height='200' fill='%23111'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='%23f00'>Gizli Buluşma</text></svg>" alt="Gizli Buluşma">
+                
+                <div class="fortune-box" style="margin-top: 60px;">
+                    <h3 class="feature-title">Karanlık İstihbarat</h3>
+                    <p style="color: var(--kirmizi-acik); margin-bottom: 20px;">Acil durumlar için acil iletişim protokolü. Sadece hayati önem taşıyan durumlarda kullanın.</p>
+                    <div style="display: flex; justify-content: center; gap: 20px;">
+                        <button class="btn" onclick="modalAc('Acil İletişim', 'Acil iletişim için şu protokolü izleyin: 1. Telegram üzerinden @MaviAmiralAcil hesabına ACIL kodunu gönderin. 2. 10 dakika içinde size dönüş yapılacaktır. 3. Kimliğinizi doğrulamak için önceden belirlenmiş güvenlik sorularını yanıtlayın.')">Acil İletişim</button>
+                        <button class="btn" onclick="modalAc('Güvenlik İhlali', 'Bir güvenlik ihlali durumunda: 1. Tüm iletişim kanallarını hemen kesin. 2. Önceden belirlenmiş temizlik protokolünü uygulayın. 3. 24 saat bekleyin ve sonra alternatif kanallardan iletişime geçin.')">Güvenlik İhlali</button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Fortune Section -->
-    <section class="fortune">
-        <div class="container">
-            <h2 class="section-title fade-in">Karanlık Falınız</h2>
-            <div class="fortune-box fade-in">
-                <p style="color: #cc0000; margin-bottom: 20px;">Kaderini öğrenmeye cesaretin var mı? Aşağıdaki butona tıkla ve geleceğindeki karanlık sırları öğren...</p>
-                <button class="fortune-btn" onclick="tellFortune()">Falını Göster</button>
-                <div class="fortune-result" id="fortuneResult">
-                    <!-- Fortune result will appear here -->
-                </div>
-            </div>
+    <!-- MODAL -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="modalKapat()">&times;</span>
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'><rect width='800' height='400' fill='%23111'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='24' fill='%23f00'>Karanlık Görsel</text></svg>" alt="Modal Image" class="modal-image" id="modalImage">
+            <h3 class="modal-title" id="modalTitle"></h3>
+            <p class="modal-text" id="modalText"></p>
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -717,18 +1290,18 @@
                 <div class="footer-column fade-in">
                     <h3 class="footer-title">Karanlık Linkler</h3>
                     <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Gizli Servisler</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Yasak İlişkiler</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Silahlı Çözümler</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Karanlık Faliyetler</a></li>
+                        <li><a onclick="sayfaGoster('ana-sayfa')"><i class="fas fa-chevron-right"></i> Ana Sayfa</a></li>
+                        <li><a onclick="sayfaGoster('hizmetler')"><i class="fas fa-chevron-right"></i> Karanlık İşler</a></li>
+                        <li><a onclick="sayfaGoster('hakkimda')"><i class="fas fa-chevron-right"></i> Hakkımda</a></li>
+                        <li><a onclick="sayfaGoster('iletisim')"><i class="fas fa-chevron-right"></i> İletişim</a></li>
                     </ul>
                 </div>
                 <div class="footer-column fade-in">
                     <h3 class="footer-title">İletişim</h3>
                     <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Karanlık Sokak, Gölge Mahallesi</a></li>
-                        <li><a href="#"><i class="fas fa-phone"></i> +90 555 666 77 88</a></li>
-                        <li><a href="#"><i class="fas fa-envelope"></i> karanlik@maviamiral.com</a></li>
+                        <li><a><i class="fas fa-map-marker-alt"></i> Karanlık Sokak, Gölge Mahallesi</a></li>
+                        <li><a><i class="fas fa-phone"></i> +90 555 666 77 88</a></li>
+                        <li><a><i class="fas fa-envelope"></i> karanlik@maviamiral.com</a></li>
                     </ul>
                 </div>
             </div>
@@ -739,6 +1312,57 @@
     </footer>
 
     <script>
+        // Sayfa yönlendirme fonksiyonu
+        function sayfaGoster(sayfaId) {
+            // Tüm sayfaları gizle
+            document.querySelectorAll('.sayfa').forEach(sayfa => {
+                sayfa.classList.remove('aktif');
+            });
+            
+            // İstenen sayfayı göster
+            document.getElementById(sayfaId).classList.add('aktif');
+            
+            // Sayfa başına kaydır
+            window.scrollTo(0, 0);
+            
+            // Yeni içerik için scroll animasyonlarını tetikle
+            setTimeout(() => {
+                const fadeElements = document.querySelectorAll('.fade-in');
+                fadeElements.forEach(element => {
+                    element.classList.add('visible');
+                });
+            }, 100);
+        }
+        
+        // Modal açma fonksiyonu
+        function modalAc(baslik, metin) {
+            document.getElementById('modalTitle').textContent = baslik;
+            document.getElementById('modalText').textContent = metin;
+            document.getElementById('modal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Modal kapatma fonksiyonu
+        function modalKapat() {
+            document.getElementById('modal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Modal dışına tıklanınca kapat
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                modalKapat();
+            }
+        });
+        
+        // Form gönderimi
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Mesajınız şifrelenerek iletilmiştir. En kısa sürede sizinle iletişime geçeceğim.');
+            this.reset();
+        });
+
         // Header scroll effect
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
