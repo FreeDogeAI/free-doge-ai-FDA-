@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mavi Amiral | Strateji Derinliklerden Gelir</title>
+    <title>Mavi Amiral | Derin Stratejilerin Mimari</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Raleway', sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #0a1929 0%, #0d1b2a 100%);
-            color: #e0e0e0;
+            background: linear-gradient(135deg, #0a1420 0%, #0a1929 100%);
+            color: #d4d4dc;
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -28,11 +31,20 @@
         
         /* Header Styles */
         header {
-            padding: 30px 0;
-            border-bottom: 1px solid rgba(80, 120, 160, 0.3);
-            position: relative;
-            background: rgba(10, 25, 41, 0.8);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            background: rgba(8, 18, 31, 0.9);
             backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(65, 90, 119, 0.2);
+        }
+        
+        header.scrolled {
+            padding: 15px 0;
+            background: rgba(8, 18, 31, 0.97);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
         }
         
         .header-content {
@@ -47,13 +59,14 @@
         }
         
         .logo-text {
-            font-family: 'Times New Roman', serif;
+            font-family: 'Cinzel', serif;
             font-size: 28px;
             font-weight: bold;
-            background: linear-gradient(90deg, #e0e0e0 0%, #8eb3d8 100%);
+            background: linear-gradient(90deg, #e0e0e0 0%, #7ba8d6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
         }
         
         nav ul {
@@ -66,22 +79,23 @@
         }
         
         nav ul li a {
-            color: #c2c2c2;
+            color: #9fadc2;
             text-decoration: none;
             font-size: 16px;
             letter-spacing: 1px;
             transition: all 0.3s ease;
             position: relative;
+            font-weight: 500;
         }
         
         nav ul li a:after {
             content: '';
             position: absolute;
             width: 0;
-            height: 1px;
+            height: 2px;
             bottom: -5px;
             left: 0;
-            background: linear-gradient(90deg, #8eb3d8 0%, #4a7bab 100%);
+            background: linear-gradient(90deg, #7ba8d6 0%, #4a7bab 100%);
             transition: width 0.3s ease;
         }
         
@@ -95,11 +109,39 @@
         
         /* Hero Section */
         .hero {
-            min-height: 90vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
-            padding: 60px 0;
+            padding: 100px 0 60px;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(28, 58, 95, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(19, 42, 69, 0.4) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.2;
+            background: 
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%234a7bab' fill-opacity='0.2' d='M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,218.7C672,224,768,160,864,138.7C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") bottom no-repeat,
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%237ba8d6' fill-opacity='0.15' d='M0,192L48,197.3C96,203,192,213,288,197.3C384,181,480,139,576,138.7C672,139,768,181,864,181.3C960,181,1056,139,1152,122.7C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") bottom no-repeat;
+            background-size: 100%, 80%;
         }
         
         .hero-content {
@@ -108,21 +150,25 @@
         }
         
         .hero-title {
-            font-size: 3.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 3.8rem;
             font-weight: 700;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, #e0e0e0 0%, #8eb3d8 100%);
+            background: linear-gradient(135deg, #e0e0e0 0%, #7ba8d6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1.2;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
         .hero-subtitle {
             font-size: 1.5rem;
-            color: #a4b3c7;
+            color: #9fadc2;
             margin-bottom: 30px;
             font-weight: 300;
             font-style: italic;
+            border-left: 3px solid #7ba8d6;
+            padding-left: 20px;
         }
         
         .hero-description {
@@ -134,63 +180,95 @@
         
         .hero-image {
             position: absolute;
-            right: 0;
+            right: 5%;
             top: 50%;
             transform: translateY(-50%);
-            width: 45%;
-            height: 80%;
-            background: linear-gradient(135deg, rgba(30, 60, 100, 0.7) 0%, rgba(15, 35, 65, 0.7) 100%);
+            width: 40%;
+            height: 70%;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(80, 120, 160, 0.3);
+            border: 1px solid rgba(123, 168, 214, 0.3);
+            background: 
+                linear-gradient(135deg, rgba(28, 58, 95, 0.7) 0%, rgba(15, 35, 65, 0.7) 100%),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect fill='rgba(123, 168, 214, 0.1)' x='0' y='0' width='100' height='100'/%3E%3Cpath d='M0 50 L100 50 M50 0 L50 100' stroke='rgba(123, 168, 214, 0.2)' stroke-width='1'/%3E%3C/svg%3E");
+            background-size: cover, 30px 30px;
+            transition: all 0.5s ease;
         }
         
-        .hero-image:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="rgba(80, 120, 160, 0.1)" x="0" y="0" width="100" height="100"/><path d="M0 50 L100 50 M50 0 L50 100" stroke="rgba(120, 160, 200, 0.2)" stroke-width="1"/></svg>');
-            background-size: 30px 30px;
+        .hero-image:hover {
+            transform: translateY(-50%) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
         }
         
         .hero-image-content {
             text-align: center;
-            padding: 30px;
+            padding: 40px;
             z-index: 2;
         }
         
         .hero-image-title {
-            font-size: 2rem;
-            margin-bottom: 20px;
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
             color: #e0e0e0;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
         
         .hero-image-text {
             font-size: 1.1rem;
             color: #a4b3c7;
             line-height: 1.6;
+            font-style: italic;
         }
         
         /* Features Section */
         .features {
             padding: 100px 0;
-            background: rgba(8, 20, 33, 0.6);
+            background: 
+                radial-gradient(circle at top left, rgba(28, 58, 95, 0.3) 0%, transparent 30%),
+                radial-gradient(circle at bottom right, rgba(19, 42, 69, 0.3) 0%, transparent 30%),
+                rgba(8, 20, 33, 0.8);
+            position: relative;
+        }
+        
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect fill='rgba(123, 168, 214, 0.05)' x='0' y='0' width='100' height='100'/%3E%3Cpath d='M0 0 L100 100 M100 0 L0 100' stroke='rgba(123, 168, 214, 0.1)' stroke-width='1'/%3E%3C/svg%3E");
+            z-index: -1;
         }
         
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
             margin-bottom: 60px;
-            background: linear-gradient(135deg, #e0e0e0 0%, #8eb3d8 100%);
+            background: linear-gradient(135deg, #e0e0e0 0%, #7ba8d6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #7ba8d6 0%, #4a7bab 100%);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
         }
         
         .features-grid {
@@ -200,72 +278,102 @@
         }
         
         .feature-card {
-            background: linear-gradient(135deg, rgba(30, 60, 100, 0.3) 0%, rgba(15, 35, 65, 0.3) 100%);
+            background: linear-gradient(135deg, rgba(28, 58, 95, 0.3) 0%, rgba(15, 35, 65, 0.3) 100%);
             border-radius: 10px;
-            padding: 30px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(80, 120, 160, 0.2);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            padding: 40px 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(123, 168, 214, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect fill='rgba(123, 168, 214, 0.05)' x='0' y='0' width='100' height='100'/%3E%3Cpath d='M0 0 L100 100 M100 0 L0 100' stroke='rgba(123, 168, 214, 0.1)' stroke-width='1'/%3E%3C/svg%3E");
+            z-index: -1;
         }
         
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            border-color: rgba(123, 168, 214, 0.4);
         }
         
         .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #8eb3d8;
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            color: #7ba8d6;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
         
         .feature-title {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
             color: #e0e0e0;
         }
         
         .feature-text {
             color: #a4b3c7;
-            line-height: 1.6;
+            line-height: 1.7;
         }
         
         /* Footer */
         footer {
-            background: rgba(5, 15, 25, 0.9);
-            padding: 60px 0 30px;
-            border-top: 1px solid rgba(80, 120, 160, 0.3);
+            background: 
+                linear-gradient(to top, rgba(5, 15, 25, 0.95) 0%, rgba(8, 20, 33, 0.95) 100%),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect fill='rgba(123, 168, 214, 0.05)' x='0' y='0' width='100' height='100'/%3E%3Cpath d='M0 0 L100 100 M100 0 L0 100' stroke='rgba(123, 168, 214, 0.1)' stroke-width='1'/%3E%3C/svg%3E");
+            padding: 80px 0 40px;
+            border-top: 1px solid rgba(123, 168, 214, 0.2);
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(123, 168, 214, 0.4) 50%, transparent 100%);
         }
         
         .footer-content {
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
         
         .footer-column {
             flex: 1;
             min-width: 250px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
         
         .footer-title {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
             color: #e0e0e0;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 12px;
         }
         
-        .footer-title:after {
+        .footer-title::after {
             content: '';
             position: absolute;
             width: 40px;
             height: 2px;
             bottom: 0;
             left: 0;
-            background: linear-gradient(90deg, #8eb3d8 0%, #4a7bab 100%);
+            background: linear-gradient(90deg, #7ba8d6 0%, #4a7bab 100%);
         }
         
         .footer-links {
@@ -273,40 +381,57 @@
         }
         
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         
         .footer-links a {
-            color: #a4b3c7;
+            color: #9fadc2;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a i {
+            margin-right: 10px;
+            font-size: 14px;
         }
         
         .footer-links a:hover {
             color: #ffffff;
+            transform: translateX(5px);
         }
         
         .footer-bottom {
             text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(80, 120, 160, 0.2);
-            color: #a4b3c7;
+            padding-top: 40px;
+            border-top: 1px solid rgba(123, 168, 214, 0.2);
+            color: #9fadc2;
             font-size: 0.9rem;
         }
         
         /* Responsive Design */
+        @media (max-width: 1100px) {
+            .hero-image {
+                width: 45%;
+            }
+        }
+        
         @media (max-width: 992px) {
             .hero-image {
                 position: relative;
                 width: 100%;
                 height: 400px;
-                margin-top: 50px;
+                margin: 50px auto 0;
                 transform: none;
+                right: auto;
+                top: auto;
             }
             
             .hero {
                 flex-direction: column;
-                padding: 40px 0;
+                padding: 120px 0 60px;
+                text-align: center;
             }
             
             .hero-content {
@@ -314,7 +439,12 @@
             }
             
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 3rem;
+            }
+            
+            .hero-subtitle {
+                border-left: none;
+                padding-left: 0;
             }
         }
         
@@ -327,25 +457,46 @@
             nav ul {
                 margin-top: 20px;
                 justify-content: center;
+                flex-wrap: wrap;
             }
             
             nav ul li {
-                margin: 0 10px;
+                margin: 10px 15px;
             }
             
             .hero-title {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
             .hero-subtitle {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
             }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .feature-card {
+                padding: 30px 20px;
+            }
+        }
+        
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header>
+    <header id="header">
         <div class="container">
             <div class="header-content">
                 <div class="logo">
@@ -365,8 +516,9 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <div class="hero-bg"></div>
         <div class="container">
-            <div class="hero-content">
+            <div class="hero-content fade-in">
                 <h1 class="hero-title">Stratejiler Derinliklerden Şekillenir</h1>
                 <p class="hero-subtitle">Yüzeye kusursuz çıkar.</p>
                 <p class="hero-description">
@@ -374,7 +526,7 @@
                 </p>
             </div>
         </div>
-        <div class="hero-image">
+        <div class="hero-image fade-in">
             <div class="hero-image-content">
                 <h3 class="hero-image-title">Derinliklerdeki Strateji</h3>
                 <p class="hero-image-text">
@@ -387,28 +539,28 @@
     <!-- Features Section -->
     <section class="features">
         <div class="container">
-            <h2 class="section-title">Operasyonel Alanlar</h2>
+            <h2 class="section-title fade-in">Operasyonel Alanlar</h2>
             <div class="features-grid">
-                <div class="feature-card">
+                <div class="feature-card fade-in">
                     <div class="feature-icon">
                         <i class="fas fa-chess"></i>
                     </div>
                     <h3 class="feature-title">Stratejik Planlama</h3>
-                    <p class="feature-text">Karmaşık durumlarda uzun vadeli stratejiler geliştirerek rakiplerinizin önüne geçin.</p>
+                    <p class="feature-text">Karmaşık durumlarda uzun vadeli stratejiler geliştirerek rakiplerinizin önüne geçin. Derin analizler ve öngörülerle hareket edin.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card fade-in">
                     <div class="feature-icon">
                         <i class="fas fa-ship"></i>
                     </div>
                     <h3 class="feature-title">Deniz Operasyonları</h3>
-                    <p class="feature-text">Denizlerdeki hakimiyet, küresel gücün temelidir. Derin suların stratejik avantajlarını kullanın.</p>
+                    <p class="feature-text">Denizlerdeki hakimiyet, küresel gücün temelidir. Derin suların stratejik avantajlarını kullanın ve kontrolü ele geçirin.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card fade-in">
                     <div class="feature-icon">
                         <i class="fas fa-eye"></i>
                     </div>
                     <h3 class="feature-title">Gizli İstihbarat</h3>
-                    <p class="feature-text">Görünmeyen verileri görünür kılarak rakiplerinizden bir adım önde olun.</p>
+                    <p class="feature-text">Görünmeyen verileri görünür kılarak rakiplerinizden bir adım önde olun. Sessiz derinliklerden gelen bilgi, zaferin anahtarıdır.</p>
                 </div>
             </div>
         </div>
@@ -418,51 +570,12 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-column">
+                <div class="footer-column fade-in">
                     <h3 class="footer-title">Mavi Amiral</h3>
-                    <p style="color: #a4b3c7; line-height: 1.6;">Derin stratejilerle karmaşık problemlere çözümler üretiyoruz. Sessiz derinlikler, keskin hamleler.</p>
+                    <p style="color: #9fadc2; line-height: 1.7;">Derin stratejilerle karmaşık problemlere çözümler üretiyoruz. Sessiz derinlikler, keskin hamleler. Haritanın ötesini görenler için.</p>
                 </div>
-                <div class="footer-column">
+                <div class="footer-column fade-in">
                     <h3 class="footer-title">Hızlı Erişim</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Ana Sayfa</a></li>
-                        <li><a href="#">Hakkımızda</a></li>
-                        <li><a href="#">Hizmetler</a></li>
-                        <li><a href="#">Operasyonlar</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3 class="footer-title">İletişim</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Denizler Caddesi, Strateji Limanı</a></li>
-                        <li><a href="#"><i class="fas fa-phone"></i> +90 555 123 45 67</a></li>
-                        <li><a href="#"><i class="fas fa-envelope"></i> info@maviamiral.com</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2023 Mavi Amiral. Tüm hakları saklıdır. | Strateji derinliklerden gelir.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Basit bir animasyon efekti
-        document.addEventListener('DOMContentLoaded', function() {
-            const featureCards = document.querySelectorAll('.feature-card');
-            
-            featureCards.forEach((card, index) => {
-                // Gecikmeli olarak kartların görünmesini sağla
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                
-                setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, 200 + (index * 100));
-            });
-        });
-    </script>
-</body>
-</html>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Ana Sayfa</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Hakkımız
