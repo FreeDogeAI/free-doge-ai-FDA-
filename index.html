@@ -115,6 +115,16 @@
             color: var(--secondary-color);
         }
         
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1620336655055-bd87ca6c5e7a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
@@ -605,6 +615,26 @@
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
+            
+            /* Mobile menu */
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 20px;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                padding: 1rem 0;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
         }
         
         /* Animations */
@@ -616,9 +646,39 @@
         .fade-in {
             animation: fadeIn 1s ease forwards;
         }
+        
+        /* WhatsApp sabit butonu */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
+    <!-- WhatsApp butonu -->
+    <a href="https://wa.me/905334968818" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <!-- Header -->
     <header>
         <div class="container header-content">
@@ -626,6 +686,9 @@
                 <i class="fas fa-building"></i>
                 <h1>Altındağ Aleminyum</h1>
             </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
             <nav>
                 <ul>
                     <li><a href="#home">Ana Sayfa</a></li>
@@ -663,7 +726,7 @@
                     <div class="service-content">
                         <h3>Merdiven Korkulukları</h3>
                         <p>Modern ve şık tasarımlarla güvenli merdiven korkuluk sistemleri. Paslanmaz ve alüminyum seçenekleri.</p>
-                        <a href="#" class="service-link">Detaylı Bilgi <i class="fas fa-arrow-right"></i></a>
+                        <a href="tel:05334968818" class="service-link">Hemen Ara <i class="fas fa-phone"></i></a>
                     </div>
                 </div>
                 <div class="service-card fade-in">
@@ -671,7 +734,7 @@
                     <div class="service-content">
                         <h3>Pencere Sistemleri</h3>
                         <p>Enerji tasarruflu ve ses yalıtımlı kaliteli alüminyum pencere sistemleri. Isı yalıtımı garantili.</p>
-                        <a href="#" class="service-link">Detaylı Bilgi <i class="fas fa-arrow-right"></i></a>
+                        <a href="tel:05334968818" class="service-link">Hemen Ara <i class="fas fa-phone"></i></a>
                     </div>
                 </div>
                 <div class="service-card fade-in">
@@ -679,7 +742,7 @@
                     <div class="service-content">
                         <h3>Balkon ve Korkuluk Sistemleri</h3>
                         <p>Dayanıklı ve estetik balkon korkuluk sistemleri ile evinize değer katın. Cam ve alüminyum kombinasyonları.</p>
-                        <a href="#" class="service-link">Detaylı Bilgi <i class="fas fa-arrow-right"></i></a>
+                        <a href="tel:05334968818" class="service-link">Hemen Ara <i class="fas fa-phone"></i></a>
                     </div>
                 </div>
             </div>
@@ -695,37 +758,37 @@
             </div>
             <div class="gallery-grid">
                 <div class="gallery-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1633063677545-65f35738b0dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=700&q=80" alt="Alüminyum İşleri">
+                    <img src="https://images.unsplash.com/photo-1633063677545-65f35738b0dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=700&q=80" alt="Lüks Villa Korkulukları">
                     <div class="gallery-overlay">
                         <h3>Lüks Villa Korkulukları</h3>
                     </div>
                 </div>
                 <div class="gallery-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1633063677545-65f35738b0dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=700&q=80" alt="Alüminyum İşleri">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=700&q=80" alt="Modern Ofis Pencereleri">
                     <div class="gallery-overlay">
                         <h3>Modern Ofis Pencereleri</h3>
                     </div>
                 </div>
                 <div class="gallery-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1633063677545-65f35738b0dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=700&q=80" alt="Alüminyum İşleri">
+                    <img src="https://images.unsplash.com/photo-1613977257363-2c8dde2935f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=700&q=80" alt="Şık Bina Girişi">
                     <div class="gallery-overlay">
                         <h3>Şık Bina Girişi</h3>
                     </div>
                 </div>
                 <div class="gallery-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1633063677545-65f35738b0dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=700&q=80" alt="Alüminyum İşleri">
+                    <img src="https://images.unsplash.com/photo-1633063677545-65f35738b0dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=700&q=80" alt="Cam Balkon Sistemleri">
                     <div class="gallery-overlay">
                         <h3>Cam Balkon Sistemleri</h3>
                     </div>
                 </div>
                 <div class="gallery-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1633063677545-65f35738b0dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=700&q=80" alt="Alüminyum İşleri">
+                    <img src="https://images.unsplash.com/photo-1613977257365-7aabbea9744c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=700&q=80" alt="Alüminyum Panjur">
                     <div class="gallery-overlay">
                         <h3>Alüminyum Panjur</h3>
                     </div>
                 </div>
                 <div class="gallery-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1633063677545-65f35738b0dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=700&q=80" alt="Alüminyum İşleri">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27a3c8d8e6b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=700&q=80" alt="Dış Cephe Kaplama">
                     <div class="gallery-overlay">
                         <h3>Dış Cephe Kaplama</h3>
                     </div>
@@ -740,7 +803,7 @@
             <div class="about-content">
                 <div class="about-text fade-in">
                     <h2>20 Yıllık Deneyim ve Kalite</h2>
-                    <p>2003 yılından bu yana Altındağ ve çevresinde alüminyum işlerinde kalite ve güvenin adresi olarak hizmet veriyoruz.</p>
+                    <p>2003 yılından bu yana İstanbul Kartal ve çevresinde alüminyum işlerinde kalite ve güvenin adresi olarak hizmet veriyoruz.</p>
                     <p>Uzman ekibimiz ve kaliteli işçiliğimizle yüzlerce mutlu müşteriye hizmet verdik. Müşteri memnuniyetini her zaman ön planda tutarak, en kaliteli malzemelerle çözümler sunmaya devam ediyoruz.</p>
                     <p>Modern tasarımlar, fonksiyonel çözümler ve dayanıklı ürünler için doğru adrestesiniz.</p>
                     
@@ -779,21 +842,21 @@
                         <i class="fas fa-phone"></i>
                         <div class="contact-text">
                             <h3>Telefon</h3>
-                            <p>0533 496 88 18</p>
+                            <p><a href="tel:05334968818" style="color: white;">0533 496 88 18</a></p>
                         </div>
                     </div>
                     <div class="contact-item fade-in">
                         <i class="fas fa-envelope"></i>
                         <div class="contact-text">
                             <h3>E-posta</h3>
-                            <p>info@altindagaluminyum.com</p>
+                            <p><a href="mailto:info@altindagaluminyum.com" style="color: white;">info@altindagaluminyum.com</a></p>
                         </div>
                     </div>
                     <div class="contact-item fade-in">
                         <i class="fas fa-map-marker-alt"></i>
                         <div class="contact-text">
                             <h3>Adres</h3>
-                            <p>Altındağ, Ankara</p>
+                            <p>Kartal, İstanbul</p>
                         </div>
                     </div>
                     <div class="contact-item fade-in">
@@ -849,14 +912,14 @@
                 </div>
                 <div class="footer-section">
                     <h3>İletişim</h3>
-                    <p><i class="fas fa-phone"></i> 0533 496 88 18</p>
-                    <p><i class="fas fa-envelope"></i> info@altindagaluminyum.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Altındağ, Ankara</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:05334968818" style="color: #cbd5e0;">0533 496 88 18</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@altindagaluminyum.com" style="color: #cbd5e0;">info@altindagaluminyum.com</a></p>
+                    <p><i class="fas fa-map-marker-alt"></i> Kartal, İstanbul</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/905334968818" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
@@ -885,6 +948,9 @@
                         top: targetElement.offsetTop - 100,
                         behavior: 'smooth'
                     });
+                    
+                    // Mobil menüyü kapat
+                    document.querySelector('nav ul').classList.remove('show');
                 }
             });
         });
@@ -914,6 +980,11 @@
                 header.style.background = "rgba(26, 54, 93, 0.95)";
                 header.style.padding = "1.2rem 0";
             }
+        });
+        
+        // Mobil menü
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
         });
     </script>
 </body>
