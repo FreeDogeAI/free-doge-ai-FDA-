@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karanlık Sokaklar | Gizem ve Gerilim</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@300;400;500&display=swap');
         
@@ -25,17 +26,16 @@
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 1rem;
         }
         
         header {
             text-align: center;
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             position: relative;
-            border-bottom: 1px solid #2a2a45;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
         }
         
         h1 {
@@ -45,175 +45,138 @@
             color: #a83232;
             text-shadow: 0 0 10px rgba(168, 50, 50, 0.4);
             letter-spacing: 3px;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
         
         .subtitle {
             font-size: 1.2rem;
             color: #7a7a8c;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
         
-        .scene {
-            height: 70vh;
-            position: relative;
-            margin: 3rem 0;
-            overflow: hidden;
-            border-radius: 5px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
-        }
-        
-        .city-background {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, #050510 0%, #1a1a2e 100%);
-        }
-        
-        .building {
-            position: absolute;
-            bottom: 0;
-            background-color: #121223;
-            width: 8%;
-            height: 40%;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-        }
-        
-        .building:nth-child(1) {
-            left: 5%;
-            height: 60%;
-        }
-        
-        .building:nth-child(2) {
-            left: 15%;
-            height: 75%;
-        }
-        
-        .building:nth-child(3) {
-            left: 25%;
-            height: 50%;
-        }
-        
-        .building:nth-child(4) {
-            left: 35%;
-            height: 65%;
-        }
-        
-        .building:nth-child(5) {
-            left: 65%;
-            height: 55%;
-        }
-        
-        .building:nth-child(6) {
-            left: 75%;
-            height: 70%;
-        }
-        
-        .building:nth-child(7) {
-            left: 85%;
-            height: 45%;
-        }
-        
-        .window {
-            position: absolute;
-            width: 60%;
-            height: 10px;
-            background-color: #2a2a45;
-            left: 20%;
-        }
-        
-        .rain {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: linear-gradient(to bottom, transparent, rgba(50, 70, 120, 0.1) 40%, transparent 60%),
-                              url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><line x1="5" y1="0" x2="5" y2="10" stroke="rgba(90,120,180,0.3)" stroke-width="0.5"/></svg>');
-            animation: rainAnimation 1s linear infinite;
-            opacity: 0.7;
-        }
-        
-        @keyframes rainAnimation {
-            0% { background-position: 0 0, 0 0; }
-            100% { background-position: 0 20px, 0 10px; }
-        }
-        
-        .neon {
-            position: absolute;
-            width: 120px;
-            height: 40px;
-            background-color: rgba(168, 50, 50, 0.2);
-            color: #a83232;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
-            border: 1px solid #a83232;
-            box-shadow: 0 0 10px rgba(168, 50, 50, 0.4);
-            animation: flicker 3s infinite alternate;
-            z-index: 10;
-        }
-        
-        .neon:nth-child(1) {
-            top: 30%;
-            left: 20%;
-        }
-        
-        .neon:nth-child(2) {
-            top: 45%;
-            left: 70%;
-        }
-        
-        @keyframes flicker {
-            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-                box-shadow: 0 0 10px rgba(168, 50, 50, 0.4),
-                            0 0 20px rgba(168, 50, 50, 0.3);
-                opacity: 1;
-            }
-            20%, 24%, 55% {
-                box-shadow: none;
-                opacity: 0.7;
-            }
-        }
-        
-        .reflection {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 30%;
-            background: linear-gradient(to top, rgba(40, 60, 120, 0.3), transparent);
-            opacity: 0.3;
-        }
-        
-        .content {
-            padding: 2rem;
-            background-color: rgba(10, 10, 20, 0.7);
-            border: 1px solid #2a2a45;
-            border-radius: 5px;
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
             margin: 2rem 0;
-            position: relative;
-            z-index: 20;
         }
         
-        h2 {
+        .gallery-item {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(168, 50, 50, 0.3);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(60%) contrast(120%);
+            transition: filter 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-img {
+            filter: grayscale(30%) contrast(130%);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: #a83232;
+            margin-bottom: 0.5rem;
+        }
+        
+        .gallery-desc {
+            font-size: 0.9rem;
+            color: #c8c8d4;
+        }
+        
+        .character-section {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+            gap: 1.5rem;
+        }
+        
+        .character {
+            width: 200px;
+            text-align: center;
+        }
+        
+        .character-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 5px;
+            filter: grayscale(80%) contrast(130%);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .character:hover .character-img {
+            filter: grayscale(40%) contrast(140%);
+            transform: scale(1.05);
+        }
+        
+        .character-name {
+            margin-top: 1rem;
             font-family: 'Orbitron', sans-serif;
             color: #a83232;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
+            font-size: 1.1rem;
         }
         
-        p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            color: #9d9db0;
+        .character-desc {
+            font-size: 0.9rem;
+            color: #7a7a8c;
+            margin-top: 0.5rem;
+        }
+        
+        .quote-section {
+            text-align: center;
+            padding: 3rem 1rem;
+            margin: 2rem 0;
+            background-color: rgba(20, 20, 35, 0.7);
+            border-left: 5px solid #a83232;
         }
         
         .quote {
             font-style: italic;
-            border-left: 3px solid #a83232;
-            padding-left: 1.5rem;
-            margin: 2rem 0;
+            font-size: 1.5rem;
+            color: #9d9db0;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .author {
+            margin-top: 1.5rem;
             color: #7a7a8c;
+            font-size: 1.1rem;
         }
         
         .sound-btn {
@@ -230,6 +193,9 @@
             border-radius: 3px;
             z-index: 100;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .sound-btn:hover {
@@ -250,12 +216,12 @@
                 font-size: 2rem;
             }
             
-            .scene {
-                height: 50vh;
+            .gallery {
+                grid-template-columns: 1fr;
             }
             
-            .building {
-                width: 12%;
+            .character-section {
+                justify-content: center;
             }
         }
     </style>
@@ -267,38 +233,92 @@
             <div class="subtitle">Gizem ve gerilimin buluştuğu kasvetli atmosfer</div>
         </header>
         
-        <div class="scene">
-            <div class="city-background">
-                <div class="building"><div class="window" style="top: 20%"></div><div class="window" style="top: 40%"></div><div class="window" style="top: 60%"></div></div>
-                <div class="building"><div class="window" style="top: 30%"></div><div class="window" style="top: 50%"></div></div>
-                <div class="building"><div class="window" style="top: 25%"></div><div class="window" style="top: 45%"></div></div>
-                <div class="building"><div class="window" style="top: 15%"></div><div class="window" style="top: 35%"></div><div class="window" style="top: 55%"></div></div>
-                <div class="building"><div class="window" style="top: 20%"></div><div class="window" style="top: 40%"></div><div class="window" style="top: 60%"></div></div>
-                <div class="building"><div class="window" style="top: 30%"></div><div class="window" style="top: 50%"></div></div>
-                <div class="building"><div class="window" style="top: 25%"></div><div class="window" style="top: 45%"></div></div>
-                
-                <div class="neon">OTEL</div>
-                <div class="neon">BAR</div>
-                
-                <div class="rain"></div>
-                <div class="reflection"></div>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Gizemli Adam" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Gizemli Yabancı</h3>
+                    <p class="gallery-desc">Sokakların gölgelerinde dolaşan, kimliği belirsiz bir figür</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1517935706615-2717063c2225?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Yağmurlu Gece" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Yağmurlu Gece</h3>
+                    <p class="gallery-desc">Islak sokaklar ve neon ışıkların yansımaları</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Karanlık Sokak" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Karanlık Sokak</h3>
+                    <p class="gallery-desc">Şehrin bilinmeyen köşelerinde kaybolmak</p>
+                </div>
             </div>
         </div>
         
-        <div class="content">
-            <h2>Gizem Dolu Gece</h2>
-            <p>Yağmurlu bir gecede, şehrin karanlık sokaklarında kaybolmuş hissedersiniz. Neon ışıkların titrek yansımaları ıslak asfaltta dans ederken, uzaktan gelen siren sesleri endişeyi artırır.</p>
-            
-            <p>Her köşe başında bilinmeyen bir tehdit, her gölgede çözülmemiş bir gizem yatar. İnsanlar arasındaki mesafeler hissedilir şekilde artar, yakınlaşmalar düşmanca ve şüphe doludur.</p>
-            
-            <div class="quote">
-                "Bu şehirde kimseye güvenmemeyi öğrendim. Her yüz bir maske, her söz bir tuzak."
+        <div class="character-section">
+            <div class="character">
+                <img src="https://images.unsplash.com/photo-1508341591423-4347099e1f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Gizemli Kadın" class="character-img">
+                <h3 class="character-name">Elara</h3>
+                <p class="character-desc">Gece kulübü şarkıcısı, sırlarla dolu</p>
             </div>
             
-            <p>Gece ilerledikçe gerilim artar. Sokak lambalarının yarattığı havuzlar aydınlık ve karanlık arasındaki sınırları belirler. Bilinmeyenin çekiciliği, tehlikenin heyecanıyla birleşir.</p>
+            <div class="character">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Dedektif" class="character-img">
+                <h3 class="character-name">Kaan</h3>
+                <p class="character-desc">Geçmişiyle hesaplaşan bir dedektif</p>
+            </div>
+            
+            <div class="character">
+                <img src="https://images.unsplash.com/photo-1491349174775-aaafddd81942?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Yabancı" class="character-img">
+                <h3 class="character-name">Mert</h3>
+                <p class="character-desc">Şehre yeni gelmiş, gizli bir gündemi var</p>
+            </div>
+            
+            <div class="character">
+                <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Casus" class="character-img">
+                <h3 class="character-name">Zeynep</h3>
+                <p class="character-desc">Hiçbir şey göründüğü gibi değil</p>
+            </div>
         </div>
         
-        <button class="sound-btn" onclick="toggleSound()">Sesi Aç</button>
+        <div class="quote-section">
+            <p class="quote">"Bu şehirde herkesin bir sırrı var. Bazı sırlar diğerlerinden daha karanlık, bazı yalanlar diğerlerinden daha büyük."</p>
+            <p class="author">- İsimsiz Bir Yabancı</p>
+        </div>
+        
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1513584684374-8bab748fbf90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Noir Sokak" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Noir Sokak</h3>
+                    <p class="gallery-desc">Gece her şeyi örter, gerçeği değil</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Bulvar" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Bulvar</h3>
+                    <p class="gallery-desc">Işıklar parlar ama aydınlatmaz</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Son Buluşma" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Son Buluşma</h3>
+                    <p class="gallery-desc">Her şey bir buluşmayla başladı</p>
+                </div>
+            </div>
+        </div>
+        
+        <button class="sound-btn" onclick="toggleSound()">
+            <i class="fas fa-volume-mute"></i> Sesi Aç
+        </button>
         
         <footer>
             © 2023 Karanlık Sokaklar | Tüm hakları saklıdır.
@@ -312,51 +332,38 @@
     <script>
         const ambience = document.getElementById('ambience');
         const soundBtn = document.querySelector('.sound-btn');
+        const soundIcon = document.querySelector('.sound-btn i');
         let audioPlaying = false;
         
         function toggleSound() {
             if (audioPlaying) {
                 ambience.pause();
-                soundBtn.textContent = 'Sesi Aç';
+                soundBtn.innerHTML = '<i class="fas fa-volume-mute"></i> Sesi Aç';
             } else {
                 ambience.play();
-                soundBtn.textContent = 'Sesi Kapat';
+                soundBtn.innerHTML = '<i class="fas fa-volume-up"></i> Sesi Kapat';
             }
             audioPlaying = !audioPlaying;
         }
         
-        // Rastgele flaş efekti
-        function randomFlicker() {
-            const neons = document.querySelectorAll('.neon');
-            neons.forEach(neon => {
-                const delay = Math.random() * 3000;
-                setTimeout(() => {
-                    neon.style.animation = 'none';
+        // Görünüm efekti için
+        document.addEventListener('DOMContentLoaded', function() {
+            const items = document.querySelectorAll('.gallery-item, .character');
+            
+            items.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                item.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            });
+            
+            setTimeout(() => {
+                items.forEach((item, index) => {
                     setTimeout(() => {
-                        neon.style.animation = 'flicker 3s infinite alternate';
-                    }, 100);
-                }, delay);
-            });
-            
-            setTimeout(randomFlicker, 5000);
-        }
-        
-        // Pencere ışıklarını rastgele yakıp söndür
-        function flickerWindows() {
-            const windows = document.querySelectorAll('.window');
-            windows.forEach(window => {
-                if (Math.random() > 0.7) {
-                    window.style.backgroundColor = Math.random() > 0.5 ? '#55557a' : '#2a2a45';
-                }
-            });
-            
-            setTimeout(flickerWindows, 1000);
-        }
-        
-        // Sayfa yüklendiğinde
-        window.addEventListener('load', () => {
-            randomFlicker();
-            flickerWindows();
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 100 * index);
+                });
+            }, 500);
         });
     </script>
 </body>
