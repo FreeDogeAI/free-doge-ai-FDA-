@@ -1,99 +1,363 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<title>Mavi Amiral</title>
-<style>
-  /* Sayfa arkaplanı ve temel stil */
-  body {
-    margin: 0;
-    padding: 0;
-    background: #0a0a0a; /* karanlık sokak hissi */
-    color: #fff;
-    font-family: 'Courier New', monospace;
-    overflow: hidden;
-  }
-
-  /* Bisiklet elementi */
-  .bike {
-    position: absolute;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 50px;
-    background: linear-gradient(90deg, #005f99, #00aaff);
-    border-radius: 20px;
-    box-shadow: 0 0 20px #00aaff;
-    animation: pedal 2s infinite alternate;
-  }
-
-  @keyframes pedal {
-    0% { transform: translateX(-50%) rotate(0deg); }
-    50% { transform: translateX(-50%) rotate(3deg); }
-    100% { transform: translateX(-50%) rotate(-3deg); }
-  }
-
-  /* Sokak ışıkları efekti */
-  .streetlight {
-    position: absolute;
-    width: 10px;
-    height: 200px;
-    background: linear-gradient(to top, #fffae0, transparent);
-    bottom: 0;
-    left: 20%;
-    box-shadow: 0 0 50px #fffae0;
-    animation: flicker 1.5s infinite;
-  }
-
-  @keyframes flicker {
-    0%, 50%, 100% { opacity: 1; }
-    25%, 75% { opacity: 0.4; }
-  }
-
-  /* Sis efekti */
-  .fog {
-    position: absolute;
-    width: 200%;
-    height: 200%;
-    top: -50%;
-    left: -50%;
-    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
-    animation: drift 20s linear infinite;
-    pointer-events: none;
-  }
-
-  @keyframes drift {
-    0% { transform: translate(0,0); }
-    100% { transform: translate(200px, -100px); }
-  }
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karanlık Sokaklar | Gizem ve Gerilim</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@300;400;500&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #0a0a14;
+            color: #c8c8d4;
+            font-family: 'Rajdhani', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(70, 70, 120, 0.03) 0%, transparent 20%),
+                radial-gradient(circle at 90% 60%, rgba(40, 40, 80, 0.03) 0%, transparent 25%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+            border-bottom: 1px solid #2a2a45;
+            margin-bottom: 3rem;
+        }
+        
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #a83232;
+            text-shadow: 0 0 10px rgba(168, 50, 50, 0.4);
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #7a7a8c;
+            margin-bottom: 2rem;
+        }
+        
+        .scene {
+            height: 70vh;
+            position: relative;
+            margin: 3rem 0;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+        }
+        
+        .city-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #050510 0%, #1a1a2e 100%);
+        }
+        
+        .building {
+            position: absolute;
+            bottom: 0;
+            background-color: #121223;
+            width: 8%;
+            height: 40%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .building:nth-child(1) {
+            left: 5%;
+            height: 60%;
+        }
+        
+        .building:nth-child(2) {
+            left: 15%;
+            height: 75%;
+        }
+        
+        .building:nth-child(3) {
+            left: 25%;
+            height: 50%;
+        }
+        
+        .building:nth-child(4) {
+            left: 35%;
+            height: 65%;
+        }
+        
+        .building:nth-child(5) {
+            left: 65%;
+            height: 55%;
+        }
+        
+        .building:nth-child(6) {
+            left: 75%;
+            height: 70%;
+        }
+        
+        .building:nth-child(7) {
+            left: 85%;
+            height: 45%;
+        }
+        
+        .window {
+            position: absolute;
+            width: 60%;
+            height: 10px;
+            background-color: #2a2a45;
+            left: 20%;
+        }
+        
+        .rain {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(to bottom, transparent, rgba(50, 70, 120, 0.1) 40%, transparent 60%),
+                              url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><line x1="5" y1="0" x2="5" y2="10" stroke="rgba(90,120,180,0.3)" stroke-width="0.5"/></svg>');
+            animation: rainAnimation 1s linear infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes rainAnimation {
+            0% { background-position: 0 0, 0 0; }
+            100% { background-position: 0 20px, 0 10px; }
+        }
+        
+        .neon {
+            position: absolute;
+            width: 120px;
+            height: 40px;
+            background-color: rgba(168, 50, 50, 0.2);
+            color: #a83232;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            border: 1px solid #a83232;
+            box-shadow: 0 0 10px rgba(168, 50, 50, 0.4);
+            animation: flicker 3s infinite alternate;
+            z-index: 10;
+        }
+        
+        .neon:nth-child(1) {
+            top: 30%;
+            left: 20%;
+        }
+        
+        .neon:nth-child(2) {
+            top: 45%;
+            left: 70%;
+        }
+        
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                box-shadow: 0 0 10px rgba(168, 50, 50, 0.4),
+                            0 0 20px rgba(168, 50, 50, 0.3);
+                opacity: 1;
+            }
+            20%, 24%, 55% {
+                box-shadow: none;
+                opacity: 0.7;
+            }
+        }
+        
+        .reflection {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to top, rgba(40, 60, 120, 0.3), transparent);
+            opacity: 0.3;
+        }
+        
+        .content {
+            padding: 2rem;
+            background-color: rgba(10, 10, 20, 0.7);
+            border: 1px solid #2a2a45;
+            border-radius: 5px;
+            margin: 2rem 0;
+            position: relative;
+            z-index: 20;
+        }
+        
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: #a83232;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #9d9db0;
+        }
+        
+        .quote {
+            font-style: italic;
+            border-left: 3px solid #a83232;
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            color: #7a7a8c;
+        }
+        
+        .sound-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(168, 50, 50, 0.2);
+            color: #a83232;
+            border: 1px solid #a83232;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 500;
+            border-radius: 3px;
+            z-index: 100;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .sound-btn:hover {
+            background-color: rgba(168, 50, 50, 0.3);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid #2a2a45;
+            color: #5a5a70;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .scene {
+                height: 50vh;
+            }
+            
+            .building {
+                width: 12%;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>KARANLIK SOKAKLAR</h1>
+            <div class="subtitle">Gizem ve gerilimin buluştuğu kasvetli atmosfer</div>
+        </header>
+        
+        <div class="scene">
+            <div class="city-background">
+                <div class="building"><div class="window" style="top: 20%"></div><div class="window" style="top: 40%"></div><div class="window" style="top: 60%"></div></div>
+                <div class="building"><div class="window" style="top: 30%"></div><div class="window" style="top: 50%"></div></div>
+                <div class="building"><div class="window" style="top: 25%"></div><div class="window" style="top: 45%"></div></div>
+                <div class="building"><div class="window" style="top: 15%"></div><div class="window" style="top: 35%"></div><div class="window" style="top: 55%"></div></div>
+                <div class="building"><div class="window" style="top: 20%"></div><div class="window" style="top: 40%"></div><div class="window" style="top: 60%"></div></div>
+                <div class="building"><div class="window" style="top: 30%"></div><div class="window" style="top: 50%"></div></div>
+                <div class="building"><div class="window" style="top: 25%"></div><div class="window" style="top: 45%"></div></div>
+                
+                <div class="neon">OTEL</div>
+                <div class="neon">BAR</div>
+                
+                <div class="rain"></div>
+                <div class="reflection"></div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <h2>Gizem Dolu Gece</h2>
+            <p>Yağmurlu bir gecede, şehrin karanlık sokaklarında kaybolmuş hissedersiniz. Neon ışıkların titrek yansımaları ıslak asfaltta dans ederken, uzaktan gelen siren sesleri endişeyi artırır.</p>
+            
+            <p>Her köşe başında bilinmeyen bir tehdit, her gölgede çözülmemiş bir gizem yatar. İnsanlar arasındaki mesafeler hissedilir şekilde artar, yakınlaşmalar düşmanca ve şüphe doludur.</p>
+            
+            <div class="quote">
+                "Bu şehirde kimseye güvenmemeyi öğrendim. Her yüz bir maske, her söz bir tuzak."
+            </div>
+            
+            <p>Gece ilerledikçe gerilim artar. Sokak lambalarının yarattığı havuzlar aydınlık ve karanlık arasındaki sınırları belirler. Bilinmeyenin çekiciliği, tehlikenin heyecanıyla birleşir.</p>
+        </div>
+        
+        <button class="sound-btn" onclick="toggleSound()">Sesi Aç</button>
+        
+        <footer>
+            © 2023 Karanlık Sokaklar | Tüm hakları saklıdır.
+        </footer>
+    </div>
 
-<div class="bike"></div>
-<div class="streetlight" style="left:10%;"></div>
-<div class="streetlight" style="left:70%;"></div>
-<div class="fog"></div>
+    <audio id="ambience" loop>
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-rain-and-thunder-storm-2390.mp3" type="audio/mpeg">
+    </audio>
 
-<script>
-  // Gece sokak sesi ekleme (opsiyonel)
-  const audio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
-  audio.loop = true;
-  audio.volume = 0.1;
-  audio.play();
-
-  // Bisikleti ok tuşlarıyla hareket ettirme
-  const bike = document.querySelector('.bike');
-  let posX = window.innerWidth/2;
-
-  window.addEventListener('keydown', (e) => {
-    if(e.key === 'ArrowLeft') posX -= 20;
-    if(e.key === 'ArrowRight') posX += 20;
-    bike.style.left = posX + 'px';
-  });
-</script>
-
+    <script>
+        const ambience = document.getElementById('ambience');
+        const soundBtn = document.querySelector('.sound-btn');
+        let audioPlaying = false;
+        
+        function toggleSound() {
+            if (audioPlaying) {
+                ambience.pause();
+                soundBtn.textContent = 'Sesi Aç';
+            } else {
+                ambience.play();
+                soundBtn.textContent = 'Sesi Kapat';
+            }
+            audioPlaying = !audioPlaying;
+        }
+        
+        // Rastgele flaş efekti
+        function randomFlicker() {
+            const neons = document.querySelectorAll('.neon');
+            neons.forEach(neon => {
+                const delay = Math.random() * 3000;
+                setTimeout(() => {
+                    neon.style.animation = 'none';
+                    setTimeout(() => {
+                        neon.style.animation = 'flicker 3s infinite alternate';
+                    }, 100);
+                }, delay);
+            });
+            
+            setTimeout(randomFlicker, 5000);
+        }
+        
+        // Pencere ışıklarını rastgele yakıp söndür
+        function flickerWindows() {
+            const windows = document.querySelectorAll('.window');
+            windows.forEach(window => {
+                if (Math.random() > 0.7) {
+                    window.style.backgroundColor = Math.random() > 0.5 ? '#55557a' : '#2a2a45';
+                }
+            });
+            
+            setTimeout(flickerWindows, 1000);
+        }
+        
+        // Sayfa yüklendiğinde
+        window.addEventListener('load', () => {
+            randomFlicker();
+            flickerWindows();
+        });
+    </script>
 </body>
 </html>
