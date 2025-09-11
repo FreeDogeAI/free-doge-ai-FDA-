@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karanlık Sokaklar | Gizem ve Gerilim</title>
+    <title>Gizemli Figürler | Kasvet ve Sapkınlık</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@300;400;500&display=swap');
@@ -63,12 +63,13 @@
         
         .gallery-item {
             position: relative;
-            height: 300px;
+            height: 350px;
             overflow: hidden;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
+            background: #121212;
         }
         
         .gallery-item:hover {
@@ -76,16 +77,60 @@
             box-shadow: 0 8px 25px rgba(168, 50, 50, 0.3);
         }
         
-        .gallery-img {
+        .silhouette {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            filter: grayscale(60%) contrast(120%);
-            transition: filter 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
         }
         
-        .gallery-item:hover .gallery-img {
-            filter: grayscale(30%) contrast(130%);
+        .figure {
+            position: absolute;
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+        }
+        
+        /* Farklı silüet stilleri */
+        .figure-1 {
+            width: 180px;
+            height: 280px;
+            border-radius: 50% 50% 40% 40%;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 80% 100%, 80% 80%, 60% 90%, 40% 90%, 20% 80%, 20% 100%, 0% 100%);
+        }
+        
+        .figure-2 {
+            width: 160px;
+            height: 300px;
+            clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 70% 90%, 50% 100%, 30% 90%, 10% 100%, 0% 90%);
+            transform: skewX(-5deg);
+        }
+        
+        .figure-3 {
+            width: 200px;
+            height: 270px;
+            border-radius: 40% 40% 30% 30%;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 90% 90%, 80% 100%, 70% 90%, 30% 90%, 20% 100%, 10% 90%, 0% 100%);
+        }
+        
+        .figure-4 {
+            width: 170px;
+            height: 290px;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 80% 100%, 50% 85%, 20% 100%, 0% 75%, 0% 25%);
+        }
+        
+        .figure-5 {
+            width: 190px;
+            height: 310px;
+            clip-path: polygon(0% 15%, 15% 0%, 85% 0%, 100% 15%, 100% 85%, 80% 100%, 60% 90%, 40% 90%, 20% 100%, 0% 85%);
+        }
+        
+        .figure-6 {
+            width: 160px;
+            height: 280px;
+            clip-path: polygon(0% 0%, 100% 0%, 90% 30%, 100% 60%, 90% 100%, 60% 90%, 40% 90%, 10% 100%, 0% 60%, 10% 30%);
         }
         
         .gallery-overlay {
@@ -93,7 +138,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
             padding: 1.5rem;
             opacity: 0;
             transition: opacity 0.3s ease;
@@ -113,47 +158,6 @@
         .gallery-desc {
             font-size: 0.9rem;
             color: #c8c8d4;
-        }
-        
-        .character-section {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin: 3rem 0;
-            gap: 1.5rem;
-        }
-        
-        .character {
-            width: 200px;
-            text-align: center;
-        }
-        
-        .character-img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 5px;
-            filter: grayscale(80%) contrast(130%);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
-        }
-        
-        .character:hover .character-img {
-            filter: grayscale(40%) contrast(140%);
-            transform: scale(1.05);
-        }
-        
-        .character-name {
-            margin-top: 1rem;
-            font-family: 'Orbitron', sans-serif;
-            color: #a83232;
-            font-size: 1.1rem;
-        }
-        
-        .character-desc {
-            font-size: 0.9rem;
-            color: #7a7a8c;
-            margin-top: 0.5rem;
         }
         
         .quote-section {
@@ -219,101 +223,81 @@
             .gallery {
                 grid-template-columns: 1fr;
             }
-            
-            .character-section {
-                justify-content: center;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>KARANLIK SOKAKLAR</h1>
-            <div class="subtitle">Gizem ve gerilimin buluştuğu kasvetli atmosfer</div>
+            <h1>GÖLGE FİGÜRLER</h1>
+            <div class="subtitle">Yüzleri olmayan, sapkın ve kasvetli varlıklar</div>
         </header>
         
         <div class="gallery">
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Gizemli Adam" class="gallery-img">
+                <div class="silhouette">
+                    <div class="figure figure-1"></div>
+                </div>
                 <div class="gallery-overlay">
-                    <h3 class="gallery-title">Gizemli Yabancı</h3>
-                    <p class="gallery-desc">Sokakların gölgelerinde dolaşan, kimliği belirsiz bir figür</p>
+                    <h3 class="gallery-title">Gece Gözcüsü</h3>
+                    <p class="gallery-desc">Sokak köşelerinde bekleyen, kimliği belirsiz bir figür</p>
                 </div>
             </div>
             
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1517935706615-2717063c2225?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Yağmurlu Gece" class="gallery-img">
+                <div class="silhouette">
+                    <div class="figure figure-2"></div>
+                </div>
                 <div class="gallery-overlay">
-                    <h3 class="gallery-title">Yağmurlu Gece</h3>
-                    <p class="gallery-desc">Islak sokaklar ve neon ışıkların yansımaları</p>
+                    <h3 class="gallery-title">Eğik Gölge</h3>
+                    <p class="gallery-desc">Doğal olmayan bir açıyla eğilen, rahatsız edici bir varlık</p>
                 </div>
             </div>
             
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Karanlık Sokak" class="gallery-img">
+                <div class="silhouette">
+                    <div class="figure figure-3"></div>
+                </div>
                 <div class="gallery-overlay">
-                    <h3 class="gallery-title">Karanlık Sokak</h3>
-                    <p class="gallery-desc">Şehrin bilinmeyen köşelerinde kaybolmak</p>
+                    <h3 class="gallery-title">Boşluk</h3>
+                    <p class="gallery-desc">Yüzü olmayan, insan formunda bir hiçlik</p>
                 </div>
             </div>
-        </div>
-        
-        <div class="character-section">
-            <div class="character">
-                <img src="https://images.unsplash.com/photo-1508341591423-4347099e1f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Gizemli Kadın" class="character-img">
-                <h3 class="character-name">Elara</h3>
-                <p class="character-desc">Gece kulübü şarkıcısı, sırlarla dolu</p>
+            
+            <div class="gallery-item">
+                <div class="silhouette">
+                    <div class="figure figure-4"></div>
+                </div>
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Elmas Şekil</h3>
+                    <p class="gallery-desc">Keskin hatlara sahip, doğaüstü bir form</p>
+                </div>
             </div>
             
-            <div class="character">
-                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Dedektif" class="character-img">
-                <h3 class="character-name">Kaan</h3>
-                <p class="character-desc">Geçmişiyle hesaplaşan bir dedektif</p>
+            <div class="gallery-item">
+                <div class="silhouette">
+                    <div class="figure figure-5"></div>
+                </div>
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Kutu Adam</h3>
+                    <p class="gallery-desc">Köşeli ve sert hatlara sahip, mekanik bir varlık</p>
+                </div>
             </div>
             
-            <div class="character">
-                <img src="https://images.unsplash.com/photo-1491349174775-aaafddd81942?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Yabancı" class="character-img">
-                <h3 class="character-name">Mert</h3>
-                <p class="character-desc">Şehre yeni gelmiş, gizli bir gündemi var</p>
-            </div>
-            
-            <div class="character">
-                <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Casus" class="character-img">
-                <h3 class="character-name">Zeynep</h3>
-                <p class="character-desc">Hiçbir şey göründüğü gibi değil</p>
+            <div class="gallery-item">
+                <div class="silhouette">
+                    <div class="figure figure-6"></div>
+                </div>
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Bükülmüş Olan</h3>
+                    <p class="gallery-desc">Doğal insan formuna meydan okuyan bir şekil</p>
+                </div>
             </div>
         </div>
         
         <div class="quote-section">
-            <p class="quote">"Bu şehirde herkesin bir sırrı var. Bazı sırlar diğerlerinden daha karanlık, bazı yalanlar diğerlerinden daha büyük."</p>
-            <p class="author">- İsimsiz Bir Yabancı</p>
-        </div>
-        
-        <div class="gallery">
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1513584684374-8bab748fbf90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Noir Sokak" class="gallery-img">
-                <div class="gallery-overlay">
-                    <h3 class="gallery-title">Noir Sokak</h3>
-                    <p class="gallery-desc">Gece her şeyi örter, gerçeği değil</p>
-                </div>
-            </div>
-            
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Bulvar" class="gallery-img">
-                <div class="gallery-overlay">
-                    <h3 class="gallery-title">Bulvar</h3>
-                    <p class="gallery-desc">Işıklar parlar ama aydınlatmaz</p>
-                </div>
-            </div>
-            
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Son Buluşma" class="gallery-img">
-                <div class="gallery-overlay">
-                    <h3 class="gallery-title">Son Buluşma</h3>
-                    <p class="gallery-desc">Her şey bir buluşmayla başladı</p>
-                </div>
-            </div>
+            <p class="quote">"Onların yüzleri yoktu, sadece boşluk vardı. Ama yine de seni izlediklerini hissediyordun."</p>
+            <p class="author">- İsimsiz Bir Gözlemci</p>
         </div>
         
         <button class="sound-btn" onclick="toggleSound()">
@@ -321,12 +305,12 @@
         </button>
         
         <footer>
-            © 2023 Karanlık Sokaklar | Tüm hakları saklıdır.
+            © 2023 Gölge Figürler | Tüm hakları saklıdır.
         </footer>
     </div>
 
     <audio id="ambience" loop>
-        <source src="https://assets.mixkit.co/sfx/preview/mixkit-rain-and-thunder-storm-2390.mp3" type="audio/mpeg">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-crowd-ambience-loop-428.mp3" type="audio/mpeg">
     </audio>
 
     <script>
@@ -346,24 +330,11 @@
             audioPlaying = !audioPlaying;
         }
         
-        // Görünüm efekti için
-        document.addEventListener('DOMContentLoaded', function() {
-            const items = document.querySelectorAll('.gallery-item, .character');
-            
-            items.forEach(item => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(20px)';
-                item.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            });
-            
-            setTimeout(() => {
-                items.forEach((item, index) => {
-                    setTimeout(() => {
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
-                    }, 100 * index);
-                });
-            }, 500);
+        // Figürlere rastgele hareket efekti
+        document.querySelectorAll('.figure').forEach(figure => {
+            setInterval(() => {
+                figure.style.transform = `translate(${Math.random() * 10 - 5}px, ${Math.random() * 10 - 5}px)`;
+            }, 2000);
         });
     </script>
 </body>
