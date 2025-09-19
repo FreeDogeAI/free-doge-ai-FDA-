@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BB/USDT Trading Dashboard</title>
+    <title>FDAI - Free Doge AI Canlı Grafik</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,9 +15,10 @@
         }
         
         body {
-            background-color: #0e1729;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
             color: #eaecef;
             padding: 20px;
+            min-height: 100vh;
         }
         
         .container {
@@ -29,274 +31,242 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #253351;
+            padding: 15px;
+            background: rgba(16, 26, 35, 0.8);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
         
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
         
-        .logo h1 {
-            font-size: 24px;
-            font-weight: 600;
-        }
-        
-        .logo span {
+        .logo-icon {
+            font-size: 32px;
             color: #f0b90b;
         }
         
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 20px;
-        }
-        
-        nav a {
-            color: #8494b8;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        nav a:hover {
-            color: #eaecef;
-        }
-        
-        .dashboard {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        
-        .panel {
-            background-color: #172036;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        .panel-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .panel-title {
-            font-size: 18px;
-            font-weight: 600;
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(45deg, #f0b90b, #0ecb81);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         .price-info {
             display: flex;
-            align-items: center;
-            gap: 10px;
+            flex-direction: column;
+            align-items: flex-end;
         }
         
         .current-price {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 700;
-        }
-        
-        .price-change {
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-weight: 600;
-        }
-        
-        .positive {
-            background-color: #0ecb81;
-            color: #000;
-        }
-        
-        .negative {
-            background-color: #f6465d;
-            color: #fff;
-        }
-        
-        .price-stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-top: 15px;
-        }
-        
-        .stat {
-            background-color: #1e2b48;
-            padding: 12px;
-            border-radius: 8px;
-        }
-        
-        .stat-label {
-            font-size: 12px;
-            color: #8494b8;
-            margin-bottom: 5px;
-        }
-        
-        .stat-value {
-            font-size: 16px;
-            font-weight: 600;
-        }
-        
-        .chart-container {
-            height: 300px;
-            margin-top: 20px;
-            position: relative;
-        }
-        
-        .chart {
-            background: linear-gradient(180deg, #1e2b48 0%, #172036 100%);
-            height: 100%;
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .chart-line {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300" fill="none"><path d="M0,250 C150,200 350,50 500,150 C650,250 850,100 1000,200" stroke="%230ecb81" stroke-width="3" fill="none"/></svg>') no-repeat;
-            background-size: 100% 100%;
-        }
-        
-        .order-book {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-        
-        .order-column h3 {
-            font-size: 14px;
-            margin-bottom: 10px;
-            color: #8494b8;
-        }
-        
-        .order-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        
-        .order-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            font-size: 13px;
-            padding: 5px 0;
-        }
-        
-        .order-price {
-            text-align: left;
-        }
-        
-        .order-amount {
-            text-align: right;
-            color: #8494b8;
-        }
-        
-        .bids .order-price {
             color: #0ecb81;
         }
         
-        .asks .order-price {
-            color: #f6465d;
+        .price-change {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            background: linear-gradient(45deg, #0ecb81, #027a4e);
+            color: #000;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
         
-        .trade-form {
-            display: flex;
-            flex-direction: column;
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
+            margin-bottom: 20px;
         }
         
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+        .stat-card {
+            background: rgba(16, 26, 35, 0.8);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
-        .form-group label {
+        .stat-label {
             font-size: 14px;
             color: #8494b8;
+            margin-bottom: 8px;
         }
         
-        .form-group input {
-            background-color: #1e2b48;
-            border: 1px solid #253351;
-            border-radius: 6px;
-            padding: 12px;
-            color: #eaecef;
-            font-size: 16px;
-        }
-        
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-        
-        .button-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 10px;
-        }
-        
-        button {
-            padding: 12px;
-            border-radius: 6px;
-            border: none;
+        .stat-value {
+            font-size: 20px;
             font-weight: 600;
-            cursor: pointer;
-            transition: opacity 0.3s;
+            color: #f0b90b;
         }
         
-        button:hover {
-            opacity: 0.9;
+        .chart-container {
+            background: rgba(16, 26, 35, 0.8);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
         
-        .buy-btn {
-            background-color: #0ecb81;
-            color: #000;
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
         }
         
-        .sell-btn {
-            background-color: #f6465d;
-            color: #fff;
+        .chart-title {
+            font-size: 20px;
+            font-weight: 600;
         }
         
         .time-filters {
             display: flex;
             gap: 10px;
-            margin-top: 15px;
         }
         
         .time-btn {
-            padding: 6px 12px;
-            background-color: #1e2b48;
+            padding: 8px 16px;
+            background: rgba(30, 43, 72, 0.8);
             color: #8494b8;
-            border-radius: 4px;
-            font-size: 12px;
+            border-radius: 8px;
+            font-size: 14px;
             font-weight: 500;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
         
         .time-btn.active {
-            background-color: #f0b90b;
+            background: linear-gradient(45deg, #f0b90b, #c9940e);
             color: #000;
         }
         
+        .chart-wrapper {
+            height: 400px;
+            position: relative;
+        }
+        
+        .pump-animation {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(14, 203, 129, 0.2);
+            color: #0ecb81;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+        
+        .news-container {
+            background: rgba(16, 26, 35, 0.8);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .news-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .news-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid #253351;
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        
+        .news-icon {
+            font-size: 20px;
+            color: #f0b90b;
+        }
+        
+        .news-content {
+            flex: 1;
+        }
+        
+        .news-content h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .news-content p {
+            font-size: 14px;
+            color: #8494b8;
+        }
+        
+        .news-time {
+            font-size: 12px;
+            color: #0ecb81;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: #8494b8;
+            font-size: 14px;
+        }
+        
         @media (max-width: 768px) {
-            .dashboard {
+            header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .price-info {
+                align-items: center;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .chart-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .time-filters {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stats-grid {
                 grid-template-columns: 1fr;
             }
             
-            .price-stats {
-                grid-template-columns: repeat(2, 1fr);
+            .time-btn {
+                padding: 6px 12px;
+                font-size: 12px;
             }
         }
     </style>
@@ -305,168 +275,215 @@
     <div class="container">
         <header>
             <div class="logo">
-                <i class="fas fa-chart-line"></i>
-                <h1>BB/<span>USDT</span> Trading Dashboard</h1>
+                <i class="fas fa-dog logo-icon"></i>
+                <h1>FDAI - Free Doge AI</h1>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#">Markets</a></li>
-                    <li><a href="#">Spot</a></li>
-                    <li><a href="#">Futures</a></li>
-                    <li><a href="#">Wallet</a></li>
-                </ul>
-            </nav>
+            <div class="price-info">
+                <div class="current-price">0.0000000080 USDT</div>
+                <div class="price-change">
+                    <i class="fas fa-arrow-up"></i>
+                    +200.45%
+                </div>
+            </div>
         </header>
         
-        <div class="dashboard">
-            <div class="panel">
-                <div class="panel-header">
-                    <div class="price-info">
-                        <div class="current-price">0.5915</div>
-                        <div class="price-change positive">+2.56%</div>
-                    </div>
-                    <div class="time-filters">
-                        <div class="time-btn">1h</div>
-                        <div class="time-btn">4h</div>
-                        <div class="time-btn active">1d</div>
-                        <div class="time-btn">1w</div>
-                    </div>
-                </div>
-                
-                <div class="chart-container">
-                    <div class="chart">
-                        <div class="chart-line"></div>
-                    </div>
-                </div>
-                
-                <div class="price-stats">
-                    <div class="stat">
-                        <div class="stat-label">24h High</div>
-                        <div class="stat-value">0.5982</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-label">24h Low</div>
-                        <div class="stat-value">0.5723</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-label">24h Volume (BB)</div>
-                        <div class="stat-value">128.5M</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-label">24h Volume (USDT)</div>
-                        <div class="stat-value">75.8M</div>
-                    </div>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">24s Yüksek</div>
+                <div class="stat-value">0.0000000082</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">24s Düşük</div>
+                <div class="stat-value">0.0000000025</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">24s Hacim (FDAI)</div>
+                <div class="stat-value">325.45B</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">24s Hacim (USDT)</div>
+                <div class="stat-value">2.18M</div>
+            </div>
+        </div>
+        
+        <div class="chart-container">
+            <div class="chart-header">
+                <div class="chart-title">FDAI/USDT Canlı Grafik</div>
+                <div class="time-filters">
+                    <div class="time-btn">24s</div>
+                    <div class="time-btn active">1g</div>
+                    <div class="time-btn">7g</div>
+                    <div class="time-btn">1a</div>
+                    <div class="time-btn">1y</div>
                 </div>
             </div>
-            
-            <div class="panel">
-                <div class="panel-header">
-                    <div class="panel-title">Order Book</div>
-                </div>
-                
-                <div class="order-book">
-                    <div class="order-column bids">
-                        <h3>Bids (Buy)</h3>
-                        <div class="order-list">
-                            <div class="order-row">
-                                <div class="order-price">0.5914</div>
-                                <div class="order-amount">12,458</div>
-                            </div>
-                            <div class="order-row">
-                                <div class="order-price">0.5913</div>
-                                <div class="order-amount">8,742</div>
-                            </div>
-                            <div class="order-row">
-                                <div class="order-price">0.5912</div>
-                                <div class="order-amount">23,651</div>
-                            </div>
-                            <div class="order-row">
-                                <div class="order-price">0.5911</div>
-                                <div class="order-amount">15,328</div>
-                            </div>
-                            <div class="order-row">
-                                <div class="order-price">0.5910</div>
-                                <div class="order-amount">9,876</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="order-column asks">
-                        <h3>Asks (Sell)</h3>
-                        <div class="order-list">
-                            <div class="order-row">
-                                <div class="order-price">0.5915</div>
-                                <div class="order-amount">18,345</div>
-                            </div>
-                            <div class="order-row">
-                                <div class="order-price">0.5916</div>
-                                <div class="order-amount">12,654</div>
-                            </div>
-                            <div class="order-row">
-                                <div class="order-price">0.5917</div>
-                                <div class="order-amount">9,832</div>
-                            </div>
-                            <div class="order-row">
-                                <div class="order-price">0.5918</div>
-                                <div class="order-amount">14,567</div>
-                            </div>
-                            <div class="order-row">
-                                <div class="order-price">0.5919</div>
-                                <div class="order-amount">7,654</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="trade-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="price">Price (USDT)</label>
-                            <input type="text" id="price" value="0.5915">
-                        </div>
-                        <div class="form-group">
-                            <label for="amount">Amount (BB)</label>
-                            <input type="text" id="amount" value="0">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="total">Total (USDT)</label>
-                        <input type="text" id="total" value="0">
-                    </div>
-                    
-                    <div class="button-group">
-                        <button class="buy-btn">Buy BB</button>
-                        <button class="sell-btn">Sell BB</button>
-                    </div>
+            <div class="chart-wrapper">
+                <canvas id="priceChart"></canvas>
+                <div class="pump-animation">
+                    <i class="fas fa-bolt"></i>
+                    PUMP +200%
                 </div>
             </div>
         </div>
+        
+        <div class="news-container">
+            <div class="news-title">
+                <i class="fas fa-newspaper"></i>
+                Son FDAI Haberleri
+            </div>
+            <div class="news-item">
+                <div class="news-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="news-content">
+                    <h3>FDAI Büyük Yükselişte!</h3>
+                    <p>Free Doge AI son 24 saatte %200'ün üzerinde değer kazandı</p>
+                </div>
+                <div class="news-time">10 dk önce</div>
+            </div>
+            <div class="news-item">
+                <div class="news-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <div class="news-content">
+                    <h3>Yeni Borsa Listelemesi</h3>
+                    <p>FDAI önümüzdeki hafta büyük bir borsada listelenecek</p>
+                </div>
+                <div class="news-time">1 saat önce</div>
+            </div>
+            <div class="news-item">
+                <div class="news-icon">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <div class="news-content">
+                    <h3>Büyük Duyuru Yaklaşıyor</h3>
+                    <p>Geliştiriciler önümüzdeki günlerde büyük ortaklık duyuracak</p>
+                </div>
+                <div class="news-time">3 saat önce</div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>FDAI - Free Doge AI © 2023 | Canlı veriler simüle edilmiştir</p>
+        </footer>
     </div>
 
     <script>
-        // Simple interactivity for the trading form
-        const priceInput = document.getElementById('price');
-        const amountInput = document.getElementById('amount');
-        const totalInput = document.getElementById('total');
+        // Grafik oluşturma
+        const ctx = document.getElementById('priceChart').getContext('2d');
         
-        function calculateTotal() {
-            const price = parseFloat(priceInput.value) || 0;
-            const amount = parseFloat(amountInput.value) || 0;
-            totalInput.value = (price * amount).toFixed(4);
+        // Rastgele veri noktaları oluştur (pump etkisi için)
+        let data = [];
+        let value = 0.0000000025;
+        
+        for (let i = 0; i < 100; i++) {
+            // İlk 70 veri noktası için yavaş artış
+            if (i < 70) {
+                value += (Math.random() * 0.0000000001);
+            } 
+            // Son 30 veri noktası için ani yükseliş (pump)
+            else {
+                value += (Math.random() * 0.0000000005);
+            }
+            data.push(value);
         }
         
-        priceInput.addEventListener('input', calculateTotal);
-        amountInput.addEventListener('input', calculateTotal);
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: Array.from({length: 100}, (_, i) => i + 1),
+                datasets: [{
+                    label: 'FDAI/USDT',
+                    data: data,
+                    borderColor: '#0ecb81',
+                    backgroundColor: 'rgba(14, 203, 129, 0.1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 0,
+                    pointHoverRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                            label: function(context) {
+                                return `FDAI/USDT: ${context.parsed.y.toFixed(10)}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.05)'
+                        },
+                        ticks: {
+                            color: '#8494b8'
+                        }
+                    },
+                    y: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.05)'
+                        },
+                        ticks: {
+                            color: '#8494b8',
+                            callback: function(value) {
+                                return value.toFixed(10);
+                            }
+                        }
+                    }
+                },
+                interaction: {
+                    mode: 'index',
+                    intersect: false
+                }
+            }
+        });
         
-        // Time filter buttons
-        const timeButtons = document.querySelectorAll('.time-btn');
-        timeButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                timeButtons.forEach(btn => btn.classList.remove('active'));
+        // Zaman filtreleri için tıklama olayları
+        document.querySelectorAll('.time-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
+                
+                // Burada gerçek uygulamada zaman aralığına göre veri güncellemesi yapılır
             });
         });
+        
+        // Canlı veri simülasyonu
+        setInterval(() => {
+            // Mevcut veriye yeni noktalar ekle
+            const lastValue = chart.data.datasets[0].data[chart.data.datasets[0].data.length - 1];
+            let newValue = lastValue + (Math.random() * 0.0000000001);
+            
+            // Bazen büyük pump'lar simüle et
+            if (Math.random() > 0.95) {
+                newValue = lastValue * (1 + (Math.random() * 0.1));
+            }
+            
+            chart.data.labels.push(chart.data.labels.length + 1);
+            chart.data.datasets[0].data.push(newValue);
+            
+            // Eski veri noktalarını kaldır
+            if (chart.data.labels.length > 100) {
+                chart.data.labels.shift();
+                chart.data.datasets[0].data.shift();
+            }
+            
+            chart.update('quiet');
+            
+            // Fiyatı güncelle
+            document.querySelector('.current-price').textContent = newValue.toFixed(10) + ' USDT';
+        }, 2000);
     </script>
 </body>
-    </html>
+        </html>
