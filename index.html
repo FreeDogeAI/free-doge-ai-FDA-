@@ -50,13 +50,29 @@
             margin-bottom: 50px;
         }
 
-        .message {
-            font-size: 3.5rem;
-            font-weight: bold;
-            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+        .stars-message {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
             margin-bottom: 20px;
-            letter-spacing: 2px;
-            animation: pulse 2s infinite;
+        }
+
+        .star {
+            font-size: 2.5rem;
+            color: #ffff00;
+            text-shadow: 0 0 10px #ffff00, 0 0 20px #ffa500;
+            opacity: 0;
+            animation: star-appear 2s forwards, star-twinkle 3s infinite;
+            transition: transform 0.3s;
+        }
+
+        .star:hover {
+            transform: scale(1.3) rotate(15deg);
+        }
+
+        .space {
+            width: 20px;
         }
 
         .subtitle {
@@ -64,6 +80,7 @@
             color: #a0a0ff;
             text-shadow: 0 0 5px #00ffff;
             margin-top: 10px;
+            animation: pulse 2s infinite;
         }
 
         .hearts {
@@ -73,6 +90,31 @@
             font-size: 1.5rem;
             color: #ff69b4;
             animation: float 3s ease-in-out infinite;
+        }
+
+        .music-control {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 3;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s;
+        }
+
+        .music-control:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
         }
 
         @keyframes pulse {
@@ -85,32 +127,15 @@
             50% { transform: translateY(-10px); }
         }
 
-        .stars-container {
-            position: absolute;
-            top: 20%;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            z-index: 2;
-        }
-
-        .stars {
-            display: flex;
-            gap: 5px;
-        }
-
-        .star {
-            font-size: 2rem;
-            color: #ffff00;
-            text-shadow: 0 0 10px #ffff00, 0 0 20px #ffa500;
-            opacity: 0;
-            animation: star-appear 3s forwards;
-        }
-
         @keyframes star-appear {
             to {
                 opacity: 1;
             }
+        }
+
+        @keyframes star-twinkle {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
         }
 
         .footer {
@@ -129,14 +154,12 @@
     <div class="container">
         <div id="canvas-container"></div>
         
-        <div class="stars-container">
-            <div class="stars" id="stars"></div>
-        </div>
-        
         <div class="message-container">
-            <div class="message">Ali Seni Çok Seviyorum</div>
+            <div class="stars-message" id="stars-message"></div>
             <div class="subtitle">Yıldızlar Kalbimde Parlıyor</div>
         </div>
+        
+        <button class="music-control" id="music-control">♪</button>
         
         <div class="hearts">❤️ ❤️ ❤️</div>
         
@@ -145,19 +168,58 @@
         </div>
     </div>
 
+    <audio id="background-music" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-a-very-happy-christmas-897.mp3" type="audio/mpeg">
+    </audio>
+
     <script>
-        // Yıldız animasyonu
-        const message = "Ali Seni Çok Seviyorum";
-        const starsContainer = document.getElementById('stars');
+        // Yıldızlardan oluşan mesaj
+        const message = "ALİ SENİ ÇOK SEVİYORUM";
+        const starsContainer = document.getElementById('stars-message');
         
         // Her harf için yıldız oluştur
         for (let i = 0; i < message.length; i++) {
-            const star = document.createElement('span');
-            star.className = 'star';
-            star.textContent = '★';
-            star.style.animationDelay = `${i * 0.2}s`;
-            starsContainer.appendChild(star);
+            if (message[i] === ' ') {
+                // Boşluk için özel bir div
+                const space = document.createElement('div');
+                space.className = 'space';
+                starsContainer.appendChild(space);
+            } else {
+                // Harf için yıldız
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.textContent = '★';
+                star.style.animationDelay = `${i * 0.15}s`;
+                starsContainer.appendChild(star);
+            }
         }
+
+        // Müzik kontrolü
+        const music = document.getElementById('background-music');
+        const musicControl = document.getElementById('music-control');
+        let isPlaying = false;
+
+        musicControl.addEventListener('click', function() {
+            if (isPlaying) {
+                music.pause();
+                musicControl.textContent = '♪';
+            } else {
+                music.play().catch(e => {
+                    console.log("Otomatik müzik çalma engellendi, lütfen butona tıklayın");
+                });
+                musicControl.textContent = '❚❚';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        // Kullanıcı etkileşimi sonrası müziği başlat
+        document.body.addEventListener('click', function() {
+            if (!isPlaying) {
+                music.play().catch(e => console.log("Müzik çalınamadı"));
+                isPlaying = true;
+                musicControl.textContent = '❚❚';
+            }
+        }, { once: true });
 
         // Three.js ile neon kalp animasyonu
         let scene, camera, renderer, particles, particleSystem;
