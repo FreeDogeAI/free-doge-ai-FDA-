@@ -63,7 +63,7 @@
             color: #ffff00;
             text-shadow: 0 0 10px #ffff00, 0 0 20px #ffa500;
             opacity: 0;
-            animation: star-appear 2s forwards, star-twinkle 3s infinite;
+            animation: star-appear 2s forwards, star-twinkle 3s infinite, wave 4s ease-in-out infinite;
             transition: transform 0.3s;
         }
 
@@ -81,6 +81,57 @@
             text-shadow: 0 0 5px #00ffff;
             margin-top: 10px;
             animation: pulse 2s infinite;
+        }
+
+        .flags-container {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            z-index: 2;
+        }
+
+        .flag {
+            width: 120px;
+            height: 80px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            animation: float 6s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .flag-kurdistan {
+            background: linear-gradient(to bottom, #ff0000, blue, #ff0000);
+            background-size: 100% 300%;
+            animation: kurdistan-wave 5s infinite;
+        }
+
+        .flag-azerbaijan {
+            background: linear-gradient(to bottom, #00B5E2, #ED1C24, #00B5E2, #ED1C24, #00B5E2);
+            background-size: 100% 500%;
+            animation: azerbaijan-wave 5s infinite;
+        }
+
+        .flag-moon {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: white;
+            border-radius: 50%;
+            top: 25px;
+            left: 20px;
+        }
+
+        .flag-star {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: white;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            top: 25px;
+            right: 20px;
         }
 
         .hearts {
@@ -138,6 +189,23 @@
             50% { transform: scale(1.2); opacity: 0.8; }
         }
 
+        @keyframes wave {
+            0%, 100% { transform: translateY(0px); }
+            25% { transform: translateY(-10px); }
+            50% { transform: translateY(5px); }
+            75% { transform: translateY(-5px); }
+        }
+
+        @keyframes kurdistan-wave {
+            0%, 100% { background-position: 0% 0%; }
+            50% { background-position: 0% 100%; }
+        }
+
+        @keyframes azerbaijan-wave {
+            0%, 100% { background-position: 0% 0%; }
+            50% { background-position: 0% 100%; }
+        }
+
         .footer {
             position: absolute;
             bottom: 10px;
@@ -154,9 +222,19 @@
     <div class="container">
         <div id="canvas-container"></div>
         
+        <div class="flags-container">
+            <div class="flag flag-kurdistan">
+                <div class="flag-sun"></div>
+            </div>
+            <div class="flag flag-azerbaijan">
+                <div class="flag-moon"></div>
+                <div class="flag-star"></div>
+            </div>
+        </div>
+        
         <div class="message-container">
             <div class="stars-message" id="stars-message"></div>
-            <div class="subtitle">Yıldızlar Kalbimde Parlıyor</div>
+            <div class="subtitle">Kürdistan ve Azerbaycan Bir Arada</div>
         </div>
         
         <button class="music-control" id="music-control">♪</button>
@@ -189,7 +267,7 @@
                 const star = document.createElement('div');
                 star.className = 'star';
                 star.textContent = '★';
-                star.style.animationDelay = `${i * 0.15}s`;
+                star.style.animationDelay = `${i * 0.15}s, ${i * 0.1}s, ${i * 0.2}s`;
                 starsContainer.appendChild(star);
             }
         }
@@ -250,10 +328,18 @@
                 positions[i * 3 + 1] = heartPos.y;
                 positions[i * 3 + 2] = heartPos.z;
                 
-                // Renkleri ayarla (pembe ve mor tonları)
-                colors[i * 3] = Math.random() * 0.5 + 0.5;     // R
-                colors[i * 3 + 1] = Math.random() * 0.3 + 0.2; // G
-                colors[i * 3 + 2] = Math.random() * 0.5 + 0.5; // B
+                // Renkleri ayarla (Kürdistan ve Azerbaycan renkleri)
+                if (i % 2 === 0) {
+                    // Kürdistan renkleri (kırmızı, beyaz, yeşil)
+                    colors[i * 3] = Math.random() * 0.5 + 0.5; // Kırmızı
+                    colors[i * 3 + 1] = Math.random() * 0.3;   // Yeşil
+                    colors[i * 3 + 2] = Math.random() * 0.3;   // Mavi
+                } else {
+                    // Azerbaycan renkleri (mavi, kırmızı, yeşil)
+                    colors[i * 3] = Math.random() * 0.3;       // Kırmızı
+                    colors[i * 3 + 1] = Math.random() * 0.3;   // Yeşil
+                    colors[i * 3 + 2] = Math.random() * 0.5 + 0.5; // Mavi
+                }
             }
             
             particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
