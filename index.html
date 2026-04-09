@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>26 Şubat vs 9 Nisan 2026 - Tahlil Karşılaştırma | 20 Haziran Projesi</title>
+    <title>20 Haziran Projesi - Tahlil Takvimi | Eylül 2025 - Nisan 2026</title>
     <style>
         * {
             margin: 0;
@@ -11,8 +11,8 @@
             box-sizing: border-box;
         }
         body {
-            background: linear-gradient(135deg, #e9f0f5 0%, #d9e3ec 100%);
-            font-family: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #eef2f7 0%, #dce5ed 100%);
+            font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
             padding: 30px 20px;
             color: #1a2c3e;
         }
@@ -21,13 +21,12 @@
             margin: 0 auto;
             background: #ffffff;
             border-radius: 32px;
-            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.25);
+            box-shadow: 0 30px 45px -15px rgba(0,0,0,0.2);
             overflow-x: auto;
-            backdrop-filter: blur(2px);
         }
         .header {
-            background: #0f2b3d;
-            padding: 24px 28px;
+            background: #0a2a3b;
+            padding: 22px 28px;
             border-radius: 32px 32px 0 0;
             color: white;
         }
@@ -38,98 +37,82 @@
             margin-bottom: 8px;
         }
         .header p {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             opacity: 0.85;
             display: flex;
-            align-items: center;
-            gap: 20px;
             flex-wrap: wrap;
+            gap: 12px;
         }
         .badge {
-            background: #2c5a7a;
-            padding: 6px 14px;
+            background: #2c6b8f;
+            padding: 5px 14px;
             border-radius: 40px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 500;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.85rem;
-            min-width: 1000px;
+            min-width: 1200px;
         }
         th {
-            background: #f0f6fa;
-            color: #0f2b3d;
-            padding: 18px 12px;
+            background: #eef3f8;
+            color: #1a4e6b;
+            padding: 18px 10px;
             font-weight: 700;
-            font-size: 0.9rem;
-            border-bottom: 2px solid #cbdde6;
+            border-bottom: 2px solid #caddf0;
             text-align: center;
         }
         td {
-            padding: 14px 12px;
+            padding: 12px 8px;
             border-bottom: 1px solid #e2edf2;
             vertical-align: middle;
             text-align: center;
         }
         .param {
             font-weight: 700;
-            background-color: #fafeff;
+            background-color: #f7fafd;
             text-align: left;
             position: sticky;
             left: 0;
             background: #fff;
-            box-shadow: 2px 0 5px -2px rgba(0,0,0,0.05);
+            box-shadow: 2px 0 6px -2px rgba(0,0,0,0.05);
         }
-        .ref-cell {
-            font-size: 0.75rem;
-            color: #4a627a;
-            background: #f9fbfd;
-        }
-        .desc-cell {
+        .desc {
             text-align: left;
-            font-size: 0.8rem;
-            color: #2c4c6c;
+            font-size: 0.78rem;
+            color: #2c5a7a;
             line-height: 1.4;
         }
-        .up {
-            color: #1e7b4b;
-            font-weight: 700;
-            background: #e3f7ec;
+        .ref-cell {
+            font-size: 0.7rem;
+            color: #4f6f8f;
+            background: #fafeff;
+        }
+        .up-good {
+            color: #1b7b4b;
+            background: #e0f7ea;
+            font-weight: 600;
             border-radius: 20px;
             display: inline-block;
-            padding: 4px 12px;
+            padding: 4px 10px;
         }
-        .down {
-            color: #b13e3e;
-            font-weight: 700;
-            background: #ffe6e6;
+        .down-good {
+            color: #b33b2c;
+            background: #ffe5e3;
+            font-weight: 600;
             border-radius: 20px;
             display: inline-block;
-            padding: 4px 12px;
+            padding: 4px 10px;
         }
-        .stable {
-            color: #5a626e;
-            background: #eef2f5;
-            border-radius: 20px;
-            display: inline-block;
-            padding: 4px 12px;
+        .warning-bg {
+            background: #fff1e0;
+            color: #c0671a;
+            font-weight: 600;
         }
-        .high {
-            background: #ffebeb;
-            color: #c23d3d;
-            font-weight: 700;
-            border-radius: 20px;
-            padding: 4px 12px;
-        }
-        .good {
-            background: #e1f7e8;
-            color: #11734c;
-        }
-        .warning {
-            background: #fff0db;
-            color: #c46b1a;
+        .normal {
+            background: #eef3f8;
         }
         .footer-note {
             background: #eef4f9;
@@ -140,238 +123,209 @@
             color: #1e405b;
         }
         .footer-note strong {
-            color: #0c4e6e;
+            color: #0a5a7c;
         }
         @media (max-width: 700px) {
-            .header h1 { font-size: 1.4rem; }
-            td, th { padding: 10px 6px; font-size: 0.75rem; }
-            .desc-cell { font-size: 0.7rem; }
+            .header h1 { font-size: 1.3rem; }
+            td, th { padding: 8px 5px; font-size: 0.72rem; }
+            .desc { font-size: 0.68rem; }
         }
     </style>
 </head>
 <body>
 <div class="container">
     <div class="header">
-        <h1>📊 26 Şubat ⇄ 9 Nisan 2026</h1>
-        <p><span class="badge">🔬 20 HAZİRAN PROJESİ – KRİTİK VERİLER</span> 
-        <span class="badge">🩸 Ferritin +16 puan &nbsp;|&nbsp; 🧬 B12 2 katı &nbsp;|&nbsp; 🔥 CRP yüksek</span></p>
+        <h1>📆 20 Haziran Projesi – Tahlil Takvimi</h1>
+        <p><span class="badge">🩸 Eylül 2025 → Nisan 2026</span>
+        <span class="badge">⚡ Ferritin + artış &nbsp;|&nbsp; 🧬 B12 rekor &nbsp;|&nbsp; 🔥 CRP sinyali</span></p>
     </div>
 
     <table>
         <thead>
             <tr>
-                <th>Parametre</th>
-                <th>26 Şubat 2026</th>
-                <th>9 Nisan 2026</th>
+                <th>Parametre & Açıklama</th>
+                <th>📅 Eylül 2025<br><span style="font-weight:400;">(5 Eylül)</span></th>
+                <th>📅 Aralık 2025<br><span style="font-weight:400;">(16 Aralık)</span></th>
+                <th>📅 Şubat 2026<br><span style="font-weight:400;">(26 Şubat)</span></th>
+                <th>📅 Nisan 2026<br><span style="font-weight:400;">(9 Nisan)</span></th>
                 <th>Referans Aralığı</th>
-                <th>🔍 Ne işe yarar? (Klinik anlamı)</th>
             </tr>
         </thead>
         <tbody>
-            <!-- FERRİTİN -->
+            <!-- Ferritin -->
             <tr>
-                <td class="param">⚡ Ferritin (µg/L)</td>
-                <td>56.2</td>
-                <td><span class="up">▲ 72.1</span></td>
+                <td class="param">⚡ Ferritin <span class="desc"><br>Demir deposu, saç dökülmesi/enerji için kritik.</span></td>
+                <td>40.5 µg/L</td>
+                <td>44.9 µg/L</td>
+                <td>56.2 µg/L</td>
+                <td><span class="up-good">▲ 72.1 µg/L</span></td>
                 <td class="ref-cell">22 – 322</td>
-                <td class="desc-cell">Vücudun demir deposu. Saç dökülmesi, enerji, bağışıklık için kritik. Hedef 80-100.</td>
             </tr>
             <!-- B12 -->
             <tr>
-                <td class="param">🧠 Vitamin B12 (ng/L)</td>
-                <td>415</td>
-                <td><span class="up">▲▲ 870</span></td>
+                <td class="param">🧠 Vitamin B12 <span class="desc"><br>Sinir sistemi, enerji, kırmızı kan hücresi sentezi.</span></td>
+                <td>360 ng/L</td>
+                <td>370 ng/L</td>
+                <td>415 ng/L</td>
+                <td><span class="up-good">▲▲ 870 ng/L</span></td>
                 <td class="ref-cell">211 – 911</td>
-                <td class="desc-cell">Sinir sistemi, DNA sentezi, kırmızı kan hücreleri. Enerji ve odak için hayati.</td>
             </tr>
-            <!-- CRP (İnflamasyon) -->
+            <!-- D vitamini -->
             <tr>
-                <td class="param">🔥 CRP (mg/L)</td>
+                <td class="param">☀️ D Vitamini <span class="desc"><br>Kemik sağlığı, bağışıklık, ruh hali.</span></td>
+                <td>31.4 µg/L</td>
                 <td>— (bakılmamış)</td>
-                <td><span class="high">⚠ 6.43 (yüksek)</span></td>
-                <td class="ref-cell">0 – 5</td>
-                <td class="desc-cell">Vücutta sistemik iltihap (inflamasyon) belirteci. 6.43 değeri hafif-orta yangın sinyali. IBS’yi dışlar, kaynak araştırılmalı (cilt/bağırsak/romatolojik).</td>
+                <td>38.0 µg/L</td>
+                <td class="warning-bg">❌ İstenmedi (eksik)</td>
+                <td class="ref-cell">30 – 100</td>
             </tr>
-            <!-- HEMOGRAM – HGB -->
+            <!-- Folat -->
             <tr>
-                <td class="param">🩸 Hemoglobin (g/dL)</td>
-                <td>15.1</td>
-                <td>16.2</td>
-                <td class="ref-cell">13.5 – 17.5</td>
-                <td class="desc-cell">Kansızlık (anemi) takibi. Dokulara oksijen taşınması.</td>
+                <td class="param">🍃 Folat <span class="desc"><br>DNA sentezi, hücre bölünmesi, saç dökülmesi.</span></td>
+                <td>13.3 ng/mL</td>
+                <td>14.2 µg/L</td>
+                <td>12.6 ng/mL</td>
+                <td class="warning-bg">— (bakılmamış)</td>
+                <td class="ref-cell">> 5.0</td>
             </tr>
-            <!-- MCV -->
+            <!-- CRP (inflamasyon) -->
             <tr>
-                <td class="param">📏 MCV (fL)</td>
-                <td>80.8</td>
-                <td><span class="down">▼ 78.1</span></td>
-                <td class="ref-cell">80 – 100</td>
-                <td class="desc-cell">Alyuvar hacmi. Hafif düşük → demir eksikliği veya kronik iltihaba bağlı mikrositoz eğilimi.</td>
-            </tr>
-            <!-- RBC -->
-            <tr>
-                <td class="param">🔴 RBC (10^12/L)</td>
-                <td>5.81</td>
-                <td><span class="up">▲ 6.23</span></td>
-                <td class="ref-cell">4.79 – 6.1</td>
-                <td class="desc-cell">Kırmızı kan hücresi sayısı. Hafif yükseklik (susuzluk? uyku apnesi? sigara?).</td>
-            </tr>
-            <!-- HCT -->
-            <tr>
-                <td class="param">💧 HCT (%)</td>
-                <td>47.0</td>
-                <td><span class="up">▲ 48.7</span></td>
-                <td class="ref-cell">36.4 – 47.2</td>
-                <td class="desc-cell">Kanın hücresel hacmi. Yüksek sıvı ihtiyacına işaret eder. Bol su tüketilmeli.</td>
-            </tr>
-            <!-- KARACİĞER ENZİMLERİ -->
-            <tr>
-                <td class="param">🧪 ALT (U/L)</td>
-                <td>17</td>
-                <td>27</td>
-                <td class="ref-cell">7 – 40</td>
-                <td class="desc-cell">Karaciğer hücre hasarı belirteci. Normal aralıkta, iyi durumda.</td>
-            </tr>
-            <tr>
-                <td class="param">🧪 AST (U/L)</td>
-                <td>17</td>
-                <td>19</td>
-                <td class="ref-cell">0 – 34</td>
-                <td class="desc-cell">Karaciğer/kas hasarı. Stabil, normal.</td>
-            </tr>
-            <tr>
-                <td class="param">🧪 GGT (U/L)</td>
-                <td>24</td>
-                <td>31</td>
-                <td class="ref-cell">0 – 73</td>
-                <td class="desc-cell">Safra yolları/karaciğer. Normal.</td>
-            </tr>
-            <tr>
-                <td class="param">🧪 ALP (U/L)</td>
+                <td class="param">🔥 CRP <span class="desc"><br>Sistemik iltihap/infeksiyon belirteci.</span></td>
                 <td>—</td>
-                <td>61</td>
-                <td class="ref-cell">46 – 116</td>
-                <td class="desc-cell">Kemik/karaciğer kaynaklı. Normal.</td>
+                <td>—</td>
+                <td>—</td>
+                <td><span class="down-good">⚠ 6.43 (yüksek)</span></td>
+                <td class="ref-cell">0 – 5</td>
+            </tr>
+            <!-- HEMOGRAM önemliler -->
+            <tr>
+                <td class="param">🩸 Hemoglobin (HGB) <span class="desc"><br>Kansızlık ve oksijen taşıma kapasitesi.</span></td>
+                <td>15.2 g/dL</td>
+                <td>16.7 g/dL</td>
+                <td>15.1 g/dL</td>
+                <td>16.2 g/dL</td>
+                <td class="ref-cell">13.5 – 17.5</td>
             </tr>
             <tr>
-                <td class="param">💪 Albümin (g/L)</td>
-                <td>46.4</td>
-                <td>47</td>
-                <td class="ref-cell">32 – 48</td>
-                <td class="desc-cell">Karaciğer sentez kapasitesi, beslenme durumu. Normal.</td>
-            </tr>
-            <!-- BÖBREK / ELEKTROLİT -->
-            <tr>
-                <td class="param">💧 Kreatinin (mg/dL)</td>
-                <td>0.96</td>
-                <td>0.79</td>
-                <td class="ref-cell">0.7 – 1.3</td>
-                <td class="desc-cell">Böbrek fonksiyonu. Normal.</td>
+                <td class="param">📏 MCV <span class="desc"><br>Kırmızı küre hacmi (mikrositoz/talasemi/ demir ipucu).</span></td>
+                <td>—</td>
+                <td>81.0 fL</td>
+                <td>80.8 fL</td>
+                <td>78.1 fL <span class="down-good">(hafif düşük)</span></td>
+                <td class="ref-cell">80 – 100</td>
             </tr>
             <tr>
-                <td class="param">💧 Üre (BUN) (mg/dL)</td>
-                <td>40.2</td>
-                <td>14</td>
-                <td class="ref-cell">9 – 23</td>
-                <td class="desc-cell">Böbrek ve protein metabolizması. Normal.</td>
+                <td class="param">🧬 MCH <span class="desc"><br>Alyuvar hemoglobin miktarı (hipokromi).</span></td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>26.0 pg <span class="down-good">↓ düşük</span></td>
+                <td class="ref-cell">27 – 33</td>
             </tr>
             <tr>
-                <td class="param">🧂 Sodyum (mmol/L)</td>
-                <td>140</td>
-                <td>143</td>
-                <td class="ref-cell">136 – 145</td>
-                <td class="desc-cell">Sıvı-elektrolit dengesi. Normal.</td>
+                <td class="param">🔴 RBC (Alyuvar sayısı) <span class="desc"><br>Polisitemi / dehidrasyon / talasemi minör.</span></td>
+                <td>5.77</td>
+                <td>6.16 ↑</td>
+                <td>5.81</td>
+                <td><span class="up-good">6.23 ↑</span></td>
+                <td class="ref-cell">4.79 – 6.1</td>
             </tr>
             <tr>
-                <td class="param">🧂 Potasyum (mmol/L)</td>
-                <td>4.0</td>
-                <td>4.02</td>
-                <td class="ref-cell">3.5 – 5.1</td>
-                <td class="desc-cell">Sinir/kas fonksiyonu. Normal.</td>
+                <td class="param">💧 HCT (Hematokrit) <span class="desc"><br>Kan yoğunluğu, sıvı dengesi.</span></td>
+                <td>—</td>
+                <td>49.9%</td>
+                <td>47.0%</td>
+                <td><span class="up-good">48.7% ↑</span></td>
+                <td class="ref-cell">36.4 – 47.2</td>
             </tr>
-            <!-- GLUKOZ & LİPİDLER -->
+            <!-- karaciğer ve böbrek -->
             <tr>
-                <td class="param">🍚 Açlık Glukoz (mg/dL)</td>
+                <td class="param">🧪 ALT (Karaciğer enzimi)</td>
+                <td>15 U/L</td>
+                <td>21 U/L</td>
+                <td>17 U/L</td>
+                <td>27 U/L</td>
+                <td class="ref-cell">7 – 40</td>
+            </tr>
+            <tr>
+                <td class="param">🧪 AST</td>
+                <td>18 U/L</td>
+                <td>19 U/L</td>
+                <td>17 U/L</td>
+                <td>19 U/L</td>
+                <td class="ref-cell">0 – 34</td>
+            </tr>
+            <tr>
+                <td class="param">💛 Total Bilirubin</td>
+                <td>2.55 ↑</td>
+                <td>1.57 ↑</td>
+                <td>2.80 ↑</td>
+                <td>1.70 ↑</td>
+                <td class="ref-cell">0.3 – 1.2</td>
+            </tr>
+            <tr>
+                <td class="param">💛 Direkt Bilirubin</td>
+                <td>0.46 ↑</td>
+                <td>0.36 ↑</td>
+                <td>0.56 ↑</td>
+                <td>0.60 ↑</td>
+                <td class="ref-cell">0 – 0.3</td>
+            </tr>
+            <!-- metabolik -->
+            <tr>
+                <td class="param">🍚 Açlık Glukoz</td>
+                <td>116 ↑</td>
+                <td>81</td>
                 <td>70</td>
                 <td>82</td>
-                <td class="ref-cell">74 – 106</td>
-                <td class="desc-cell">Kan şekeri düzeyi. Normal, metabolizma iyi.</td>
+                <td class="ref-cell">70 – 99</td>
             </tr>
             <tr>
-                <td class="param">🫀 Trigliserid (mg/dL)</td>
-                <td>58</td>
+                <td class="param">🫀 Trigliserid</td>
+                <td>—</td>
+                <td>140</td>
+                <td><span class="up-good">58 ↓</span></td>
                 <td>68</td>
                 <td class="ref-cell">&lt;150</td>
-                <td class="desc-cell">Yağ metabolizması, karaciğer yağlanması takibi. Mükemmel seviye.</td>
             </tr>
             <tr>
-                <td class="param">❤️ LDL Kolesterol (mg/dL)</td>
-                <td>42.4 (hesaplanmış)</td>
-                <td>50 (direkt)</td>
+                <td class="param">❤️ LDL (kötü kolesterol)</td>
+                <td>—</td>
+                <td>36</td>
+                <td>42.4 (hesap)</td>
+                <td><span class="up-good">50 (direkt)</span></td>
                 <td class="ref-cell">&lt;100</td>
-                <td class="desc-cell">Kötü kolesterol. Düşük, çok iyi.</td>
             </tr>
-            <!-- TİROİD -->
             <tr>
-                <td class="param">🦋 TSH (mIU/L)</td>
+                <td class="param">🩵 HDL (iyi kolesterol)</td>
+                <td>—</td>
+                <td>54</td>
+                <td>56</td>
+                <td>❌ bakılmamış</td>
+                <td class="ref-cell">&gt;40 (erkek)</td>
+            </tr>
+            <tr>
+                <td class="param">🦋 TSH (Tiroid)</td>
+                <td>1.04</td>
+                <td>1.38</td>
                 <td>0.91</td>
                 <td>1.665</td>
                 <td class="ref-cell">0.55 – 4.78</td>
-                <td class="desc-cell">Tiroid uyarıcı hormon. Normal, tiroid yetmezliği yok.</td>
-            </tr>
-            <tr>
-                <td class="param">🦋 Serbest T4 (ng/dL)</td>
-                <td>—</td>
-                <td>1.22</td>
-                <td class="ref-cell">0.89 – 1.76</td>
-                <td class="desc-cell">Tiroid hormonu aktif kısmı. Normal.</td>
-            </tr>
-            <!-- PANKREAS -->
-            <tr>
-                <td class="param">🧪 Amilaz (U/L)</td>
-                <td>66</td>
-                <td>88</td>
-                <td class="ref-cell">30 – 118</td>
-                <td class="desc-cell">Pankreas enzimi, sindirim. Normal.</td>
-            </tr>
-            <tr>
-                <td class="param">🧪 Lipaz (U/L)</td>
-                <td>19</td>
-                <td>26</td>
-                <td class="ref-cell">12 – 53</td>
-                <td class="desc-cell">Pankreas iltihabı belirteci. Normal.</td>
-            </tr>
-            <!-- DEMİR METABOLİZMASI -->
-            <tr>
-                <td class="param">🔩 Demir (µg/L)</td>
-                <td>115</td>
-                <td>128</td>
-                <td class="ref-cell">65 – 175</td>
-                <td class="desc-cell">Kandaki demir seviyesi. Normal.</td>
-            </tr>
-            <!-- D VİTAMİNİ & FOLAT (NOT) -->
-            <tr>
-                <td class="param">☀️ D Vitamini (µg/L)</td>
-                <td>38.0</td>
-                <td colspan="3">❌ Nisan tahlilinde istenmemiş. 20 Haziran öncesi mutlaka kontrol edilmeli (hedef 50-80).</td>
-            </tr>
-            <tr>
-                <td class="param">🍃 Folat (ng/mL)</td>
-                <td>12.6</td>
-                <td colspan="3">❌ Nisan tahlilinde yok. Eksiklik saç dökülmesini tetikler, değer takibi önemli.</td>
             </tr>
         </tbody>
     </table>
 
     <div class="footer-note">
-        <strong>🧾 ÖZET ANALİZ (9 Nisan 2026)</strong><br>
-        ✅ <strong>Ferritin 72.1</strong> – 26 Şubat’tan itibaren +16 puan iyileşme. Pancar suyu ve düzenli beslenme etkili. Hedef 80-100.<br>
-        ✅ <strong>B12 870</strong> – Olağanüstü yükselme. Oral/dilaltı takviye çok iyi çalışmış. Enerji ve sinir sistemi için yeterli.<br>
-        ⚠️ <strong>CRP 6.43 (yüksek)</strong> – Vücutta hafif-orta inflamasyon mevcut. Bu değer IBS’yi dışlar; altta yatan neden <strong>cilt (HS), romatolojik veya bağırsak kaynaklı</strong> olabilir. Dermatoloji ve Dahiliye ile ileri tetkik (deri biyopsisi, kalprotektin, romatolojik testler) gerekir.<br>
-        📌 <strong>MCV 78.1 (hafif düşük)</strong> – Demir depoları henüz tam dolmamış. İnflamasyon, demir kullanımını engelliyor olabilir.<br>
-        💧 <strong>HCT ve RBC hafif yüksek</strong> – Susuzluk olabilir, günde 2,5-3 litre su hedefi.<br>
-        🩺 <strong>Öneri:</strong> Dahiliye/Cildiye konsültasyonu, CRP kaynağını bulmak için deri biyopsisi + gaitada kalprotektin + romatolojik seroloji (ANA, RF) istenmeli. Kolonoskopi tekrarı gerekmez (20 gün önce tertemiz).
+        <strong>🧾 ÖZET DEĞERLENDİRME (Nisan 2026)</strong><br>
+        ✅ <strong>Ferritin 72.1</strong> – 26 Şubat'a göre +16 puan iyileşme. Hedef 80-100. Pancar suyu + kahvaltı başarılı.<br>
+        ✅ <strong>B12 870</strong> – Mükemmel yükselme. Hedef aşıldı, takviye bırakılabilir.<br>
+        ⚠️ <strong>CRP 6.43 (yüksek)</strong> – Vücutta iltihap mevcut. Grip sonrası tekrar bakılmalı, kronik neden araştırılmalı (cilt/bağırsak/romatolojik).<br>
+        📌 <strong>MCV 78.1 & MCH 26.0</strong> – Hafif mikrositik/hipokrom. Demir depoları normal (ferritin 72), en olası neden kronik iltihap veya talasemi taşıyıcılığı (hemoglobin elektroforezi önerilir).<br>
+        💧 <strong>HCT 48.7, RBC 6.23</strong> – Kan koyulaşması (tahlil günü susuz kalınmış, normalde günde 3L su). Bol su iç, kontrol yaptır.<br>
+        🩺 <strong>Bilirubin yüksekliği</strong> – Gilbert sendromu + direkt bilirubin de hafif yüksek (safra yolu değerlendirilebilir).<br>
+        🎯 <strong>Eksikler:</strong> D vitamini, folat, HDL (Nisan'da istenmemiş). 20 Haziran öncesi mutlaka tamamlanmalı.<br>
+        <strong>🔬 Öneriler:</strong> Hemoglobin elektroforezi (talasemi), gaitada kalprotektin, cilt biyopsisi, romatolojik testler (ANA, RF). Uyku apnesi araştırması için Göğüs Hastalıkları konsültasyonu.
     </div>
 </div>
 </body>
-    </html>
+</html>
