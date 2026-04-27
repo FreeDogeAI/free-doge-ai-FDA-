@@ -1,334 +1,340 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>20 Haziran Projesi - Tahlil Paneli | Sinematik Tema</title>
+    <meta name="description" content="FreeDogeAI - Yapay zeka destekli meme coin projesi. Ön satışta FDAI tokenlarınızı BNB veya USDT ile satın alın.">
+    <meta name="keywords" content="FreeDogeAI, FDAI, meme coin, presale, BNB, USDT, yapay zeka">
+    <meta name="author" content="FreeDogeAI">
+    <meta property="og:title" content="FreeDogeAI - Yapay Zeka Destekli Meme Coin">
+    <meta property="og:description" content="FDAI token ön satışı başladı! Hemen katılın.">
+    <meta property="og:image" content="https://freedogeai.com/assets/images/logo/logo.png">
+    <meta property="og:url" content="https://freedogeai.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>FreeDogeAI | Yapay Zeka Destekli Meme Coin</title>
+    <link rel="icon" type="image/x-icon" href="/assets/images/logo/favicon.ico">
+    <link rel="stylesheet" href="/assets/css/style.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: #03050b;
-            font-family: 'Inter', 'Segoe UI', 'Roboto', 'Poppins', system-ui, -apple-system, sans-serif;
-            padding: 2rem 1rem;
-            color: #eef2ff;
-        }
-
-        /* sinematik efekti */
-        .container {
-            max-width: 1440px;
-            margin: 0 auto;
-        }
-
-        .hero {
-            background: radial-gradient(circle at 20% 30%, #0f172a, #020617);
-            border-radius: 2rem;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(71, 85, 105, 0.4);
-            box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(2px);
-        }
-
-        .hero h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #e2e8f0, #94a3b8);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: -0.3px;
-        }
-
-        .hero .sub {
+        /* Ek ana sayfa stilleri */
+        .hero-stats {
             display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
             flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-top: 1rem;
         }
-
-        .badge-glow {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid #334155;
-            padding: 0.4rem 1.2rem;
-            border-radius: 60px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            backdrop-filter: blur(5px);
+        .hero-stat {
+            text-align: center;
         }
-
-        .card {
-            background: #0a0f1c;
-            border-radius: 2rem;
-            margin-bottom: 2rem;
-            border: 1px solid #1e293b;
-            overflow-x: auto;
-            box-shadow: 0 20px 35px -12px black;
+        .hero-stat .number {
+            font-size: 2rem;
+            font-weight: bold;
         }
-
-        .card-header {
-            padding: 1.2rem 1.5rem;
-            border-bottom: 1px solid #1e2a3a;
-            font-weight: 600;
-            font-size: 1.2rem;
+        .hero-stat .label {
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+        }
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        .tokenomics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .tokenomics-item {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            background: #020617;
-            border-radius: 2rem 2rem 0 0;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
         }
-
-        .legend {
+        .roadmap {
+            position: relative;
+            padding-left: 2rem;
+        }
+        .roadmap::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+        }
+        .roadmap-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+        }
+        .roadmap-item::before {
+            content: '';
+            position: absolute;
+            left: -0.5rem;
+            top: 0;
+            width: 1rem;
+            height: 1rem;
+            background: #667eea;
+            border-radius: 50%;
+        }
+        .roadmap-phase {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        .cta-section {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+            border-radius: 24px;
+            margin: 3rem 0;
+        }
+        .cta-buttons {
             display: flex;
             gap: 1rem;
-            font-size: 0.7rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
         }
-
-        .legend-dot {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 20px;
-            margin-right: 6px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-            min-width: 1000px;
-        }
-
-        th {
-            text-align: center;
-            padding: 1rem 0.8rem;
-            background: #0f1422;
-            color: #cbd5e6;
-            font-weight: 500;
-            border-bottom: 1px solid #1e2a3a;
-        }
-
-        td {
-            padding: 1rem 0.8rem;
-            border-bottom: 1px solid #151e2d;
-            vertical-align: top;
-        }
-
-        .param-cell {
-            font-weight: 700;
-            color: #facc15;
-            background: #0b0f1a;
-        }
-
-        .desc-text {
-            font-size: 0.7rem;
-            color: #94a3b8;
-            margin-top: 5px;
-            line-height: 1.3;
-            font-weight: normal;
-        }
-
-        .value-good {
-            color: #4ade80;
-            font-weight: 700;
-            text-shadow: 0 0 3px rgba(74,222,128,0.3);
-        }
-
-        .value-bad {
-            color: #f87171;
-            font-weight: 700;
-        }
-
-        .value-warning {
-            color: #fbbf24;
-            font-weight: 700;
-        }
-
-        .value-neutral {
-            color: #cbd5e1;
-        }
-
-        .trend-up {
-            background: #14532d30;
-            border-left: 3px solid #4ade80;
-        }
-
-        .trend-down {
-            background: #7f1d1d30;
-            border-left: 3px solid #f87171;
-        }
-
-        .status {
-            font-size: 0.7rem;
-            margin-top: 5px;
-            display: inline-block;
-            background: #111827;
-            padding: 2px 8px;
-            border-radius: 16px;
-        }
-
-        .footer-note {
-            background: #070c17;
-            border-radius: 1.5rem;
-            padding: 1.5rem;
-            border: 1px solid #1f2a3e;
-            font-size: 0.85rem;
-            line-height: 1.6;
-            color: #cbd5e6;
-        }
-
-        .footer-note strong {
-            color: #facc15;
-        }
-
-        @media (max-width: 700px) {
-            body {
-                padding: 1rem 0.8rem;
+        @media (max-width: 768px) {
+            .hero-stats {
+                gap: 1rem;
             }
-            .hero h1 {
+            .hero-stat .number {
                 font-size: 1.5rem;
-            }
-            td, th {
-                padding: 0.7rem 0.4rem;
-                font-size: 0.7rem;
             }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="hero">
-        <h1>⚡ 20 HAZİRAN PROJESİ · Tahlil İstihbaratı</h1>
-        <div class="sub">
-            <span class="badge-glow">🎬 Eylül 2025 → Nisan 2026</span>
-            <span class="badge-glow">🩸 Ferritin +16 → 72.1</span>
-            <span class="badge-glow">🧬 B12 patlaması → 870</span>
-            <span class="badge-glow">🔥 CRP 6.43 (iltihap radarı)</span>
-        </div>
-    </div>
 
-    <div class="card">
-        <div class="card-header">
-            <span>📊 KRİTİK PARAMETRELER & DURUM DEĞERLENDİRMESİ</span>
-            <div class="legend">
-                <span><span class="legend-dot" style="background:#4ade80;"></span> İdeal / İyi</span>
-                <span><span class="legend-dot" style="background:#facc15;"></span> Dikkat / Sınırda</span>
-                <span><span class="legend-dot" style="background:#f87171;"></span> Yüksek risk / Düşük değer</span>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="/assets/images/logo/logo.png" alt="FreeDogeAI Logo" height="40">
+            </div>
+            <ul class="nav-links">
+                <li><a href="/" class="active">Ana Sayfa</a></li>
+                <li><a href="/presale.html">Ön Satış</a></li>
+                <li><a href="/news.html">Duyurular</a></li>
+                <li><a href="/faq.html">SSS</a></li>
+                <li><a href="/dashboard.html">İstihbarat Odası</a></li>
+            </ul>
+            <div class="menu-toggle">☰</div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>FreeDogeAI</h1>
+            <p>Yapay zeka gücüyle meme coin devrimi! FDAI token ile geleceğe yatırım yapın.</p>
+            <div class="hero-buttons">
+                <a href="/presale.html" class="btn btn-primary">🚀 Ön Satışa Katıl</a>
+                <a href="#about" class="btn btn-outline">📖 Daha Fazla</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="number">2Q</div>
+                    <div class="label">Toplam Arz</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="number">15%</div>
+                    <div class="label">Ön Satış</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="number">30%</div>
+                    <div class="label">Kilitli Rezerv</div>
+                </div>
             </div>
         </div>
-        <div style="overflow-x: auto;">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Parametre & Ne işe yarar?</th>
-                        <th>Eylül 2025</th>
-                        <th>Aralık 2025</th>
-                        <th>Şubat 2026</th>
-                        <th>Nisan 2026</th>
-                        <th>Yorum / Tavsiye edilen</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Ferritin -->
-                    <tr>
-                        <td class="param-cell"><strong>🔋 Ferritin</strong><div class="desc-text">Demir deposu – saç dökülmesi, enerji, bağışıklık için kritik. Hedef 80-100</div></td>
-                        <td>40.5</td><td>44.9</td><td>56.2</td><td class="value-good">▲ 72.1</td>
-                        <td><span class="status">✅ İyi yükselme</span> Hedefe yaklaştın. Pancar suyu + beslenme işe yarıyor.</td>
-                    </tr>
-                    <!-- B12 -->
-                    <tr>
-                        <td class="param-cell"><strong>🧠 B12 Vitamini</strong><div class="desc-text">Sinir sistemi, enerji, alyuvar üretimi. Optimal 600-800</div></td>
-                        <td>360</td><td>370</td><td>415</td><td class="value-good">▲ 870</td>
-                        <td><span class="status">⚡ Mükemmel!</span> Hedef aşıldı. Takviyeyi bırak, idame yeterli.</td>
-                    </tr>
-                    <!-- D vitamini -->
-                    <tr>
-                        <td class="param-cell"><strong>☀️ D Vitamini</strong><div class="desc-text">Kemik, bağışıklık, ruh hali. Hedef 50-80 ng/mL</div></td>
-                        <td>31.4</td><td>—</td><td>38.0</td><td class="value-warning">❌ İstenmedi</td>
-                        <td><span class="status">⚠️ Eksik!</span> Mutlaka baktır. 20 Haziran öncesi kontrol şart.</td>
-                    </tr>
-                    <!-- CRP -->
-                    <tr>
-                        <td class="param-cell"><strong>🔥 CRP</strong><div class="desc-text">Vücutta inflamasyon / enfeksiyon. Normal &lt;5 mg/L</div></td>
-                        <td>—</td><td>—</td><td>—</td><td class="value-warning">6.43 ↑</td>
-                        <td><span class="status">🔍 Hafif yüksek</span> Büyük ihtimal grip. 2-3 hafta sonra tekrar bakılmalı.</td>
-                    </tr>
-                    <!-- Hemoglobin -->
-                    <tr>
-                        <td class="param-cell"><strong>🩸 Hemoglobin</strong><div class="desc-text">Kansızlık göstergesi. Normal 13.5-17.5</div></td>
-                        <td>15.2</td><td>16.7</td><td>15.1</td><td class="value-good">16.2</td>
-                        <td><span class="status">✅ Normal</span> Kansızlık yok.</td>
-                    </tr>
-                    <!-- MCV -->
-                    <tr>
-                        <td class="param-cell"><strong>📏 MCV</strong><div class="desc-text">Alyuvar hacmi. Düşükse (demir eksikliği/talasemi/iltihap)</div></td>
-                        <td>—</td><td>81.0</td><td>80.8</td><td class="value-warning">78.1 (hafif düşük)</td>
-                        <td><span class="status">⚠️ Sınırda</span> Ferritin normal → olası neden: kronik iltihap veya talasemi taşıyıcılığı.</td>
-                    </tr>
-                    <!-- MCH -->
-                    <tr>
-                        <td class="param-cell"><strong>🧬 MCH</strong><div class="desc-text">Alyuvar hemoglobin miktarı. Düşük = hipokromi</div></td>
-                        <td>—</td><td>—</td><td>—</td><td class="value-warning">26.0 (düşük)</td>
-                        <td><span class="status">🔻 Normalin altı</span> Demir deposu dolu (72) → iltihap veya talasemi araştır.</td>
-                    </tr>
-                    <!-- HCT / RBC -->
-                    <tr>
-                        <td class="param-cell"><strong>💧 HCT & RBC</strong><div class="desc-text">Kan yoğunluğu, koyulaşma (dehidrasyon/uyku apnesi)</div></td>
-                        <td>HCT:— RBC:5.77</td><td>HCT:49.9 RBC:6.16</td><td>HCT:47.0 RBC:5.81</td><td class="value-warning">HCT:48.7 ↑ RBC:6.23 ↑</td>
-                        <td><span class="status">💧 Hafif koyulaşma</span> Tahlil günü susuz kalınmış. Bol su iç, uyku apnesini araştır.</td>
-                    </tr>
-                    <!-- Trigliserid -->
-                    <tr>
-                        <td class="param-cell"><strong>🫀 Trigliserid</strong><div class="desc-text">Yağ metabolizması, karaciğer yağlanması takibi. Hedef &lt;100</div></td>
-                        <td>—</td><td>140</td><td class="value-good">58</td><td class="value-good">68</td>
-                        <td><span class="status">✅ Mükemmel</span> Düşük karbonhidrat & karaciğer dostu.</td>
-                    </tr>
-                    <!-- LDL / HDL -->
-                    <tr>
-                        <td class="param-cell"><strong>❤️ Kolesterol (LDL/HDL)</strong><div class="desc-text">LDL düşük, HDL yüksek isteniyor.</div></td>
-                        <td>—</td><td>LDL:36 HDL:54</td><td>LDL:42 HDL:56</td><td>LDL:50 <br>HDL:❌ bakılmamış</td>
-                        <td><span class="status">🟢 LDL çok iyi.</span> HDL Nisan’da yok, 20 Haziran öncesi baktır.</td>
-                    </tr>
-                    <!-- Bilirubin -->
-                    <tr>
-                        <td class="param-cell"><strong>💛 Total Bilirubin</strong><div class="desc-text">Gilbert sendromu / safra yolu</div></td>
-                        <td>2.55</td><td>1.57</td><td>2.80</td><td>1.70</td>
-                        <td><span class="status">🧬 Hafif yüksek</span> Muhtemelen Gilbert + direkt bilirubin hafif yüksek (safra değerlendir).</td>
-                    </tr>
-                    <!-- ALT AST -->
-                    <tr>
-                        <td class="param-cell"><strong>🧪 Karaciğer (ALT/AST)</strong><div class="desc-text">Hasar / iltihap göstergesi</div></td>
-                        <td>15/18</td><td>21/19</td><td>17/17</td><td>27/19</td>
-                        <td><span class="status">✅ Normal</span> Karaciğer fonksiyonları iyi.</td>
-                    </tr>
-                    <tr>
-                        <td class="param-cell"><strong>🍚 Açlık Glukoz</strong><div class="desc-text">Şeker metabolizması, insülin direnci.</div></td>
-                        <td>116 (yüksek)</td><td>81</td><td class="value-good">70</td><td class="value-good">82</td>
-                        <td><span class="status">✅ Normal</span> Düşük karbonhidrat etkili.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    </section>
 
-    <div class="footer-note">
-        <strong>🎯 SİNEMATİK ÖZET · 20 HAZİRAN AKSİYON PLANI</strong><br><br>
-        ✅ <strong>Ferritin 72.1</strong> → Hedef 80-100. Pancar suyu + limon devam.<br>
-        ✅ <strong>B12 870</strong> → Rekor! Takviyeyi kes, aylık idame yeter.<br>
-        ⚠️ <strong>CRP 6.43</strong> → Grip geçince tekrar CRP + hemogram iste. Kronik iltihap varsa (cilt/bağırsak) araştır.<br>
-        🔍 <strong>MCV / MCH düşük, ferritin normal</strong> → Hemoglobin elektroforezi (talasemi taşıyıcılığı) ve gaitada kalprotektin (bağırsak iltihabı) yaptır.<br>
-        💧 <strong>HCT 48.7, RBC 6.23</strong> → Kan koyulaşması (tahlil günü susuzluk). Bol su iç, uyku testi düşün.<br>
-        🧬 <strong>Bilirubin yüksek</strong> → Gilbert + direkt bilirubin hafif yüksek (ultrason ile safra yolları değerlendirilebilir).<br>
-        🎬 <strong>20 Haziran'a kalan eksikler:</strong> D vitamini, Folat, HDL (mutlaka iste).<br>
-        🔬 <strong>İleri tetkikler:</strong> Hemoglobin elektroforezi, cilt biyopsisi (hidradenitis?), romatolojik testler (ANA, RF), gerektiğinde uyku laboratuvarı.
-    </div>
-</div>
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">FreeDogeAI Nedir?</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🤖 Yapay Zeka Destekli</h3>
+                    <p>FreeDogeAI, yapay zeka teknolojisini meme coin ekosistemiyle birleştiren devrim niteliğinde bir projedir.</p>
+                </div>
+                <div class="card">
+                    <h3>🚀 Topluluk Odaklı</h3>
+                    <p>Topluluğumuzun gücüyle büyüyen, herkes için fırsat eşitliği sunan bir platform.</p>
+                </div>
+                <div class="card">
+                    <h3>💰 DeFi Entegrasyonu</h3>
+                    <p>Merkeziyetsiz finansın gücünü kullanarak, kullanıcılarına maksimum fayda sağlar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" style="background: #f8fafc;">
+        <div class="container">
+            <h2 class="section-title">Özellikler</h2>
+            <div class="features-grid">
+                <div class="feature-card card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Çoklu Cüzdan Desteği</h3>
+                    <p>MetaMask, Trust Wallet, WalletConnect ve daha fazlasıyla bağlantı.</p>
+                </div>
+                <div class="feature-card card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Güvenli ve Şeffaf</h3>
+                    <p>Akıllı kontratlarımız audit edilmiştir, tüm işlemler blockchain üzerindedir.</p>
+                </div>
+                <div class="feature-card card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Yüksek Getiri</h3>
+                    <p>Ön satışa katılanlar için özel avantajlar ve erken yatırım fırsatları.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tokenomics Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Tokenomics</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>📊 Token Dağılımı</h3>
+                    <div class="tokenomics-grid">
+                        <div class="tokenomics-item"><span>Ön Satış</span><strong>15%</strong></div>
+                        <div class="tokenomics-item"><span>Airdrop & Kampanyalar</span><strong>15%</strong></div>
+                        <div class="tokenomics-item"><span>Yakma</span><strong>15%</strong></div>
+                        <div class="tokenomics-item"><span>DEX & CEX Listing</span><strong>20%</strong></div>
+                        <div class="tokenomics-item"><span>Kilitli Rezerv</span><strong>30%</strong></div>
+                        <div class="tokenomics-item"><span>Ekip</span><strong>5%</strong></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>📈 Token Bilgileri</h3>
+                    <div class="tokenomics-grid">
+                        <div class="tokenomics-item"><span>Toplam Arz</span><strong>2,000,000,000,000,000</strong></div>
+                        <div class="tokenomics-item"><span>Dolaşımdaki Arz</span><strong>1,400,000,000,000,000</strong></div>
+                        <div class="tokenomics-item"><span>Kilitli Arz</span><strong>600,000,000,000,000</strong></div>
+                        <div class="tokenomics-item"><span>Sembol</span><strong>FDAI</strong></div>
+                        <div class="tokenomics-item"><span>Network</span><strong>BSC</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section class="section" style="background: #f8fafc;">
+        <div class="container">
+            <h2 class="section-title">Yol Haritası</h2>
+            <div class="roadmap">
+                <div class="roadmap-item">
+                    <div class="roadmap-phase">Phase 1 - Launch</div>
+                    <p>✓ Web sitesi lansmanı<br>✓ Twitter & Telegram açılışı<br>✓ Ön satış başlangıcı</p>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-phase">Phase 2 - Growth</div>
+                    <p>✓ Airdrop kampanyaları<br>✓ DEX listing<br>✓ Influencer işbirlikleri</p>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-phase">Phase 3 - AI Utility</div>
+                    <p>✓ AI mini oyun<br>✓ Görev/ödül sistemi<br>✓ Beta test</p>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-phase">Phase 4 - Global Expansion</div>
+                    <p>✓ CEX listing<br>✓ NFT + AI entegrasyonu<br>✓ Global genişleme</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest News Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Son Duyurular</h2>
+            <div id="latestNews"></div>
+            <div class="text-center" style="margin-top: 2rem;">
+                <a href="/news.html" class="btn btn-outline">Tüm Duyurular →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section">
+        <div class="container">
+            <div class="cta-section">
+                <h2>Ön Satışa Katılmaya Hazır mısın?</h2>
+                <p>FDAI tokenlarını şimdi satın al ve yapay zeka destekli meme coin devriminin bir parçası ol!</p>
+                <div class="cta-buttons">
+                    <a href="/presale.html" class="btn btn-primary">🎯 Hemen Katıl</a>
+                    <a href="https://t.me/freedogeaiFDAI" target="_blank" class="btn btn-outline" style="background: white;">💬 Telegram</a>
+                    <a href="https://twitter.com/FreeDogeaicoin" target="_blank" class="btn btn-outline" style="background: white;">🐦 Twitter</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="/assets/images/logo/logo-white.png" alt="FreeDogeAI" height="40">
+                    <p>Yapay zeka destekli meme coin devrimi</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Hızlı Bağlantılar</h4>
+                    <a href="/">Ana Sayfa</a>
+                    <a href="/presale.html">Ön Satış</a>
+                    <a href="/news.html">Duyurular</a>
+                    <a href="/faq.html">SSS</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Yasal</h4>
+                    <a href="#">Gizlilik Politikası</a>
+                    <a href="#">Kullanım Şartları</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Sosyal Medya</h4>
+                    <div class="social-links">
+                        <a href="https://twitter.com/FreeDogeaicoin" target="_blank">🐦</a>
+                        <a href="https://t.me/freedogeaiFDAI" target="_blank">💬</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 FreeDogeAI. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/config.js"></script>
+    <script src="/assets/js/web3-utils.js"></script>
+    <script src="/assets/js/main.js"></script>
 </body>
 </html>
+EOF
+
+echo "✅ index.html oluşturuldu"
