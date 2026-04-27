@@ -1,233 +1,436 @@
-cd ~/future-doge-ai
 
-cat > presale.html << 'EOF'
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <meta name="description" content="FreeDogeAI - Ön satış sayfası. FDAI tokenlarınızı BNB veya USDT ile satın alın.">
-    <meta name="keywords" content="FreeDogeAI, FDAI, presale, BNB, USDT">
-    <title>FreeDogeAI | Ön Satış</title>
-    <link rel="icon" type="image/x-icon" href="/assets/images/logo/favicon.ico">
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/presale.css">
-</head>
-<body>
+/* ============================================
+   Future Doge AI (FDAI) - Presale Sayfası Stilleri
+   RENKLİ VE CANLI TEMA
+   ============================================ */
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">
-                <img src="/assets/images/logo/logo.png" alt="FreeDogeAI Logo" height="40">
-            </div>
-            <ul class="nav-links">
-                <li><a href="/">Ana Sayfa</a></li>
-                <li><a href="/presale.html" class="active">Ön Satış</a></li>
-                <li><a href="/news.html">Duyurular</a></li>
-                <li><a href="/faq.html">SSS</a></li>
-                <li><a href="/dashboard.html">İstihbarat Odası</a></li>
-            </ul>
-            <div class="menu-toggle">☰</div>
-        </div>
-    </nav>
+/* ===== PRESALE HERO ===== */
+.presale-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    color: white;
+    padding: 120px 0 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
 
-    <!-- Presale Hero -->
-    <section class="presale-hero">
-        <div class="container">
-            <h1>🚀 FDAI Ön Satış</h1>
-            <p class="subtitle">Yapay zeka destekli meme coin devrimine katılın!</p>
-            <div class="hero-stats">
-                <div class="hero-stat">
-                    <div class="number" id="totalRaisedBNB">0</div>
-                    <div class="label">BNB Toplandı</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="number" id="totalRaisedUSDT">0</div>
-                    <div class="label">USDT Toplandı</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="number" id="totalTokenSold">0</div>
-                    <div class="label">Token Satıldı</div>
-                </div>
-            </div>
-        </div>
-    </section>
+.presale-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="200" cy="200" r="150" fill="rgba(255,255,255,0.1)"/><circle cx="800" cy="800" r="200" fill="rgba(255,255,255,0.05)"/><circle cx="500" cy="300" r="100" fill="rgba(255,255,255,0.08)"/></svg>');
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.5;
+}
 
-    <!-- Presale Card -->
-    <section class="section">
-        <div class="container">
-            <div class="presale-card">
-                
-                <!-- Wallet Connect -->
-                <div class="wallet-section">
-                    <div class="wallet-status">
-                        <div class="wallet-info">
-                            <span>🔐 Cüzdan:</span>
-                            <span class="wallet-address" id="walletAddress">Bağlı değil</span>
-                            <span id="walletStatus"></span>
-                        </div>
-                        <button class="btn btn-primary" id="connectWalletBtn">🔗 Cüzdan Bağla</button>
-                    </div>
-                </div>
+.presale-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
 
-                <!-- Payment Method Tabs -->
-                <div class="payment-methods">
-                    <button class="payment-tab active" data-type="BNB">
-                        <img src="https://cryptologos.cc/logos/bnb-bnb-logo.svg" width="24" height="24" alt="BNB"> BNB
-                    </button>
-                    <button class="payment-tab" data-type="USDT">
-                        <img src="https://cryptologos.cc/logos/tether-usdt-logo.svg" width="24" height="24" alt="USDT"> USDT
-                    </button>
-                </div>
+.presale-hero .subtitle {
+    font-size: 1.25rem;
+    opacity: 0.95;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+}
 
-                <!-- Amount Input -->
-                <div class="form-group">
-                    <label id="amountLabel">BNB Miktarı</label>
-                    <input type="number" id="amountInput" step="0.01" placeholder="0.00">
-                    <div class="limits">
-                        <span>Min: <span id="minLimit">0.01</span></span>
-                        <span>Max: <span id="maxLimit">10</span></span>
-                        <span id="rateInfo">1 BNB = 120.000.000.000 FDAI</span>
-                    </div>
-                </div>
+/* ===== HERO STATS ===== */
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+}
 
-                <!-- FDAI Amount Display -->
-                <div class="amount-info">
-                    <label>Alacağınız FDAI Token</label>
-                    <div class="value" id="amountFDAI">0</div>
-                    <div class="sub">~ $0 USD Değerinde</div>
-                </div>
+.hero-stat {
+    text-align: center;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    border-radius: 20px;
+    min-width: 150px;
+}
 
-                <!-- Email (Opsiyonel) -->
-                <div class="form-group">
-                    <label>E-posta (Opsiyonel)</label>
-                    <input type="email" id="email" placeholder="ornek@email.com">
-                    <div class="limits">Token gönderimi hakkında bilgi almak için</div>
-                </div>
+.hero-stat .number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffd700;
+}
 
-                <!-- Error Message -->
-                <div class="error-message" id="errorMessage"></div>
+/* ===== PRESALE CARD ===== */
+.presale-card {
+    background: white;
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    margin-top: -40px;
+    position: relative;
+    z-index: 10;
+    border: 1px solid rgba(59,130,246,0.2);
+}
 
-                <!-- Buy Button -->
-                <button class="buy-btn" id="buyBtn" disabled>💰 Satın Al</button>
+/* ===== WALLET CONNECT ===== */
+.wallet-section {
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
 
-                <!-- Info Box -->
-                <div class="info-box">
-                    <h4>📋 Önemli Bilgiler</h4>
-                    <ul>
-                        <li>Tokenlarınız satın alma işleminden sonra <strong>24 saat içinde</strong> cüzdanınıza gönderilecektir.</li>
-                        <li>Lütfen <strong>BSC (Binance Smart Chain)</strong> ağına bağlı olduğunuzdan emin olun.</li>
-                        <li>FDAI tokenlarını görmüyorsanız, kontrat adresini cüzdanınıza ekleyin:</li>
-                    </ul>
-                    <div class="token-address" style="background:#f1f5f9; padding:8px; border-radius:8px; margin-top:8px; font-family:monospace; word-break:break-all;">
-                        0x8161698A74F2ea0035B9912ED60140893Ac0f39C
-                        <button onclick="copyAddress()" style="margin-left:10px; padding:4px 8px;">📋 Kopyala</button>
-                    </div>
-                </div>
+.wallet-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
 
-                <!-- Progress Section -->
-                <div class="progress-section">
-                    <div class="progress-bar-container">
-                        <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
-                    </div>
-                    <div class="progress-stats">
-                        <span>Satış Hedefi: 30%</span>
-                        <span id="progressPercent">%0 Tamamlandı</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+.wallet-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="/assets/images/logo/logo-white.png" alt="FreeDogeAI" height="40">
-                    <p>Yapay zeka destekli meme coin devrimi</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Hızlı Bağlantılar</h4>
-                    <a href="/">Ana Sayfa</a>
-                    <a href="/presale.html">Ön Satış</a>
-                    <a href="/news.html">Duyurular</a>
-                    <a href="/faq.html">SSS</a>
-                </div>
-                <div class="footer-links">
-                    <h4>Sosyal Medya</h4>
-                    <div class="social-links">
-                        <a href="https://twitter.com/FreeDogeaicoin" target="_blank">🐦</a>
-                        <a href="https://t.me/freedogeaiFDAI" target="_blank">💬</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 FreeDogeAI. Tüm hakları saklıdır.</p>
-            </div>
-        </div>
-    </footer>
+.wallet-address {
+    font-family: monospace;
+    background: white;
+    padding: 8px 16px;
+    border-radius: 40px;
+    font-size: 14px;
+    color: var(--dark);
+}
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
-    <script src="/assets/js/config.js"></script>
-    <script src="/assets/js/web3-utils.js"></script>
-    <script src="/assets/js/web3.js"></script>
-    <script src="/assets/js/web3-connector.js"></script>
-    <script src="/assets/js/presale.js"></script>
+.wallet-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.wallet-badge.connected {
+    background: #10b981;
+    color: white;
+}
+
+.wallet-badge.disconnected {
+    background: #ef4444;
+    color: white;
+}
+
+/* ===== PAYMENT METHOD ===== */
+.payment-methods {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.payment-tab {
+    flex: 1;
+    padding: 14px 24px;
+    background: #f1f5f9;
+    border: none;
+    border-radius: 60px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1rem;
+}
+
+.payment-tab.active {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(59,130,246,0.3);
+}
+
+.payment-tab:hover:not(.active) {
+    background: #e2e8f0;
+    transform: translateY(-2px);
+}
+
+/* ===== FORM ===== */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid var(--gray-light);
+    border-radius: 16px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+}
+
+.form-group input.error {
+    border-color: var(--danger);
+}
+
+.error-message {
+    color: var(--danger);
+    font-size: 13px;
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: #fee2e2;
+    border-radius: 10px;
+    display: none;
+}
+
+.error-message.show {
+    display: block;
+}
+
+/* ===== AMOUNT INFO ===== */
+.amount-info {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 20px;
+    padding: 1.5rem;
+    color: white;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.amount-info label {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.amount-info .value {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.amount-info .sub {
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 0.5rem;
+}
+
+/* ===== LIMITS ===== */
+.limits {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--gray);
+    margin-top: 8px;
+}
+
+#rateInfo {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* ===== BUY BUTTON ===== */
+.buy-btn {
+    width: 100%;
+    padding: 16px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    color: white;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    box-shadow: 0 4px 15px rgba(59,130,246,0.3);
+}
+
+.buy-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(59,130,246,0.4);
+}
+
+.buy-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ===== INFO BOX ===== */
+.info-box {
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    border-left: 4px solid #3b82f6;
+}
+
+.info-box h4 {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--dark);
+}
+
+.info-box ul {
+    list-style: none;
+}
+
+.info-box li {
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.info-box li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #10b981;
+    font-weight: bold;
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress-section {
+    margin-top: 2rem;
+}
+
+.progress-bar-container {
+    background: #e2e8f0;
+    border-radius: 20px;
+    height: 12px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+    height: 100%;
+    width: 0%;
+    transition: width 0.5s ease;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(59,130,246,0.5);
+}
+
+.progress-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 14px;
+    color: var(--gray);
+}
+
+/* ===== TOKEN ADDRESS ===== */
+.token-address {
+    background: #f1f5f9;
+    padding: 10px;
+    border-radius: 12px;
+    margin-top: 8px;
+    font-family: monospace;
+    word-break: break-all;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.token-address button {
+    padding: 6px 12px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.token-address button:hover {
+    background: #2563eb;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .presale-card {
+        padding: 1.5rem;
+        margin-top: -20px;
+    }
     
-    <script>
-        // Adres kopyalama fonksiyonu
-        function copyAddress() {
-            const address = '0x8161698A74F2ea0035B9912ED60140893Ac0f39C';
-            navigator.clipboard.writeText(address);
-            showToast('Kontrat adresi kopyalandı!', 'success');
-        }
-        
-        // İstatistikleri yükle
-        async function loadStats() {
-            try {
-                const response = await fetch('/backend/api/getPurchases.php?limit=1000');
-                const result = await response.json();
-                
-                if (result.success && result.data.purchases) {
-                    const purchases = result.data.purchases;
-                    
-                    const totalBNB = purchases
-                        .filter(p => p.payment_type === 'BNB' && p.status === 'completed')
-                        .reduce((sum, p) => sum + parseFloat(p.amount_sent), 0);
-                    
-                    const totalUSDT = purchases
-                        .filter(p => p.payment_type === 'USDT' && p.status === 'completed')
-                        .reduce((sum, p) => sum + parseFloat(p.amount_sent), 0);
-                    
-                    const totalFDAI = purchases
-                        .filter(p => p.status === 'completed')
-                        .reduce((sum, p) => sum + parseFloat(p.amount_fdai), 0);
-                    
-                    document.getElementById('totalRaisedBNB').textContent = totalBNB.toFixed(2);
-                    document.getElementById('totalRaisedUSDT').textContent = totalUSDT.toFixed(2);
-                    document.getElementById('totalTokenSold').textContent = window.formatFDAI ? window.formatFDAI(totalFDAI) : totalFDAI.toLocaleString();
-                    
-                    // Progress hesapla (hedef: 30% of total supply = 600T FDAI)
-                    const targetFDAI = 600000000000000;
-                    const percent = (totalFDAI / targetFDAI) * 100;
-                    const progressPercent = Math.min(percent, 100);
-                    document.getElementById('progressBar').style.width = progressPercent + '%';
-                    document.getElementById('progressPercent').textContent = `%${progressPercent.toFixed(1)} Tamamlandı`;
-                }
-            } catch (error) {
-                console.error('İstatistik yükleme hatası:', error);
-            }
-        }
-        
-        // Otomatik yenileme
-        setInterval(loadStats, 10000);
-        document.addEventListener('DOMContentLoaded', loadStats);
-    </script>
-</body>
-</html>
+    .payment-tab {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+    
+    .amount-info .value {
+        font-size: 1.5rem;
+    }
+    
+    .wallet-status {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .wallet-info {
+        flex-direction: column;
+    }
+    
+    .hero-stats {
+        gap: 1rem;
+    }
+    
+    .hero-stat {
+        padding: 0.75rem 1rem;
+        min-width: 120px;
+    }
+    
+    .hero-stat .number {
+        font-size: 1.25rem;
+    }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.loading-pulse {
+    animation: pulse 1.5s ease-in-out infinite;
+}
 EOF
 
-echo "✅ presale.html oluşturuldu"
+echo "✅ assets/css/presale.css (renkli) oluşturuldu"
