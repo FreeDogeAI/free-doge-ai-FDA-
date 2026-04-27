@@ -1,129 +1,17 @@
+cd ~/future-doge-ai
+
+cat > presale.html << 'EOF'
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <meta name="description" content="FreeDogeAI - Yapay zeka destekli meme coin projesi. Ön satışta FDAI tokenlarınızı BNB veya USDT ile satın alın.">
-    <meta name="keywords" content="FreeDogeAI, FDAI, meme coin, presale, BNB, USDT, yapay zeka">
-    <meta name="author" content="FreeDogeAI">
-    <meta property="og:title" content="FreeDogeAI - Yapay Zeka Destekli Meme Coin">
-    <meta property="og:description" content="FDAI token ön satışı başladı! Hemen katılın.">
-    <meta property="og:image" content="https://freedogeai.com/assets/images/logo/logo.png">
-    <meta property="og:url" content="https://freedogeai.com">
-    <meta name="twitter:card" content="summary_large_image">
-    <title>FreeDogeAI | Yapay Zeka Destekli Meme Coin</title>
+    <meta name="description" content="FreeDogeAI - Ön satış sayfası. FDAI tokenlarınızı BNB veya USDT ile satın alın.">
+    <meta name="keywords" content="FreeDogeAI, FDAI, presale, BNB, USDT">
+    <title>FreeDogeAI | Ön Satış</title>
     <link rel="icon" type="image/x-icon" href="/assets/images/logo/favicon.ico">
     <link rel="stylesheet" href="/assets/css/style.css">
-    <style>
-        /* Ek ana sayfa stilleri */
-        .hero-stats {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-        .hero-stat {
-            text-align: center;
-        }
-        .hero-stat .number {
-            font-size: 2rem;
-            font-weight: bold;
-        }
-        .hero-stat .label {
-            font-size: 0.875rem;
-            opacity: 0.8;
-        }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        .feature-card {
-            text-align: center;
-            padding: 2rem;
-        }
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 1rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-        }
-        .tokenomics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        .tokenomics-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 1rem;
-            border-bottom: 1px solid var(--border);
-        }
-        .roadmap {
-            position: relative;
-            padding-left: 2rem;
-        }
-        .roadmap::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, #667eea, #764ba2);
-        }
-        .roadmap-item {
-            position: relative;
-            margin-bottom: 2rem;
-            padding-left: 1.5rem;
-        }
-        .roadmap-item::before {
-            content: '';
-            position: absolute;
-            left: -0.5rem;
-            top: 0;
-            width: 1rem;
-            height: 1rem;
-            background: #667eea;
-            border-radius: 50%;
-        }
-        .roadmap-phase {
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-        .cta-section {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            color: white;
-            text-align: center;
-            padding: 4rem 2rem;
-            border-radius: 24px;
-            margin: 3rem 0;
-        }
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-        @media (max-width: 768px) {
-            .hero-stats {
-                gap: 1rem;
-            }
-            .hero-stat .number {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="/assets/css/presale.css">
 </head>
 <body>
 
@@ -134,8 +22,8 @@
                 <img src="/assets/images/logo/logo.png" alt="FreeDogeAI Logo" height="40">
             </div>
             <ul class="nav-links">
-                <li><a href="/" class="active">Ana Sayfa</a></li>
-                <li><a href="/presale.html">Ön Satış</a></li>
+                <li><a href="/">Ana Sayfa</a></li>
+                <li><a href="/presale.html" class="active">Ön Satış</a></li>
                 <li><a href="/news.html">Duyurular</a></li>
                 <li><a href="/faq.html">SSS</a></li>
                 <li><a href="/dashboard.html">İstihbarat Odası</a></li>
@@ -144,153 +32,109 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Presale Hero -->
+    <section class="presale-hero">
         <div class="container">
-            <h1>FreeDogeAI</h1>
-            <p>Yapay zeka gücüyle meme coin devrimi! FDAI token ile geleceğe yatırım yapın.</p>
-            <div class="hero-buttons">
-                <a href="/presale.html" class="btn btn-primary">🚀 Ön Satışa Katıl</a>
-                <a href="#about" class="btn btn-outline">📖 Daha Fazla</a>
-            </div>
+            <h1>🚀 FDAI Ön Satış</h1>
+            <p class="subtitle">Yapay zeka destekli meme coin devrimine katılın!</p>
             <div class="hero-stats">
                 <div class="hero-stat">
-                    <div class="number">2Q</div>
-                    <div class="label">Toplam Arz</div>
+                    <div class="number" id="totalRaisedBNB">0</div>
+                    <div class="label">BNB Toplandı</div>
                 </div>
                 <div class="hero-stat">
-                    <div class="number">15%</div>
-                    <div class="label">Ön Satış</div>
+                    <div class="number" id="totalRaisedUSDT">0</div>
+                    <div class="label">USDT Toplandı</div>
                 </div>
                 <div class="hero-stat">
-                    <div class="number">30%</div>
-                    <div class="label">Kilitli Rezerv</div>
+                    <div class="number" id="totalTokenSold">0</div>
+                    <div class="label">Token Satıldı</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <h2 class="section-title">FreeDogeAI Nedir?</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>🤖 Yapay Zeka Destekli</h3>
-                    <p>FreeDogeAI, yapay zeka teknolojisini meme coin ekosistemiyle birleştiren devrim niteliğinde bir projedir.</p>
-                </div>
-                <div class="card">
-                    <h3>🚀 Topluluk Odaklı</h3>
-                    <p>Topluluğumuzun gücüyle büyüyen, herkes için fırsat eşitliği sunan bir platform.</p>
-                </div>
-                <div class="card">
-                    <h3>💰 DeFi Entegrasyonu</h3>
-                    <p>Merkeziyetsiz finansın gücünü kullanarak, kullanıcılarına maksimum fayda sağlar.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="section" style="background: #f8fafc;">
-        <div class="container">
-            <h2 class="section-title">Özellikler</h2>
-            <div class="features-grid">
-                <div class="feature-card card">
-                    <div class="feature-icon">🔗</div>
-                    <h3>Çoklu Cüzdan Desteği</h3>
-                    <p>MetaMask, Trust Wallet, WalletConnect ve daha fazlasıyla bağlantı.</p>
-                </div>
-                <div class="feature-card card">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>Güvenli ve Şeffaf</h3>
-                    <p>Akıllı kontratlarımız audit edilmiştir, tüm işlemler blockchain üzerindedir.</p>
-                </div>
-                <div class="feature-card card">
-                    <div class="feature-icon">📈</div>
-                    <h3>Yüksek Getiri</h3>
-                    <p>Ön satışa katılanlar için özel avantajlar ve erken yatırım fırsatları.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tokenomics Section -->
+    <!-- Presale Card -->
     <section class="section">
         <div class="container">
-            <h2 class="section-title">Tokenomics</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>📊 Token Dağılımı</h3>
-                    <div class="tokenomics-grid">
-                        <div class="tokenomics-item"><span>Ön Satış</span><strong>15%</strong></div>
-                        <div class="tokenomics-item"><span>Airdrop & Kampanyalar</span><strong>15%</strong></div>
-                        <div class="tokenomics-item"><span>Yakma</span><strong>15%</strong></div>
-                        <div class="tokenomics-item"><span>DEX & CEX Listing</span><strong>20%</strong></div>
-                        <div class="tokenomics-item"><span>Kilitli Rezerv</span><strong>30%</strong></div>
-                        <div class="tokenomics-item"><span>Ekip</span><strong>5%</strong></div>
+            <div class="presale-card">
+                
+                <!-- Wallet Connect -->
+                <div class="wallet-section">
+                    <div class="wallet-status">
+                        <div class="wallet-info">
+                            <span>🔐 Cüzdan:</span>
+                            <span class="wallet-address" id="walletAddress">Bağlı değil</span>
+                            <span id="walletStatus"></span>
+                        </div>
+                        <button class="btn btn-primary" id="connectWalletBtn">🔗 Cüzdan Bağla</button>
                     </div>
                 </div>
-                <div class="card">
-                    <h3>📈 Token Bilgileri</h3>
-                    <div class="tokenomics-grid">
-                        <div class="tokenomics-item"><span>Toplam Arz</span><strong>2,000,000,000,000,000</strong></div>
-                        <div class="tokenomics-item"><span>Dolaşımdaki Arz</span><strong>1,400,000,000,000,000</strong></div>
-                        <div class="tokenomics-item"><span>Kilitli Arz</span><strong>600,000,000,000,000</strong></div>
-                        <div class="tokenomics-item"><span>Sembol</span><strong>FDAI</strong></div>
-                        <div class="tokenomics-item"><span>Network</span><strong>BSC</strong></div>
+
+                <!-- Payment Method Tabs -->
+                <div class="payment-methods">
+                    <button class="payment-tab active" data-type="BNB">
+                        <img src="https://cryptologos.cc/logos/bnb-bnb-logo.svg" width="24" height="24" alt="BNB"> BNB
+                    </button>
+                    <button class="payment-tab" data-type="USDT">
+                        <img src="https://cryptologos.cc/logos/tether-usdt-logo.svg" width="24" height="24" alt="USDT"> USDT
+                    </button>
+                </div>
+
+                <!-- Amount Input -->
+                <div class="form-group">
+                    <label id="amountLabel">BNB Miktarı</label>
+                    <input type="number" id="amountInput" step="0.01" placeholder="0.00">
+                    <div class="limits">
+                        <span>Min: <span id="minLimit">0.01</span></span>
+                        <span>Max: <span id="maxLimit">10</span></span>
+                        <span id="rateInfo">1 BNB = 120.000.000.000 FDAI</span>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Roadmap Section -->
-    <section class="section" style="background: #f8fafc;">
-        <div class="container">
-            <h2 class="section-title">Yol Haritası</h2>
-            <div class="roadmap">
-                <div class="roadmap-item">
-                    <div class="roadmap-phase">Phase 1 - Launch</div>
-                    <p>✓ Web sitesi lansmanı<br>✓ Twitter & Telegram açılışı<br>✓ Ön satış başlangıcı</p>
+                <!-- FDAI Amount Display -->
+                <div class="amount-info">
+                    <label>Alacağınız FDAI Token</label>
+                    <div class="value" id="amountFDAI">0</div>
+                    <div class="sub">~ $0 USD Değerinde</div>
                 </div>
-                <div class="roadmap-item">
-                    <div class="roadmap-phase">Phase 2 - Growth</div>
-                    <p>✓ Airdrop kampanyaları<br>✓ DEX listing<br>✓ Influencer işbirlikleri</p>
-                </div>
-                <div class="roadmap-item">
-                    <div class="roadmap-phase">Phase 3 - AI Utility</div>
-                    <p>✓ AI mini oyun<br>✓ Görev/ödül sistemi<br>✓ Beta test</p>
-                </div>
-                <div class="roadmap-item">
-                    <div class="roadmap-phase">Phase 4 - Global Expansion</div>
-                    <p>✓ CEX listing<br>✓ NFT + AI entegrasyonu<br>✓ Global genişleme</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Latest News Section -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Son Duyurular</h2>
-            <div id="latestNews"></div>
-            <div class="text-center" style="margin-top: 2rem;">
-                <a href="/news.html" class="btn btn-outline">Tüm Duyurular →</a>
-            </div>
-        </div>
-    </section>
+                <!-- Email (Opsiyonel) -->
+                <div class="form-group">
+                    <label>E-posta (Opsiyonel)</label>
+                    <input type="email" id="email" placeholder="ornek@email.com">
+                    <div class="limits">Token gönderimi hakkında bilgi almak için</div>
+                </div>
 
-    <!-- CTA Section -->
-    <section class="section">
-        <div class="container">
-            <div class="cta-section">
-                <h2>Ön Satışa Katılmaya Hazır mısın?</h2>
-                <p>FDAI tokenlarını şimdi satın al ve yapay zeka destekli meme coin devriminin bir parçası ol!</p>
-                <div class="cta-buttons">
-                    <a href="/presale.html" class="btn btn-primary">🎯 Hemen Katıl</a>
-                    <a href="https://t.me/freedogeaiFDAI" target="_blank" class="btn btn-outline" style="background: white;">💬 Telegram</a>
-                    <a href="https://twitter.com/FreeDogeaicoin" target="_blank" class="btn btn-outline" style="background: white;">🐦 Twitter</a>
+                <!-- Error Message -->
+                <div class="error-message" id="errorMessage"></div>
+
+                <!-- Buy Button -->
+                <button class="buy-btn" id="buyBtn" disabled>💰 Satın Al</button>
+
+                <!-- Info Box -->
+                <div class="info-box">
+                    <h4>📋 Önemli Bilgiler</h4>
+                    <ul>
+                        <li>Tokenlarınız satın alma işleminden sonra <strong>24 saat içinde</strong> cüzdanınıza gönderilecektir.</li>
+                        <li>Lütfen <strong>BSC (Binance Smart Chain)</strong> ağına bağlı olduğunuzdan emin olun.</li>
+                        <li>FDAI tokenlarını görmüyorsanız, kontrat adresini cüzdanınıza ekleyin:</li>
+                    </ul>
+                    <div class="token-address" style="background:#f1f5f9; padding:8px; border-radius:8px; margin-top:8px; font-family:monospace; word-break:break-all;">
+                        0x8161698A74F2ea0035B9912ED60140893Ac0f39C
+                        <button onclick="copyAddress()" style="margin-left:10px; padding:4px 8px;">📋 Kopyala</button>
+                    </div>
+                </div>
+
+                <!-- Progress Section -->
+                <div class="progress-section">
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
+                    </div>
+                    <div class="progress-stats">
+                        <span>Satış Hedefi: 30%</span>
+                        <span id="progressPercent">%0 Tamamlandı</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -312,11 +156,6 @@
                     <a href="/faq.html">SSS</a>
                 </div>
                 <div class="footer-links">
-                    <h4>Yasal</h4>
-                    <a href="#">Gizlilik Politikası</a>
-                    <a href="#">Kullanım Şartları</a>
-                </div>
-                <div class="footer-links">
                     <h4>Sosyal Medya</h4>
                     <div class="social-links">
                         <a href="https://twitter.com/FreeDogeaicoin" target="_blank">🐦</a>
@@ -330,11 +169,65 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
     <script src="/assets/js/config.js"></script>
     <script src="/assets/js/web3-utils.js"></script>
-    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/web3.js"></script>
+    <script src="/assets/js/web3-connector.js"></script>
+    <script src="/assets/js/presale.js"></script>
+    
+    <script>
+        // Adres kopyalama fonksiyonu
+        function copyAddress() {
+            const address = '0x8161698A74F2ea0035B9912ED60140893Ac0f39C';
+            navigator.clipboard.writeText(address);
+            showToast('Kontrat adresi kopyalandı!', 'success');
+        }
+        
+        // İstatistikleri yükle
+        async function loadStats() {
+            try {
+                const response = await fetch('/backend/api/getPurchases.php?limit=1000');
+                const result = await response.json();
+                
+                if (result.success && result.data.purchases) {
+                    const purchases = result.data.purchases;
+                    
+                    const totalBNB = purchases
+                        .filter(p => p.payment_type === 'BNB' && p.status === 'completed')
+                        .reduce((sum, p) => sum + parseFloat(p.amount_sent), 0);
+                    
+                    const totalUSDT = purchases
+                        .filter(p => p.payment_type === 'USDT' && p.status === 'completed')
+                        .reduce((sum, p) => sum + parseFloat(p.amount_sent), 0);
+                    
+                    const totalFDAI = purchases
+                        .filter(p => p.status === 'completed')
+                        .reduce((sum, p) => sum + parseFloat(p.amount_fdai), 0);
+                    
+                    document.getElementById('totalRaisedBNB').textContent = totalBNB.toFixed(2);
+                    document.getElementById('totalRaisedUSDT').textContent = totalUSDT.toFixed(2);
+                    document.getElementById('totalTokenSold').textContent = window.formatFDAI ? window.formatFDAI(totalFDAI) : totalFDAI.toLocaleString();
+                    
+                    // Progress hesapla (hedef: 30% of total supply = 600T FDAI)
+                    const targetFDAI = 600000000000000;
+                    const percent = (totalFDAI / targetFDAI) * 100;
+                    const progressPercent = Math.min(percent, 100);
+                    document.getElementById('progressBar').style.width = progressPercent + '%';
+                    document.getElementById('progressPercent').textContent = `%${progressPercent.toFixed(1)} Tamamlandı`;
+                }
+            } catch (error) {
+                console.error('İstatistik yükleme hatası:', error);
+            }
+        }
+        
+        // Otomatik yenileme
+        setInterval(loadStats, 10000);
+        document.addEventListener('DOMContentLoaded', loadStats);
+    </script>
 </body>
 </html>
 EOF
 
-echo "✅ index.html oluşturuldu"
+echo "✅ presale.html oluşturuldu"
