@@ -1,261 +1,285 @@
 cd ~/future-doge-ai
 
-cat > presale.html << 'EOF'
+cat > dashboard.html << 'EOF'
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <meta name="description" content="FreeDogeAI - Ön satış sayfası. FDAI tokenlarınızı BNB veya USDT ile satın alın.">
-    <meta name="keywords" content="FreeDogeAI, FDAI, presale, BNB, USDT">
-    <title>FreeDogeAI | Ön Satış</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreeDogeAI | İstihbarat Odası</title>
     <link rel="icon" type="image/x-icon" href="/assets/images/logo/favicon.ico">
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/presale.css">
+    <link rel="stylesheet" href="/assets/css/dashboard.css">
     <style>
-        /* Ek canlı stiller */
         body {
-            background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            min-height: 100vh;
         }
-        .navbar {
+        .login-card {
             background: rgba(255,255,255,0.98);
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(59,130,246,0.3);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
         }
-        .buy-btn {
-            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        .login-card h2 {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-        .token-address {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+        .login-btn {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
         }
     </style>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">
-                <img src="/assets/images/logo/logo.png" alt="FreeDogeAI Logo" height="40" onerror="this.src='https://placehold.co/120x40/3b82f6/white?text=FreeDogeAI'">
-            </div>
-            <ul class="nav-links">
-                <li><a href="/">Ana Sayfa</a></li>
-                <li><a href="/presale.html" class="active">Ön Satış</a></li>
-                <li><a href="/news.html">Duyurular</a></li>
-                <li><a href="/faq.html">SSS</a></li>
-                <li><a href="/dashboard.html">İstihbarat Odası</a></li>
-            </ul>
-            <div class="menu-toggle">☰</div>
+<!-- Login Container (görünür başlangıçta) -->
+<div id="loginContainer" class="login-container">
+    <div class="login-card">
+        <div style="text-align: center; margin-bottom: 1rem;">
+            <img src="/assets/images/logo/logo.png" alt="FreeDogeAI" height="50" onerror="this.style.display='none'">
         </div>
-    </nav>
+        <h2>🔐 İstihbarat Odası</h2>
+        <p class="subtitle">Yetkili girişi</p>
+        <form id="loginForm" class="login-form">
+            <div class="form-group">
+                <input type="password" id="password" placeholder="Şifrenizi girin" required>
+            </div>
+            <button type="submit" class="login-btn">🚪 Giriş Yap</button>
+        </form>
+        <div id="loginError" style="color: #ef4444; text-align: center; margin-top: 1rem; display: none;"></div>
+    </div>
+</div>
 
-    <!-- Presale Hero -->
-    <section class="presale-hero">
-        <div class="container">
-            <h1>🚀 FDAI Ön Satış</h1>
-            <p class="subtitle">Yapay zeka destekli meme coin devrimine katılın!</p>
-            <div class="hero-stats">
-                <div class="hero-stat">
-                    <div class="number" id="totalRaisedBNB">0</div>
-                    <div class="label">BNB Toplandı</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="number" id="totalRaisedUSDT">0</div>
-                    <div class="label">USDT Toplandı</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="number" id="totalTokenSold">0</div>
-                    <div class="label">Token Satıldı</div>
-                </div>
+<!-- Dashboard Container (gizli başlangıçta) -->
+<div id="dashboardContainer" style="display: none;">
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="dashboard-sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3>🎯 FreeDogeAI</h3>
+                <p style="font-size: 12px; opacity: 0.7;">İstihbarat Odası</p>
+            </div>
+            <div class="sidebar-nav">
+                <a href="#" class="active" data-tab="purchases">📋 Satın Almalar</a>
+                <a href="#" data-tab="news">📰 Duyurular</a>
+                <a href="#" data-tab="stats">📊 İstatistikler</a>
+                <a href="#" data-tab="settings">⚙️ Ayarlar</a>
+            </div>
+            <div class="sidebar-footer">
+                <button class="logout-btn" id="logoutBtn">🚪 Çıkış Yap</button>
             </div>
         </div>
-    </section>
 
-    <!-- Presale Card -->
-    <section class="section">
-        <div class="container">
-            <div class="presale-card">
+        <!-- Main Content -->
+        <div class="dashboard-main">
+            <div class="dashboard-header">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+                <h1 id="pageTitle">Satın Almalar</h1>
+                <div></div>
+            </div>
+            <div class="dashboard-content">
                 
-                <!-- Wallet Connect -->
-                <div class="wallet-section">
-                    <div class="wallet-status">
-                        <div class="wallet-info">
-                            <span>🔐 Cüzdan:</span>
-                            <span class="wallet-address" id="walletAddress">Bağlı değil</span>
-                            <span id="walletStatus"></span>
+                <!-- Purchases Tab -->
+                <div id="purchasesTab" class="tab-content">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-info">
+                                <h4>Toplam BNB</h4>
+                                <div class="value" id="statTotalBNB">0</div>
+                            </div>
+                            <div class="stat-icon">💰</div>
                         </div>
-                        <button class="btn btn-primary" id="connectWalletBtn">🔗 Cüzdan Bağla</button>
+                        <div class="stat-card">
+                            <div class="stat-info">
+                                <h4>Toplam USDT</h4>
+                                <div class="value" id="statTotalUSDT">0</div>
+                            </div>
+                            <div class="stat-icon">💵</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-info">
+                                <h4>Toplam FDAI</h4>
+                                <div class="value" id="statTotalFDAI">0</div>
+                            </div>
+                            <div class="stat-icon">🪙</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-info">
+                                <h4>Bekleyen Talepler</h4>
+                                <div class="value" id="statPending">0</div>
+                            </div>
+                            <div class="stat-icon">⏳</div>
+                        </div>
+                    </div>
+
+                    <div class="filters-bar">
+                        <select id="filterStatus" class="filter-select">
+                            <option value="all">Tümü</option>
+                            <option value="pending">Bekleyen</option>
+                            <option value="completed">Tamamlanan</option>
+                            <option value="failed">Başarısız</option>
+                        </select>
+                        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Cüzdan veya TX ara...">
+                        <button id="exportBtn" class="export-btn">📎 Excel'e Aktar</button>
+                        <button id="refreshBtn" class="btn btn-outline" style="padding: 8px 16px;">🔄 Yenile</button>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>TX Hash</th>
+                                    <th>Cüzdan</th>
+                                    <th>Tip</th>
+                                    <th>Miktar</th>
+                                    <th>FDAI</th>
+                                    <th>Email</th>
+                                    <th>Durum</th>
+                                    <th>Tarih</th>
+                                    <th>İşlem</th>
+                                </tr>
+                            </thead>
+                            <tbody id="purchasesTable">
+                                <tr><td colspan="10" class="text-center">Yükleniyor...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="pagination" class="pagination" style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;"></div>
+                </div>
+
+                <!-- News Tab -->
+                <div id="newsTab" class="tab-content" style="display: none;">
+                    <div class="news-editor">
+                        <h3>➕ Yeni Duyuru Ekle</h3>
+                        <form id="newsForm">
+                            <input type="text" id="newsTitle" placeholder="Başlık" required>
+                            <input type="text" id="newsSummary" placeholder="Kısa özet (opsiyonel)">
+                            <textarea id="newsContent" placeholder="İçerik (HTML destekli)" required></textarea>
+                            <button type="submit" class="btn btn-primary">📢 Duyuruyu Yayınla</button>
+                        </form>
+                    </div>
+                    <div class="news-list">
+                        <h3>📰 Mevcut Duyurular</h3>
+                        <div id="newsList"></div>
                     </div>
                 </div>
 
-                <!-- Payment Method Tabs -->
-                <div class="payment-methods">
-                    <button class="payment-tab active" data-type="BNB">
-                        <img src="https://cryptologos.cc/logos/bnb-bnb-logo.svg" width="24" height="24" alt="BNB" onerror="this.style.display='none'"> BNB
-                    </button>
-                    <button class="payment-tab" data-type="USDT">
-                        <img src="https://cryptologos.cc/logos/tether-usdt-logo.svg" width="24" height="24" alt="USDT" onerror="this.style.display='none'"> USDT
-                    </button>
-                </div>
-
-                <!-- Amount Input -->
-                <div class="form-group">
-                    <label id="amountLabel">BNB Miktarı</label>
-                    <input type="number" id="amountInput" step="0.01" placeholder="0.00">
-                    <div class="limits">
-                        <span>Min: <span id="minLimit">0.01</span></span>
-                        <span>Max: <span id="maxLimit">10</span></span>
-                        <span id="rateInfo">1 BNB = 120.000.000.000 FDAI</span>
+                <!-- Stats Tab -->
+                <div id="statsTab" class="tab-content" style="display: none;">
+                    <div class="card">
+                        <h3>📈 Detaylı İstatistikler</h3>
+                        <canvas id="statsChart" width="400" height="200" style="max-width: 100%;"></canvas>
+                        <div id="detailedStats"></div>
                     </div>
                 </div>
 
-                <!-- FDAI Amount Display -->
-                <div class="amount-info">
-                    <label>Alacağınız FDAI Token</label>
-                    <div class="value" id="amountFDAI">0</div>
-                    <div class="sub">📍 BSC (Binance Smart Chain) ağında</div>
-                </div>
-
-                <!-- Email (Opsiyonel) -->
-                <div class="form-group">
-                    <label>📧 E-posta (Opsiyonel)</label>
-                    <input type="email" id="email" placeholder="ornek@email.com">
-                    <div class="limits">Token gönderimi hakkında bilgi almak için</div>
-                </div>
-
-                <!-- Error Message -->
-                <div class="error-message" id="errorMessage"></div>
-
-                <!-- Buy Button -->
-                <button class="buy-btn" id="buyBtn" disabled>💰 Satın Al</button>
-
-                <!-- Info Box -->
-                <div class="info-box">
-                    <h4>📋 Önemli Bilgiler</h4>
-                    <ul>
-                        <li>Tokenlarınız satın alma işleminden sonra <strong>24 saat içinde</strong> cüzdanınıza gönderilecektir.</li>
-                        <li>Lütfen <strong>BSC (Binance Smart Chain)</strong> ağına bağlı olduğunuzdan emin olun.</li>
-                        <li>FDAI tokenlarını görmüyorsanız, kontrat adresini cüzdanınıza ekleyin:</li>
-                    </ul>
-                    <div class="token-address">
-                        <code>0x8161698A74F2ea0035B9912ED60140893Ac0f39C</code>
-                        <button onclick="copyAddress()">📋 Kopyala</button>
-                    </div>
-                </div>
-
-                <!-- Progress Section -->
-                <div class="progress-section">
-                    <div class="progress-bar-container">
-                        <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
-                    </div>
-                    <div class="progress-stats">
-                        <span>🎯 Hedef: 30%</span>
-                        <span id="progressPercent">%0 Tamamlandı</span>
+                <!-- Settings Tab -->
+                <div id="settingsTab" class="tab-content" style="display: none;">
+                    <div class="card">
+                        <h3>⚙️ Site Ayarları</h3>
+                        <form id="settingsForm">
+                            <div class="form-group">
+                                <label>Ön Satış BNB Kuru</label>
+                                <input type="text" id="settingBNBRate" placeholder="1 BNB = ? FDAI">
+                            </div>
+                            <div class="form-group">
+                                <label>Ön Satış USDT Kuru</label>
+                                <input type="text" id="settingUSDTRate" placeholder="1 USDT = ? FDAI">
+                            </div>
+                            <div class="form-group">
+                                <label>Admin Şifresi (Değiştirmek için)</label>
+                                <input type="password" id="settingPassword" placeholder="Yeni şifre">
+                            </div>
+                            <button type="submit" class="btn btn-primary">💾 Kaydet</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="/assets/images/logo/logo-white.png" alt="FreeDogeAI" height="40" onerror="this.style.display='none'">
-                    <p>Yapay zeka destekli meme coin devrimi</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Hızlı Bağlantılar</h4>
-                    <a href="/">Ana Sayfa</a>
-                    <a href="/presale.html">Ön Satış</a>
-                    <a href="/news.html">Duyurular</a>
-                    <a href="/faq.html">SSS</a>
-                </div>
-                <div class="footer-links">
-                    <h4>Sosyal Medya</h4>
-                    <div class="social-links">
-                        <a href="https://twitter.com/FreeDogeaicoin" target="_blank">🐦 Twitter</a>
-                        <a href="https://t.me/freedogeaiFDAI" target="_blank">💬 Telegram</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 FreeDogeAI. Tüm hakları saklıdır.</p>
-            </div>
+<!-- Modal -->
+<div id="purchaseModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>📄 Satın Alma Detayı</h3>
+            <button class="modal-close" onclick="closeModal()">&times;</button>
         </div>
-    </footer>
+        <div class="modal-body" id="purchaseModalBody"></div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" onclick="closeModal()">Kapat</button>
+        </div>
+    </div>
+</div>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
-    <script src="/assets/js/config.js"></script>
-    <script src="/assets/js/web3-utils.js"></script>
-    <script src="/assets/js/web3.js"></script>
-    <script src="/assets/js/web3-connector.js"></script>
-    <script src="/assets/js/presale.js"></script>
-    
-    <script>
-        // Adres kopyalama fonksiyonu
-        function copyAddress() {
-            const address = '0x8161698A74F2ea0035B9912ED60140893Ac0f39C';
-            navigator.clipboard.writeText(address);
-            if (typeof showToast === 'function') {
-                showToast('✅ Kontrat adresi kopyalandı!', 'success');
-            } else {
-                alert('Adres kopyalandı: ' + address);
-            }
-        }
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/web3-utils.js"></script>
+<script src="/assets/js/dashboard.js"></script>
+
+<script>
+    // Login işlemi
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const password = document.getElementById('password').value;
+        const errorDiv = document.getElementById('loginError');
         
-        // İstatistikleri yükle
-        async function loadStats() {
-            try {
-                const response = await fetch('/backend/api/getPurchases.php?limit=1000');
-                const result = await response.json();
-                
-                if (result.success && result.data.purchases) {
-                    const purchases = result.data.purchases;
-                    
-                    const totalBNB = purchases
-                        .filter(p => p.payment_type === 'BNB' && p.status === 'completed')
-                        .reduce((sum, p) => sum + parseFloat(p.amount_sent), 0);
-                    
-                    const totalUSDT = purchases
-                        .filter(p => p.payment_type === 'USDT' && p.status === 'completed')
-                        .reduce((sum, p) => sum + parseFloat(p.amount_sent), 0);
-                    
-                    const totalFDAI = purchases
-                        .filter(p => p.status === 'completed')
-                        .reduce((sum, p) => sum + parseFloat(p.amount_fdai), 0);
-                    
-                    document.getElementById('totalRaisedBNB').textContent = totalBNB.toFixed(2);
-                    document.getElementById('totalRaisedUSDT').textContent = totalUSDT.toFixed(2);
-                    
-                    if (typeof formatFDAI === 'function') {
-                        document.getElementById('totalTokenSold').textContent = formatFDAI(totalFDAI);
-                    } else {
-                        document.getElementById('totalTokenSold').textContent = totalFDAI.toLocaleString();
-                    }
-                    
-                    // Progress hesapla (hedef: 30% of total supply = 600T FDAI)
-                    const targetFDAI = 600000000000000;
-                    const percent = (totalFDAI / targetFDAI) * 100;
-                    const progressPercent = Math.min(percent, 100);
-                    document.getElementById('progressBar').style.width = progressPercent + '%';
-                    document.getElementById('progressPercent').textContent = `🎉 %${progressPercent.toFixed(1)} Tamamlandı`;
+        try {
+            const response = await fetch('/backend/api/login.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password: password })
+            });
+            const result = await response.json();
+            
+            if (result.success) {
+                sessionStorage.setItem('admin_logged_in', 'true');
+                document.getElementById('loginContainer').style.display = 'none';
+                document.getElementById('dashboardContainer').style.display = 'block';
+                if (typeof loadPurchases === 'function') {
+                    loadPurchases();
+                    loadStats();
+                    loadNewsList();
                 }
-            } catch (error) {
-                console.error('İstatistik yükleme hatası:', error);
+            } else {
+                errorDiv.textContent = result.error || 'Şifre hatalı!';
+                errorDiv.style.display = 'block';
             }
+        } catch (error) {
+            errorDiv.textContent = 'Giriş yapılamadı!';
+            errorDiv.style.display = 'block';
         }
-        
-        // Sayfa yüklendiğinde
-        document.addEventListener('DOMContentLoaded', function() {
-            loadStats();
-            // Her 15 saniyede bir yenile
-            setInterval(loadStats, 15000);
+    });
+    
+    // Session kontrolü
+    if (sessionStorage.getItem('admin_logged_in') === 'true') {
+        document.getElementById('loginContainer').style.display = 'none';
+        document.getElementById('dashboardContainer').style.display = 'block';
+    }
+    
+    // Mobil menü
+    document.getElementById('mobileMenuBtn')?.addEventListener('click', () => {
+        document.getElementById('sidebar').classList.toggle('open');
+    });
+    
+    // Tab değiştirme
+    document.querySelectorAll('.sidebar-nav a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const tab = link.dataset.tab;
+            document.querySelectorAll('.sidebar-nav a').forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+            document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
+            document.getElementById(`${tab}Tab`).style.display = 'block';
+            document.getElementById('pageTitle').textContent = link.textContent.trim();
         });
-    </script>
+    });
+</script>
 </body>
 </html>
 EOF
 
-echo "✅ presale.html (renkli) oluşturuldu"
+echo "✅ dashboard.html oluşturuldu"
